@@ -1,0 +1,2 @@
+import { defineStore } from 'pinia'
+export const useCartStore = defineStore('cart', { state: () => ({ petIds: [] as number[], addressId: 0, date:'', start:'10:00', end:'10:30', services: [] as number[], notes:'', scope:'仅限本次上门喂养服务，完成后关闭门窗并归还钥匙。', accepted:false, couponId: null as number | null, requestKey:'' }), actions: { key() { if(!this.requestKey) this.requestKey = 'app-' + Date.now() + '-' + Math.random().toString(36).slice(2); return this.requestKey }, resetKey() { this.requestKey = ''; this.accepted = false } } })

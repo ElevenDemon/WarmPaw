@@ -1,0 +1,67 @@
+{
+  "passed": [
+    "P opens presenter and audience",
+    "Audience synchronized",
+    "Next page",
+    "Previous page",
+    "Presenter grid opens",
+    "Grid selects page 5",
+    "Home",
+    "End",
+    "Restart from last page",
+    "Timer start",
+    "Timer pause",
+    "Timer reset",
+    "Rehearsal start",
+    "Rehearsal summary",
+    "Audience black screen",
+    "Audience white screen",
+    "Freeze retains audience page",
+    "Unfreeze catches up",
+    "Laser tool",
+    "Circle tool",
+    "Circle drawing",
+    "Clear annotations",
+    "Auto advance enabled",
+    "Auto pauses in grid",
+    "Auto resumes",
+    "Auto disabled",
+    "Notes persist by slide ID",
+    "Preflight opens",
+    "16:9 previews 1600x900",
+    "16:9 previews 1280x720",
+    "16:9 previews 1024x768",
+    "Audience close detected",
+    "Audience reconnect at current page",
+    "Exit presenter",
+    "Audience closes on exit",
+    "No browser JavaScript exceptions"
+  ],
+  "sizes": [
+    {
+      "w": 1600,
+      "h": 900,
+      "ratios": [
+        1.7777439024390245,
+        1.7776988636363635
+      ]
+    },
+    {
+      "w": 1280,
+      "h": 720,
+      "ratios": [
+        1.7777777777777777,
+        1.7776864035087718
+      ]
+    },
+    {
+      "w": 1024,
+      "h": 768,
+      "ratios": [
+        1.777733118971061,
+        1.77775
+      ]
+    }
+  ],
+  "errors": []
+}

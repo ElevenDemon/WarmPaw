@@ -1,0 +1,25 @@
+{
+  "name": "warm-paw-admin",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0",
+    "test": "node tests/integration.test.mjs",
+    "test:browser": "node tests/browser-smoke.mjs",
+    "test:live": "node tests/browser-smoke.mjs --live",
+    "dev:demo": "vite --mode demo --host 127.0.0.1 --port 5174"
+  },
+  "dependencies": {
+    "@element-plus/icons-vue": "^2.3.1",
+    "element-plus": "^2.9.11",
+    "vue": "^3.5.13",
+    "vue-router": "^4.5.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.2.3",
+    "vite": "^6.1.0"
+  }
+}

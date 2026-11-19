@@ -1,0 +1,110 @@
+[
+  {
+    "id": "cover",
+    "logos": [
+      {
+        "loaded": true,
+        "src": "./assets/logo-horizontal-reverse.svg"
+      }
+    ]
+  },
+  {
+    "id": "trust-gap",
+    "logos": [
+      {
+        "loaded": true,
+        "src": "./assets/logo-horizontal.svg"
+      }
+    ]
+  },
+  {
+    "id": "care-loop",
+    "logos": [
+      {
+        "loaded": true,
+        "src": "./assets/logo-horizontal.svg"
+      }
+    ]
+  },
+  {
+    "id": "bounded-ai",
+    "logos": [
+      {
+        "loaded": true,
+        "src": "./assets/logo-horizontal-reverse.svg"
+      }
+    ]
+  },
+  {
+    "id": "ai-service",
+    "logos": [
+      {
+        "loaded": true,
+        "src": "./assets/logo-horizontal.svg"
+      }
+    ]
+  },
+  {
+    "id": "walk-route",
+    "logos": [
+      {
+        "loaded": true,
+        "src": "./assets/logo-horizontal-reverse.svg"
+      }
+    ]
+  },
+  {
+    "id": "trust-controls",
+    "logos": [
+      {
+        "loaded": true,
+        "src": "./assets/logo-horizontal.svg"
+      }
+    ]
+  },
+  {
+    "id": "product-status",
+    "logos": [
+      {
+        "loaded": true,
+        "src": "./assets/logo-horizontal.svg"
+      }
+    ]
+  },
+  {
+    "id": "business-model",
+    "logos": [
+      {
+        "loaded": true,
+        "src": "./assets/logo-horizontal-reverse.svg"
+      }
+    ]
+  },
+  {
+    "id": "district-growth",
+    "logos": [
+      {
+        "loaded": true,
+        "src": "./assets/logo-horizontal.svg"
+      }
+    ]
+  },
+  {
+    "id": "validation-gates",
+    "logos": [
+      {
+        "loaded": true,
+        "src": "./assets/logo-horizontal.svg"
+      }
+    ]
+  },
+  {
+    "id": "closing",
+    "logos": [
+      {
+        "loaded": true,
+        "src": "./assets/logo-horizontal-reverse.svg"
+      }
+    ]
+  }
+]

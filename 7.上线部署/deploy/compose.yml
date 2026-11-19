@@ -1,0 +1,126 @@
+name: nuanzhua
+
+x-ai-env: &ai-env
+  APP_ENV: production
+  AI_API_KEY: ${AI_SERVICE_API_KEY:?run deploy.sh init first}
+  HUALONG_BASE_URL: ${HUALONG_BASE_URL:-https://api.hualong-ai.com/v1}
+  HUALONG_API_KEY: ${HUALONG_API_KEY:-}
+  HUALONG_MODEL: ${HUALONG_MODEL:-gpt-6.1-sol}
+  HUALONG_EMBEDDING_BASE_URL: ${HUALONG_EMBEDDING_BASE_URL:-}
+  HUALONG_EMBEDDING_API_KEY: ${HUALONG_EMBEDDING_API_KEY:-}
+  HUALONG_EMBEDDING_MODEL: ${HUALONG_EMBEDDING_MODEL:-text-embedding-3-small}
+  RAG_DATABASE_URL: postgresql://pet_ai:${AI_DB_PASSWORD:?missing AI_DB_PASSWORD}@db:5432/pet_knowledge
+  RAG_INDEX_NAME: nuanzhua_knowledge
+  VECTOR_MIN_SIMILARITY: ${VECTOR_MIN_SIMILARITY:-0.35}
+
+x-logging: &logging
+  driver: json-file
+  options:
+    max-size: 10m
+    max-file: '3'
+
+services:
+  db:
+    image: pgvector/pgvector:pg16
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: pet_demo
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?missing POSTGRES_PASSWORD}
+      APP_DB_PASSWORD: ${APP_DB_PASSWORD:?missing APP_DB_PASSWORD}
+      AI_DB_PASSWORD: ${AI_DB_PASSWORD:?missing AI_DB_PASSWORD}
+      TZ: Asia/Shanghai
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./init-db.sh:/docker-entrypoint-initdb.d/10-init.sh:ro
+    healthcheck:
+      test: [CMD-SHELL, 'pg_isready -U postgres -d pet_demo']
+      interval: 5s
+      timeout: 5s
+      retries: 30
+      start_period: 15s
+    logging: *logging
+
+  backend:
+    build:
+      context: ..
+      dockerfile: deploy/backend.Dockerfile
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DB_URL: jdbc:postgresql://db:5432/pet_demo
+      DB_USERNAME: pet_app
+      DB_PASSWORD: ${APP_DB_PASSWORD:?missing APP_DB_PASSWORD}
+      SERVER_PORT: '8080'
+      BOOTSTRAP_PASSWORD: ${BOOTSTRAP_PASSWORD:?missing BOOTSTRAP_PASSWORD}
+      DEMO_ENABLED: ${DEMO_ENABLED:-false}
+      MEDIA_ROOT: /app/uploads
+      LOG_PATH: /app/logs
+      CORS_ORIGINS: http://${SERVER_IP:-127.0.0.1}:${HTTP_PORT:-80},http://${SERVER_IP:-127.0.0.1}
+      AMAP_WEB_KEY: ${AMAP_WEB_KEY:-}
+      AI_SERVICE_BASE_URL: http://ai:8090
+      AI_SERVICE_API_KEY: ${AI_SERVICE_API_KEY:?missing AI_SERVICE_API_KEY}
+      HUALONG_BASE_URL: ${HUALONG_BASE_URL:-https://api.hualong-ai.com/v1}
+      HUALONG_API_KEY: ${HUALONG_API_KEY:-}
+      HUALONG_MODEL: ${HUALONG_MODEL:-gpt-6.1-sol}
+      JAVA_TOOL_OPTIONS: -XX:MaxRAMPercentage=70.0 -Duser.timezone=Asia/Shanghai
+      TZ: Asia/Shanghai
+    volumes:
+      - media-data:/app/uploads
+      - backend-logs:/app/logs
+    # 只允许本机健康探测；对外业务统一经 Nginx。
+    ports:
+      - '127.0.0.1:${BACKEND_HEALTH_PORT:-18080}:8080'
+    logging: *logging
+
+  web:
+    build:
+      context: ..
+      dockerfile: deploy/web.Dockerfile
+    restart: unless-stopped
+    depends_on:
+      - backend
+    ports:
+      - '${HTTP_PORT:-80}:80'
+    healthcheck:
+      test: [CMD-SHELL, 'wget -q -O /dev/null http://127.0.0.1/nginx-health']
+      interval: 10s
+      timeout: 5s
+      retries: 12
+    logging: *logging
+
+  ai-init:
+    profiles: [ai]
+    build:
+      context: ..
+      dockerfile: deploy/ai.Dockerfile
+    image: nuanzhua-ai:local
+    environment: *ai-env
+    depends_on:
+      db:
+        condition: service_healthy
+    command: [python, scripts/ingest_knowledge.py, --init-db]
+    logging: *logging
+
+  ai:
+    profiles: [ai]
+    image: nuanzhua-ai:local
+    restart: unless-stopped
+    environment: *ai-env
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+      test: [CMD, python, -c, "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8090/health', timeout=4)"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 30s
+    logging: *logging
+
+volumes:
+  postgres-data:
+  media-data:
+  backend-logs:

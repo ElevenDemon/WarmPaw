@@ -1,0 +1,4 @@
+/release/
+/deploy/.env
+/deploy/.deploy.lock
+/deploy/backups/

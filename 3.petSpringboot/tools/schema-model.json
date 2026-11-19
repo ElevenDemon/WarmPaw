@@ -1,0 +1,6543 @@
+{
+  "tables": [
+    {
+      "table_name": "app_user",
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "username",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "NO",
+          "default": null,
+          "length": 64,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "password_hash",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "NO",
+          "default": null,
+          "length": 100,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "name",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "NO",
+          "default": null,
+          "length": 32,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "phone",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "YES",
+          "default": null,
+          "length": 11,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "role",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "NO",
+          "default": null,
+          "length": 20,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "status",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "NO",
+          "default": "'ACTIVE'::character varying",
+          "length": 20,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "udt": "timestamptz",
+          "nullable": "NO",
+          "default": "now()",
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "udt": "timestamptz",
+          "nullable": "NO",
+          "default": "now()",
+          "length": null,
+          "precision": null,
+          "scale": null
+        }
+      ]
+    },
+    {
+      "table_name": "auth_session",
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "user_id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "token_hash",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "NO",
+          "default": null,
+          "length": 64,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "expires_at",
+          "type": "timestamp with time zone",
+          "udt": "timestamptz",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "udt": "timestamptz",
+          "nullable": "NO",
+          "default": "now()",
+          "length": null,
+          "precision": null,
+          "scale": null
+        }
+      ]
+    },
+    {
+      "table_name": "chat_message",
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "conversation_id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "YES",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "order_id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "YES",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "sender_id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "content",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "NO",
+          "default": null,
+          "length": 2000,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "media_keys",
+          "type": "jsonb",
+          "udt": "jsonb",
+          "nullable": "NO",
+          "default": "'[]'::jsonb",
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "udt": "timestamptz",
+          "nullable": "NO",
+          "default": "now()",
+          "length": null,
+          "precision": null,
+          "scale": null
+        }
+      ]
+    },
+    {
+      "table_name": "complaint",
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "order_id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "owner_id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "content",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "NO",
+          "default": null,
+          "length": 2000,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "status",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "NO",
+          "default": "'OPEN'::character varying",
+          "length": 20,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "response_due_at",
+          "type": "timestamp with time zone",
+          "udt": "timestamptz",
+          "nullable": "NO",
+          "default": "(now() + '24:00:00'::interval)",
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "resolution",
+          "type": "text",
+          "udt": "text",
+          "nullable": "YES",
+          "default": null,
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "udt": "timestamptz",
+          "nullable": "NO",
+          "default": "now()",
+          "length": null,
+          "precision": null,
+          "scale": null
+        }
+      ]
+    },
+    {
+      "table_name": "coupon_claim_log",
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "template_id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "owner_id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "source",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "NO",
+          "default": null,
+          "length": 10,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "success",
+          "type": "boolean",
+          "udt": "bool",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "failed_step",
+          "type": "integer",
+          "udt": "int4",
+          "nullable": "YES",
+          "default": null,
+          "length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "reason",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "NO",
+          "default": null,
+          "length": 300,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "chain",
+          "type": "jsonb",
+          "udt": "jsonb",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "device_hash",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "YES",
+          "default": null,
+          "length": 64,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "phone_hash",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "YES",
+          "default": null,
+          "length": 64,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "ip_hash",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "YES",
+          "default": null,
+          "length": 64,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "udt": "timestamptz",
+          "nullable": "NO",
+          "default": "now()",
+          "length": null,
+          "precision": null,
+          "scale": null
+        }
+      ]
+    },
+    {
+      "table_name": "coupon_template",
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "name",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "NO",
+          "default": null,
+          "length": 60,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "issue_type",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "NO",
+          "default": null,
+          "length": 10,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "amount",
+          "type": "numeric",
+          "udt": "numeric",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 10,
+          "scale": 2
+        },
+        {
+          "name": "threshold",
+          "type": "numeric",
+          "udt": "numeric",
+          "nullable": "NO",
+          "default": "0",
+          "length": null,
+          "precision": 10,
+          "scale": 2
+        },
+        {
+          "name": "service_codes",
+          "type": "jsonb",
+          "udt": "jsonb",
+          "nullable": "NO",
+          "default": "'[]'::jsonb",
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "valid_days",
+          "type": "integer",
+          "udt": "int4",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "active",
+          "type": "boolean",
+          "udt": "bool",
+          "nullable": "NO",
+          "default": "true",
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "audience",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "NO",
+          "default": "'ALL'::character varying",
+          "length": 20,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "per_user_limit",
+          "type": "integer",
+          "udt": "int4",
+          "nullable": "NO",
+          "default": "1",
+          "length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "stock",
+          "type": "integer",
+          "udt": "int4",
+          "nullable": "NO",
+          "default": "0",
+          "length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "issued",
+          "type": "integer",
+          "udt": "int4",
+          "nullable": "NO",
+          "default": "0",
+          "length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "claim_starts_at",
+          "type": "timestamp with time zone",
+          "udt": "timestamptz",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "claim_ends_at",
+          "type": "timestamp with time zone",
+          "udt": "timestamptz",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "redeem_code",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "YES",
+          "default": null,
+          "length": 32,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "limit_device",
+          "type": "boolean",
+          "udt": "bool",
+          "nullable": "NO",
+          "default": "false",
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "limit_phone",
+          "type": "boolean",
+          "udt": "bool",
+          "nullable": "NO",
+          "default": "false",
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "limit_ip",
+          "type": "boolean",
+          "udt": "bool",
+          "nullable": "NO",
+          "default": "false",
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "udt": "timestamptz",
+          "nullable": "NO",
+          "default": "now()",
+          "length": null,
+          "precision": null,
+          "scale": null
+        }
+      ]
+    },
+    {
+      "table_name": "dispatch_record",
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "order_id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "sitter_id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "operator_id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "YES",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "mode",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "NO",
+          "default": "'MANUAL'::character varying",
+          "length": 20,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "reason",
+          "type": "text",
+          "udt": "text",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "status",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "NO",
+          "default": "'PENDING'::character varying",
+          "length": 20,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "udt": "timestamptz",
+          "nullable": "NO",
+          "default": "now()",
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "responded_at",
+          "type": "timestamp with time zone",
+          "udt": "timestamptz",
+          "nullable": "YES",
+          "default": null,
+          "length": null,
+          "precision": null,
+          "scale": null
+        }
+      ]
+    },
+    {
+      "table_name": "emergency_ticket",
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "order_id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "reporter_id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "description",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "NO",
+          "default": null,
+          "length": 2000,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "status",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "NO",
+          "default": "'OPEN'::character varying",
+          "length": 20,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "sitter_id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "YES",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "hospital_id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "YES",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "owner_consent",
+          "type": "boolean",
+          "udt": "bool",
+          "nullable": "NO",
+          "default": "false",
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "response_due_at",
+          "type": "timestamp with time zone",
+          "udt": "timestamptz",
+          "nullable": "NO",
+          "default": "(now() + '01:00:00'::interval)",
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "resolution",
+          "type": "text",
+          "udt": "text",
+          "nullable": "YES",
+          "default": null,
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "udt": "timestamptz",
+          "nullable": "NO",
+          "default": "now()",
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "udt": "timestamptz",
+          "nullable": "NO",
+          "default": "now()",
+          "length": null,
+          "precision": null,
+          "scale": null
+        }
+      ]
+    },
+    {
+      "table_name": "feeding_report",
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "order_id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "status",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "NO",
+          "default": "'PENDING_AI'::character varying",
+          "length": 20,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "source_snapshot",
+          "type": "jsonb",
+          "udt": "jsonb",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "content",
+          "type": "jsonb",
+          "udt": "jsonb",
+          "nullable": "YES",
+          "default": null,
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "udt": "timestamptz",
+          "nullable": "NO",
+          "default": "now()",
+          "length": null,
+          "precision": null,
+          "scale": null
+        }
+      ]
+    },
+    {
+      "table_name": "hospital",
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "name",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "NO",
+          "default": null,
+          "length": 100,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "phone",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "NO",
+          "default": null,
+          "length": 32,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "address",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "NO",
+          "default": null,
+          "length": 300,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "longitude",
+          "type": "numeric",
+          "udt": "numeric",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 10,
+          "scale": 6
+        },
+        {
+          "name": "latitude",
+          "type": "numeric",
+          "udt": "numeric",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 10,
+          "scale": 6
+        },
+        {
+          "name": "emergency_24h",
+          "type": "boolean",
+          "udt": "bool",
+          "nullable": "NO",
+          "default": "false",
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "active",
+          "type": "boolean",
+          "udt": "bool",
+          "nullable": "NO",
+          "default": "true",
+          "length": null,
+          "precision": null,
+          "scale": null
+        }
+      ]
+    },
+    {
+      "table_name": "membership",
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "owner_id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "plan_id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "starts_at",
+          "type": "timestamp with time zone",
+          "udt": "timestamptz",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "expires_at",
+          "type": "timestamp with time zone",
+          "udt": "timestamptz",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "status",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "NO",
+          "default": "'ACTIVE'::character varying",
+          "length": 20,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "saved_amount",
+          "type": "numeric",
+          "udt": "numeric",
+          "nullable": "NO",
+          "default": "0",
+          "length": null,
+          "precision": 12,
+          "scale": 2
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "udt": "timestamptz",
+          "nullable": "NO",
+          "default": "now()",
+          "length": null,
+          "precision": null,
+          "scale": null
+        }
+      ]
+    },
+    {
+      "table_name": "membership_benefit",
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "code",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "NO",
+          "default": null,
+          "length": 32,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "name",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "NO",
+          "default": null,
+          "length": 60,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "enabled",
+          "type": "boolean",
+          "udt": "bool",
+          "nullable": "NO",
+          "default": "true",
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "discount_rate",
+          "type": "numeric",
+          "udt": "numeric",
+          "nullable": "NO",
+          "default": "1",
+          "length": null,
+          "precision": 4,
+          "scale": 3
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "udt": "timestamptz",
+          "nullable": "NO",
+          "default": "now()",
+          "length": null,
+          "precision": null,
+          "scale": null
+        }
+      ]
+    },
+    {
+      "table_name": "membership_plan",
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "name",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "NO",
+          "default": null,
+          "length": 60,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "display_name",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "NO",
+          "default": null,
+          "length": 60,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "months",
+          "type": "integer",
+          "udt": "int4",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "price",
+          "type": "numeric",
+          "udt": "numeric",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 10,
+          "scale": 2
+        },
+        {
+          "name": "active",
+          "type": "boolean",
+          "udt": "bool",
+          "nullable": "NO",
+          "default": "true",
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "udt": "timestamptz",
+          "nullable": "NO",
+          "default": "now()",
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "gift_coupon_template_id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "YES",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "gift_coupon_quantity",
+          "type": "integer",
+          "udt": "int4",
+          "nullable": "NO",
+          "default": "0",
+          "length": null,
+          "precision": 32,
+          "scale": 0
+        }
+      ]
+    },
+    {
+      "table_name": "membership_purchase",
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "owner_id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "plan_id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "plan_name",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "NO",
+          "default": null,
+          "length": 60,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "months",
+          "type": "integer",
+          "udt": "int4",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "amount",
+          "type": "numeric",
+          "udt": "numeric",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 10,
+          "scale": 2
+        },
+        {
+          "name": "status",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "NO",
+          "default": "'PENDING'::character varying",
+          "length": 20,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "udt": "timestamptz",
+          "nullable": "NO",
+          "default": "now()",
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "paid_at",
+          "type": "timestamp with time zone",
+          "udt": "timestamptz",
+          "nullable": "YES",
+          "default": null,
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "gift_coupon_template_id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "YES",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "gift_coupon_quantity",
+          "type": "integer",
+          "udt": "int4",
+          "nullable": "NO",
+          "default": "0",
+          "length": null,
+          "precision": 32,
+          "scale": 0
+        }
+      ]
+    },
+    {
+      "table_name": "notification",
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "user_id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "order_id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "YES",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "code",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "NO",
+          "default": null,
+          "length": 32,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "title",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "NO",
+          "default": null,
+          "length": 100,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "content",
+          "type": "text",
+          "udt": "text",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "read_at",
+          "type": "timestamp with time zone",
+          "udt": "timestamptz",
+          "nullable": "YES",
+          "default": null,
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "delivery_status",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "NO",
+          "default": "'IN_APP'::character varying",
+          "length": 20,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "udt": "timestamptz",
+          "nullable": "NO",
+          "default": "now()",
+          "length": null,
+          "precision": null,
+          "scale": null
+        }
+      ]
+    },
+    {
+      "table_name": "notification_template",
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "code",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "NO",
+          "default": null,
+          "length": 32,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "name",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "NO",
+          "default": null,
+          "length": 100,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "enabled",
+          "type": "boolean",
+          "udt": "bool",
+          "nullable": "NO",
+          "default": "true",
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "channels",
+          "type": "jsonb",
+          "udt": "jsonb",
+          "nullable": "NO",
+          "default": "'[\"IN_APP\"]'::jsonb",
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "udt": "timestamptz",
+          "nullable": "NO",
+          "default": "now()",
+          "length": null,
+          "precision": null,
+          "scale": null
+        }
+      ]
+    },
+    {
+      "table_name": "operation_log",
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "actor_id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "YES",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "action",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "NO",
+          "default": null,
+          "length": 100,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "resource",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "NO",
+          "default": null,
+          "length": 80,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "resource_id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "YES",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "before_data",
+          "type": "jsonb",
+          "udt": "jsonb",
+          "nullable": "YES",
+          "default": null,
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "after_data",
+          "type": "jsonb",
+          "udt": "jsonb",
+          "nullable": "YES",
+          "default": null,
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "result",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "NO",
+          "default": "'SUCCESS'::character varying",
+          "length": 20,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "udt": "timestamptz",
+          "nullable": "NO",
+          "default": "now()",
+          "length": null,
+          "precision": null,
+          "scale": null
+        }
+      ]
+    },
+    {
+      "table_name": "order_event",
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "order_id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "actor_id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "YES",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "event",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "NO",
+          "default": null,
+          "length": 40,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "detail",
+          "type": "jsonb",
+          "udt": "jsonb",
+          "nullable": "NO",
+          "default": "'{}'::jsonb",
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "udt": "timestamptz",
+          "nullable": "NO",
+          "default": "now()",
+          "length": null,
+          "precision": null,
+          "scale": null
+        }
+      ]
+    },
+    {
+      "table_name": "order_item",
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "order_id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "service_id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "code",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "NO",
+          "default": null,
+          "length": 32,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "name",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "NO",
+          "default": null,
+          "length": 60,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "unit_price",
+          "type": "numeric",
+          "udt": "numeric",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 10,
+          "scale": 2
+        },
+        {
+          "name": "quantity",
+          "type": "integer",
+          "udt": "int4",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "required_category",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "YES",
+          "default": null,
+          "length": 32,
+          "precision": null,
+          "scale": null
+        }
+      ]
+    },
+    {
+      "table_name": "owner_address",
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "owner_id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "contact_name",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "NO",
+          "default": null,
+          "length": 32,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "phone",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "NO",
+          "default": null,
+          "length": 11,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "district",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "NO",
+          "default": null,
+          "length": 60,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "address",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "NO",
+          "default": null,
+          "length": 300,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "longitude",
+          "type": "numeric",
+          "udt": "numeric",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 10,
+          "scale": 6
+        },
+        {
+          "name": "latitude",
+          "type": "numeric",
+          "udt": "numeric",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 10,
+          "scale": 6
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "udt": "timestamptz",
+          "nullable": "NO",
+          "default": "now()",
+          "length": null,
+          "precision": null,
+          "scale": null
+        }
+      ]
+    },
+    {
+      "table_name": "payment_record",
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "order_id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "YES",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "purchase_id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "YES",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "trade_no",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "NO",
+          "default": null,
+          "length": 80,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "provider",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "NO",
+          "default": null,
+          "length": 20,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "amount",
+          "type": "numeric",
+          "udt": "numeric",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 12,
+          "scale": 2
+        },
+        {
+          "name": "status",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "NO",
+          "default": "'PAID'::character varying",
+          "length": 20,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "paid_at",
+          "type": "timestamp with time zone",
+          "udt": "timestamptz",
+          "nullable": "NO",
+          "default": "now()",
+          "length": null,
+          "precision": null,
+          "scale": null
+        }
+      ]
+    },
+    {
+      "table_name": "pet",
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "owner_id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "name",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "NO",
+          "default": null,
+          "length": 32,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "category",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "NO",
+          "default": null,
+          "length": 20,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "breed",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "YES",
+          "default": null,
+          "length": 60,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "birthday",
+          "type": "date",
+          "udt": "date",
+          "nullable": "YES",
+          "default": null,
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "weight",
+          "type": "numeric",
+          "udt": "numeric",
+          "nullable": "YES",
+          "default": null,
+          "length": null,
+          "precision": 6,
+          "scale": 2
+        },
+        {
+          "name": "temperament",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "YES",
+          "default": null,
+          "length": 500,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "dietary_notes",
+          "type": "text",
+          "udt": "text",
+          "nullable": "YES",
+          "default": null,
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "medical_history",
+          "type": "text",
+          "udt": "text",
+          "nullable": "YES",
+          "default": null,
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "photo_url",
+          "type": "text",
+          "udt": "text",
+          "nullable": "YES",
+          "default": null,
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "deleted",
+          "type": "boolean",
+          "udt": "bool",
+          "nullable": "NO",
+          "default": "false",
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "udt": "timestamptz",
+          "nullable": "NO",
+          "default": "now()",
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "udt": "timestamptz",
+          "nullable": "NO",
+          "default": "now()",
+          "length": null,
+          "precision": null,
+          "scale": null
+        }
+      ]
+    },
+    {
+      "table_name": "pet_order",
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "order_no",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "NO",
+          "default": null,
+          "length": 40,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "request_key",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "NO",
+          "default": null,
+          "length": 80,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "owner_id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "sitter_id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "YES",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "status",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "NO",
+          "default": "'PENDING_PAYMENT'::character varying",
+          "length": 30,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "service_start",
+          "type": "timestamp with time zone",
+          "udt": "timestamptz",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "service_end",
+          "type": "timestamp with time zone",
+          "udt": "timestamptz",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "address_snapshot",
+          "type": "jsonb",
+          "udt": "jsonb",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "pet_snapshot",
+          "type": "jsonb",
+          "udt": "jsonb",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "notes",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "YES",
+          "default": null,
+          "length": 1000,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "total_amount",
+          "type": "numeric",
+          "udt": "numeric",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 12,
+          "scale": 2
+        },
+        {
+          "name": "member_discount",
+          "type": "numeric",
+          "udt": "numeric",
+          "nullable": "NO",
+          "default": "0",
+          "length": null,
+          "precision": 12,
+          "scale": 2
+        },
+        {
+          "name": "coupon_discount",
+          "type": "numeric",
+          "udt": "numeric",
+          "nullable": "NO",
+          "default": "0",
+          "length": null,
+          "precision": 12,
+          "scale": 2
+        },
+        {
+          "name": "payable_amount",
+          "type": "numeric",
+          "udt": "numeric",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 12,
+          "scale": 2
+        },
+        {
+          "name": "coupon_id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "YES",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "commission_rate",
+          "type": "numeric",
+          "udt": "numeric",
+          "nullable": "YES",
+          "default": null,
+          "length": null,
+          "precision": 5,
+          "scale": 2
+        },
+        {
+          "name": "signed_agreement",
+          "type": "jsonb",
+          "udt": "jsonb",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "dispatch_reason",
+          "type": "jsonb",
+          "udt": "jsonb",
+          "nullable": "YES",
+          "default": null,
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "accept_deadline",
+          "type": "timestamp with time zone",
+          "udt": "timestamptz",
+          "nullable": "YES",
+          "default": null,
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "udt": "timestamptz",
+          "nullable": "NO",
+          "default": "now()",
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "paid_at",
+          "type": "timestamp with time zone",
+          "udt": "timestamptz",
+          "nullable": "YES",
+          "default": null,
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "checkin_at",
+          "type": "timestamp with time zone",
+          "udt": "timestamptz",
+          "nullable": "YES",
+          "default": null,
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "checkout_at",
+          "type": "timestamp with time zone",
+          "udt": "timestamptz",
+          "nullable": "YES",
+          "default": null,
+          "length": null,
+          "precision": null,
+          "scale": null
+        }
+      ]
+    },
+    {
+      "table_name": "refund_record",
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "order_id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "amount",
+          "type": "numeric",
+          "udt": "numeric",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 12,
+          "scale": 2
+        },
+        {
+          "name": "reason",
+          "type": "text",
+          "udt": "text",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "operator_id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "provider",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "NO",
+          "default": null,
+          "length": 20,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "udt": "timestamptz",
+          "nullable": "NO",
+          "default": "now()",
+          "length": null,
+          "precision": null,
+          "scale": null
+        }
+      ]
+    },
+    {
+      "table_name": "review",
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "order_id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "owner_id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "sitter_id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "score",
+          "type": "integer",
+          "udt": "int4",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "tags",
+          "type": "jsonb",
+          "udt": "jsonb",
+          "nullable": "NO",
+          "default": "'[]'::jsonb",
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "content",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "NO",
+          "default": null,
+          "length": 1000,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "udt": "timestamptz",
+          "nullable": "NO",
+          "default": "now()",
+          "length": null,
+          "precision": null,
+          "scale": null
+        }
+      ]
+    },
+    {
+      "table_name": "role_permission",
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "role",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "NO",
+          "default": null,
+          "length": 20,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "permission",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "NO",
+          "default": null,
+          "length": 80,
+          "precision": null,
+          "scale": null
+        }
+      ]
+    },
+    {
+      "table_name": "service_checklist",
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "order_id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "code",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "NO",
+          "default": null,
+          "length": 32,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "completed",
+          "type": "boolean",
+          "udt": "bool",
+          "nullable": "NO",
+          "default": "false",
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "quantity",
+          "type": "numeric",
+          "udt": "numeric",
+          "nullable": "YES",
+          "default": null,
+          "length": null,
+          "precision": 10,
+          "scale": 2
+        },
+        {
+          "name": "unit",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "YES",
+          "default": null,
+          "length": 20,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "notes",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "YES",
+          "default": null,
+          "length": 1000,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "udt": "timestamptz",
+          "nullable": "NO",
+          "default": "now()",
+          "length": null,
+          "precision": null,
+          "scale": null
+        }
+      ]
+    },
+    {
+      "table_name": "service_item",
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "code",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "NO",
+          "default": null,
+          "length": 32,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "name",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "NO",
+          "default": null,
+          "length": 60,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "description",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "YES",
+          "default": null,
+          "length": 500,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "price",
+          "type": "numeric",
+          "udt": "numeric",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 10,
+          "scale": 2
+        },
+        {
+          "name": "required_category",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "YES",
+          "default": null,
+          "length": 32,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "active",
+          "type": "boolean",
+          "udt": "bool",
+          "nullable": "NO",
+          "default": "true",
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "udt": "timestamptz",
+          "nullable": "NO",
+          "default": "now()",
+          "length": null,
+          "precision": null,
+          "scale": null
+        }
+      ]
+    },
+    {
+      "table_name": "service_media",
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "order_id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "uploader_id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "kind",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "NO",
+          "default": null,
+          "length": 20,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "object_key",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "NO",
+          "default": null,
+          "length": 500,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "expires_at",
+          "type": "timestamp with time zone",
+          "udt": "timestamptz",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "deleted",
+          "type": "boolean",
+          "udt": "bool",
+          "nullable": "NO",
+          "default": "false",
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "udt": "timestamptz",
+          "nullable": "NO",
+          "default": "now()",
+          "length": null,
+          "precision": null,
+          "scale": null
+        }
+      ]
+    },
+    {
+      "table_name": "settlement",
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "order_id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "sitter_id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "gross_amount",
+          "type": "numeric",
+          "udt": "numeric",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 12,
+          "scale": 2
+        },
+        {
+          "name": "commission_rate",
+          "type": "numeric",
+          "udt": "numeric",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 5,
+          "scale": 2
+        },
+        {
+          "name": "platform_amount",
+          "type": "numeric",
+          "udt": "numeric",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 12,
+          "scale": 2
+        },
+        {
+          "name": "sitter_amount",
+          "type": "numeric",
+          "udt": "numeric",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 12,
+          "scale": 2
+        },
+        {
+          "name": "status",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "NO",
+          "default": "'PENDING'::character varying",
+          "length": 20,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "settled_at",
+          "type": "timestamp with time zone",
+          "udt": "timestamptz",
+          "nullable": "YES",
+          "default": null,
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "udt": "timestamptz",
+          "nullable": "NO",
+          "default": "now()",
+          "length": null,
+          "precision": null,
+          "scale": null
+        }
+      ]
+    },
+    {
+      "table_name": "sitter_grade",
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "code",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "NO",
+          "default": null,
+          "length": 20,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "name",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "NO",
+          "default": null,
+          "length": 32,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "min_orders",
+          "type": "integer",
+          "udt": "int4",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "min_rating",
+          "type": "numeric",
+          "udt": "numeric",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 3,
+          "scale": 2
+        },
+        {
+          "name": "max_complaints",
+          "type": "integer",
+          "udt": "int4",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "commission_rate",
+          "type": "numeric",
+          "udt": "numeric",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 5,
+          "scale": 2
+        },
+        {
+          "name": "dispatch_weight",
+          "type": "numeric",
+          "udt": "numeric",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 5,
+          "scale": 2
+        },
+        {
+          "name": "high_risk_enabled",
+          "type": "boolean",
+          "udt": "bool",
+          "nullable": "NO",
+          "default": "false",
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "active",
+          "type": "boolean",
+          "udt": "bool",
+          "nullable": "NO",
+          "default": "true",
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "effective_at",
+          "type": "timestamp with time zone",
+          "udt": "timestamptz",
+          "nullable": "NO",
+          "default": "now()",
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "udt": "timestamptz",
+          "nullable": "NO",
+          "default": "now()",
+          "length": null,
+          "precision": null,
+          "scale": null
+        }
+      ]
+    },
+    {
+      "table_name": "sitter_grade_revision",
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "grade_id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "rule_data",
+          "type": "jsonb",
+          "udt": "jsonb",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "effective_at",
+          "type": "timestamp with time zone",
+          "udt": "timestamptz",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "applied_at",
+          "type": "timestamp with time zone",
+          "udt": "timestamptz",
+          "nullable": "YES",
+          "default": null,
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "operator_id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "udt": "timestamptz",
+          "nullable": "NO",
+          "default": "now()",
+          "length": null,
+          "precision": null,
+          "scale": null
+        }
+      ]
+    },
+    {
+      "table_name": "sitter_profile",
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "user_id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "code",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "NO",
+          "default": null,
+          "length": 32,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "grade_id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "status",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "NO",
+          "default": "'PENDING'::character varying",
+          "length": 20,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "emergency_contact",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "YES",
+          "default": null,
+          "length": 80,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "avatar_url",
+          "type": "text",
+          "udt": "text",
+          "nullable": "YES",
+          "default": null,
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "notes",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "YES",
+          "default": null,
+          "length": 60,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "service_preferences",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "NO",
+          "default": "''::character varying",
+          "length": 1000,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "district",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "NO",
+          "default": null,
+          "length": 60,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "address",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "NO",
+          "default": null,
+          "length": 300,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "longitude",
+          "type": "numeric",
+          "udt": "numeric",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 10,
+          "scale": 6
+        },
+        {
+          "name": "latitude",
+          "type": "numeric",
+          "udt": "numeric",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 10,
+          "scale": 6
+        },
+        {
+          "name": "radius_km",
+          "type": "numeric",
+          "udt": "numeric",
+          "nullable": "NO",
+          "default": "5",
+          "length": null,
+          "precision": 5,
+          "scale": 2
+        },
+        {
+          "name": "transport",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "NO",
+          "default": "'E_BIKE'::character varying",
+          "length": 30,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "settlement_method",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "NO",
+          "default": "'BANK'::character varying",
+          "length": 30,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "categories",
+          "type": "jsonb",
+          "udt": "jsonb",
+          "nullable": "NO",
+          "default": "'[]'::jsonb",
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "rating",
+          "type": "numeric",
+          "udt": "numeric",
+          "nullable": "NO",
+          "default": "5",
+          "length": null,
+          "precision": 3,
+          "scale": 2
+        },
+        {
+          "name": "completed_orders",
+          "type": "integer",
+          "udt": "int4",
+          "nullable": "NO",
+          "default": "0",
+          "length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "major_complaints",
+          "type": "integer",
+          "udt": "int4",
+          "nullable": "NO",
+          "default": "0",
+          "length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "udt": "timestamptz",
+          "nullable": "NO",
+          "default": "now()",
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "udt": "timestamptz",
+          "nullable": "NO",
+          "default": "now()",
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "admission_review_note",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "YES",
+          "default": null,
+          "length": 1000,
+          "precision": null,
+          "scale": null
+        }
+      ]
+    },
+    {
+      "table_name": "sitter_qualification",
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "sitter_id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "category",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "NO",
+          "default": null,
+          "length": 32,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "real_verified",
+          "type": "boolean",
+          "udt": "bool",
+          "nullable": "NO",
+          "default": "false",
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "training_passed",
+          "type": "boolean",
+          "udt": "bool",
+          "nullable": "NO",
+          "default": "false",
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "practice_passed",
+          "type": "boolean",
+          "udt": "bool",
+          "nullable": "NO",
+          "default": "false",
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "status",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "NO",
+          "default": "'PENDING'::character varying",
+          "length": 20,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "expires_at",
+          "type": "timestamp with time zone",
+          "udt": "timestamptz",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "materials",
+          "type": "jsonb",
+          "udt": "jsonb",
+          "nullable": "NO",
+          "default": "'[]'::jsonb",
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "reviewer_id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "YES",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "review_note",
+          "type": "text",
+          "udt": "text",
+          "nullable": "YES",
+          "default": null,
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "udt": "timestamptz",
+          "nullable": "NO",
+          "default": "now()",
+          "length": null,
+          "precision": null,
+          "scale": null
+        }
+      ]
+    },
+    {
+      "table_name": "sitter_schedule",
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "sitter_id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "weekday",
+          "type": "integer",
+          "udt": "int4",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "rest",
+          "type": "boolean",
+          "udt": "bool",
+          "nullable": "NO",
+          "default": "false",
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "start_time",
+          "type": "time without time zone",
+          "udt": "time",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "end_time",
+          "type": "time without time zone",
+          "udt": "time",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "capacity",
+          "type": "integer",
+          "udt": "int4",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 32,
+          "scale": 0
+        },
+        {
+          "name": "district",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "YES",
+          "default": null,
+          "length": 60,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "address",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "YES",
+          "default": null,
+          "length": 300,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "longitude",
+          "type": "numeric",
+          "udt": "numeric",
+          "nullable": "YES",
+          "default": null,
+          "length": null,
+          "precision": 10,
+          "scale": 6
+        },
+        {
+          "name": "latitude",
+          "type": "numeric",
+          "udt": "numeric",
+          "nullable": "YES",
+          "default": null,
+          "length": null,
+          "precision": 10,
+          "scale": 6
+        }
+      ]
+    },
+    {
+      "table_name": "support_conversation",
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "owner_id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "order_id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "YES",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "agent_id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "YES",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "status",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "NO",
+          "default": "'WAITING_HUMAN'::character varying",
+          "length": 20,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "udt": "timestamptz",
+          "nullable": "NO",
+          "default": "now()",
+          "length": null,
+          "precision": null,
+          "scale": null
+        }
+      ]
+    },
+    {
+      "table_name": "user_coupon",
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "template_id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "owner_id",
+          "type": "bigint",
+          "udt": "int8",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 64,
+          "scale": 0
+        },
+        {
+          "name": "source",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "NO",
+          "default": null,
+          "length": 10,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "amount",
+          "type": "numeric",
+          "udt": "numeric",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 10,
+          "scale": 2
+        },
+        {
+          "name": "threshold",
+          "type": "numeric",
+          "udt": "numeric",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": 10,
+          "scale": 2
+        },
+        {
+          "name": "service_codes",
+          "type": "jsonb",
+          "udt": "jsonb",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "status",
+          "type": "character varying",
+          "udt": "varchar",
+          "nullable": "NO",
+          "default": "'AVAILABLE'::character varying",
+          "length": 20,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "expires_at",
+          "type": "timestamp with time zone",
+          "udt": "timestamptz",
+          "nullable": "NO",
+          "default": null,
+          "length": null,
+          "precision": null,
+          "scale": null
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "udt": "timestamptz",
+          "nullable": "NO",
+          "default": "now()",
+          "length": null,
+          "precision": null,
+          "scale": null
+        }
+      ]
+    }
+  ],
+  "constraints": [
+    {
+      "table_name": "app_user",
+      "name": "app_user_created_at_not_null",
+      "definition": "NOT NULL created_at"
+    },
+    {
+      "table_name": "app_user",
+      "name": "app_user_id_not_null",
+      "definition": "NOT NULL id"
+    },
+    {
+      "table_name": "app_user",
+      "name": "app_user_name_not_null",
+      "definition": "NOT NULL name"
+    },
+    {
+      "table_name": "app_user",
+      "name": "app_user_password_hash_not_null",
+      "definition": "NOT NULL password_hash"
+    },
+    {
+      "table_name": "app_user",
+      "name": "app_user_phone_key",
+      "definition": "UNIQUE (phone)"
+    },
+    {
+      "table_name": "app_user",
+      "name": "app_user_pkey",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "app_user",
+      "name": "app_user_role_check",
+      "definition": "CHECK (((role)::text = ANY ((ARRAY['ADMIN'::character varying, 'SUPPORT'::character varying, 'FINANCE'::character varying, 'OWNER'::character varying, 'SITTER'::character varying])::text[])))"
+    },
+    {
+      "table_name": "app_user",
+      "name": "app_user_role_not_null",
+      "definition": "NOT NULL role"
+    },
+    {
+      "table_name": "app_user",
+      "name": "app_user_status_check",
+      "definition": "CHECK (((status)::text = ANY ((ARRAY['ACTIVE'::character varying, 'BLOCKED'::character varying])::text[])))"
+    },
+    {
+      "table_name": "app_user",
+      "name": "app_user_status_not_null",
+      "definition": "NOT NULL status"
+    },
+    {
+      "table_name": "app_user",
+      "name": "app_user_updated_at_not_null",
+      "definition": "NOT NULL updated_at"
+    },
+    {
+      "table_name": "app_user",
+      "name": "app_user_username_key",
+      "definition": "UNIQUE (username)"
+    },
+    {
+      "table_name": "app_user",
+      "name": "app_user_username_not_null",
+      "definition": "NOT NULL username"
+    },
+    {
+      "table_name": "auth_session",
+      "name": "auth_session_created_at_not_null",
+      "definition": "NOT NULL created_at"
+    },
+    {
+      "table_name": "auth_session",
+      "name": "auth_session_expires_at_not_null",
+      "definition": "NOT NULL expires_at"
+    },
+    {
+      "table_name": "auth_session",
+      "name": "auth_session_id_not_null",
+      "definition": "NOT NULL id"
+    },
+    {
+      "table_name": "auth_session",
+      "name": "auth_session_pkey",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "auth_session",
+      "name": "auth_session_token_hash_key",
+      "definition": "UNIQUE (token_hash)"
+    },
+    {
+      "table_name": "auth_session",
+      "name": "auth_session_token_hash_not_null",
+      "definition": "NOT NULL token_hash"
+    },
+    {
+      "table_name": "auth_session",
+      "name": "auth_session_user_id_fkey",
+      "definition": "FOREIGN KEY (user_id) REFERENCES pet_test_6704a01eecfe.app_user(id)"
+    },
+    {
+      "table_name": "auth_session",
+      "name": "auth_session_user_id_not_null",
+      "definition": "NOT NULL user_id"
+    },
+    {
+      "table_name": "chat_message",
+      "name": "chat_message_check",
+      "definition": "CHECK (((conversation_id IS NULL) <> (order_id IS NULL)))"
+    },
+    {
+      "table_name": "chat_message",
+      "name": "chat_message_content_not_null",
+      "definition": "NOT NULL content"
+    },
+    {
+      "table_name": "chat_message",
+      "name": "chat_message_conversation_id_fkey",
+      "definition": "FOREIGN KEY (conversation_id) REFERENCES pet_test_6704a01eecfe.support_conversation(id)"
+    },
+    {
+      "table_name": "chat_message",
+      "name": "chat_message_created_at_not_null",
+      "definition": "NOT NULL created_at"
+    },
+    {
+      "table_name": "chat_message",
+      "name": "chat_message_id_not_null",
+      "definition": "NOT NULL id"
+    },
+    {
+      "table_name": "chat_message",
+      "name": "chat_message_media_keys_not_null",
+      "definition": "NOT NULL media_keys"
+    },
+    {
+      "table_name": "chat_message",
+      "name": "chat_message_order_id_fkey",
+      "definition": "FOREIGN KEY (order_id) REFERENCES pet_test_6704a01eecfe.pet_order(id)"
+    },
+    {
+      "table_name": "chat_message",
+      "name": "chat_message_pkey",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "chat_message",
+      "name": "chat_message_sender_id_fkey",
+      "definition": "FOREIGN KEY (sender_id) REFERENCES pet_test_6704a01eecfe.app_user(id)"
+    },
+    {
+      "table_name": "chat_message",
+      "name": "chat_message_sender_id_not_null",
+      "definition": "NOT NULL sender_id"
+    },
+    {
+      "table_name": "complaint",
+      "name": "complaint_content_not_null",
+      "definition": "NOT NULL content"
+    },
+    {
+      "table_name": "complaint",
+      "name": "complaint_created_at_not_null",
+      "definition": "NOT NULL created_at"
+    },
+    {
+      "table_name": "complaint",
+      "name": "complaint_id_not_null",
+      "definition": "NOT NULL id"
+    },
+    {
+      "table_name": "complaint",
+      "name": "complaint_order_id_fkey",
+      "definition": "FOREIGN KEY (order_id) REFERENCES pet_test_6704a01eecfe.pet_order(id)"
+    },
+    {
+      "table_name": "complaint",
+      "name": "complaint_order_id_not_null",
+      "definition": "NOT NULL order_id"
+    },
+    {
+      "table_name": "complaint",
+      "name": "complaint_owner_id_fkey",
+      "definition": "FOREIGN KEY (owner_id) REFERENCES pet_test_6704a01eecfe.app_user(id)"
+    },
+    {
+      "table_name": "complaint",
+      "name": "complaint_owner_id_not_null",
+      "definition": "NOT NULL owner_id"
+    },
+    {
+      "table_name": "complaint",
+      "name": "complaint_pkey",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "complaint",
+      "name": "complaint_response_due_at_not_null",
+      "definition": "NOT NULL response_due_at"
+    },
+    {
+      "table_name": "complaint",
+      "name": "complaint_status_check",
+      "definition": "CHECK (((status)::text = ANY ((ARRAY['OPEN'::character varying, 'PROCESSING'::character varying, 'RESOLVED'::character varying])::text[])))"
+    },
+    {
+      "table_name": "complaint",
+      "name": "complaint_status_not_null",
+      "definition": "NOT NULL status"
+    },
+    {
+      "table_name": "coupon_claim_log",
+      "name": "coupon_claim_log_chain_not_null",
+      "definition": "NOT NULL chain"
+    },
+    {
+      "table_name": "coupon_claim_log",
+      "name": "coupon_claim_log_created_at_not_null",
+      "definition": "NOT NULL created_at"
+    },
+    {
+      "table_name": "coupon_claim_log",
+      "name": "coupon_claim_log_id_not_null",
+      "definition": "NOT NULL id"
+    },
+    {
+      "table_name": "coupon_claim_log",
+      "name": "coupon_claim_log_owner_id_fkey",
+      "definition": "FOREIGN KEY (owner_id) REFERENCES pet_test_6704a01eecfe.app_user(id)"
+    },
+    {
+      "table_name": "coupon_claim_log",
+      "name": "coupon_claim_log_owner_id_not_null",
+      "definition": "NOT NULL owner_id"
+    },
+    {
+      "table_name": "coupon_claim_log",
+      "name": "coupon_claim_log_pkey",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "coupon_claim_log",
+      "name": "coupon_claim_log_reason_not_null",
+      "definition": "NOT NULL reason"
+    },
+    {
+      "table_name": "coupon_claim_log",
+      "name": "coupon_claim_log_source_not_null",
+      "definition": "NOT NULL source"
+    },
+    {
+      "table_name": "coupon_claim_log",
+      "name": "coupon_claim_log_success_not_null",
+      "definition": "NOT NULL success"
+    },
+    {
+      "table_name": "coupon_claim_log",
+      "name": "coupon_claim_log_template_id_fkey",
+      "definition": "FOREIGN KEY (template_id) REFERENCES pet_test_6704a01eecfe.coupon_template(id)"
+    },
+    {
+      "table_name": "coupon_claim_log",
+      "name": "coupon_claim_log_template_id_not_null",
+      "definition": "NOT NULL template_id"
+    },
+    {
+      "table_name": "coupon_template",
+      "name": "coupon_template_active_not_null",
+      "definition": "NOT NULL active"
+    },
+    {
+      "table_name": "coupon_template",
+      "name": "coupon_template_amount_check",
+      "definition": "CHECK ((amount > (0)::numeric))"
+    },
+    {
+      "table_name": "coupon_template",
+      "name": "coupon_template_amount_not_null",
+      "definition": "NOT NULL amount"
+    },
+    {
+      "table_name": "coupon_template",
+      "name": "coupon_template_audience_check",
+      "definition": "CHECK (((audience)::text = ANY ((ARRAY['ALL'::character varying, 'NEW'::character varying, 'NORMAL'::character varying, 'MEMBER'::character varying, 'SMALL'::character varying])::text[])))"
+    },
+    {
+      "table_name": "coupon_template",
+      "name": "coupon_template_audience_not_null",
+      "definition": "NOT NULL audience"
+    },
+    {
+      "table_name": "coupon_template",
+      "name": "coupon_template_check",
+      "definition": "CHECK ((claim_starts_at < claim_ends_at))"
+    },
+    {
+      "table_name": "coupon_template",
+      "name": "coupon_template_claim_ends_at_not_null",
+      "definition": "NOT NULL claim_ends_at"
+    },
+    {
+      "table_name": "coupon_template",
+      "name": "coupon_template_claim_starts_at_not_null",
+      "definition": "NOT NULL claim_starts_at"
+    },
+    {
+      "table_name": "coupon_template",
+      "name": "coupon_template_created_at_not_null",
+      "definition": "NOT NULL created_at"
+    },
+    {
+      "table_name": "coupon_template",
+      "name": "coupon_template_id_not_null",
+      "definition": "NOT NULL id"
+    },
+    {
+      "table_name": "coupon_template",
+      "name": "coupon_template_issue_type_check",
+      "definition": "CHECK (((issue_type)::text = ANY ((ARRAY['push'::character varying, 'claim'::character varying])::text[])))"
+    },
+    {
+      "table_name": "coupon_template",
+      "name": "coupon_template_issue_type_not_null",
+      "definition": "NOT NULL issue_type"
+    },
+    {
+      "table_name": "coupon_template",
+      "name": "coupon_template_issued_check",
+      "definition": "CHECK ((issued >= 0))"
+    },
+    {
+      "table_name": "coupon_template",
+      "name": "coupon_template_issued_not_null",
+      "definition": "NOT NULL issued"
+    },
+    {
+      "table_name": "coupon_template",
+      "name": "coupon_template_limit_device_not_null",
+      "definition": "NOT NULL limit_device"
+    },
+    {
+      "table_name": "coupon_template",
+      "name": "coupon_template_limit_ip_not_null",
+      "definition": "NOT NULL limit_ip"
+    },
+    {
+      "table_name": "coupon_template",
+      "name": "coupon_template_limit_phone_not_null",
+      "definition": "NOT NULL limit_phone"
+    },
+    {
+      "table_name": "coupon_template",
+      "name": "coupon_template_name_not_null",
+      "definition": "NOT NULL name"
+    },
+    {
+      "table_name": "coupon_template",
+      "name": "coupon_template_per_user_limit_check",
+      "definition": "CHECK (((per_user_limit >= 1) AND (per_user_limit <= 100)))"
+    },
+    {
+      "table_name": "coupon_template",
+      "name": "coupon_template_per_user_limit_not_null",
+      "definition": "NOT NULL per_user_limit"
+    },
+    {
+      "table_name": "coupon_template",
+      "name": "coupon_template_pkey",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "coupon_template",
+      "name": "coupon_template_redeem_code_key",
+      "definition": "UNIQUE (redeem_code)"
+    },
+    {
+      "table_name": "coupon_template",
+      "name": "coupon_template_service_codes_not_null",
+      "definition": "NOT NULL service_codes"
+    },
+    {
+      "table_name": "coupon_template",
+      "name": "coupon_template_stock_check",
+      "definition": "CHECK ((stock >= 0))"
+    },
+    {
+      "table_name": "coupon_template",
+      "name": "coupon_template_stock_not_null",
+      "definition": "NOT NULL stock"
+    },
+    {
+      "table_name": "coupon_template",
+      "name": "coupon_template_threshold_check",
+      "definition": "CHECK ((threshold >= (0)::numeric))"
+    },
+    {
+      "table_name": "coupon_template",
+      "name": "coupon_template_threshold_not_null",
+      "definition": "NOT NULL threshold"
+    },
+    {
+      "table_name": "coupon_template",
+      "name": "coupon_template_valid_days_check",
+      "definition": "CHECK (((valid_days >= 1) AND (valid_days <= 3650)))"
+    },
+    {
+      "table_name": "coupon_template",
+      "name": "coupon_template_valid_days_not_null",
+      "definition": "NOT NULL valid_days"
+    },
+    {
+      "table_name": "dispatch_record",
+      "name": "dispatch_record_created_at_not_null",
+      "definition": "NOT NULL created_at"
+    },
+    {
+      "table_name": "dispatch_record",
+      "name": "dispatch_record_id_not_null",
+      "definition": "NOT NULL id"
+    },
+    {
+      "table_name": "dispatch_record",
+      "name": "dispatch_record_mode_not_null",
+      "definition": "NOT NULL mode"
+    },
+    {
+      "table_name": "dispatch_record",
+      "name": "dispatch_record_operator_id_fkey",
+      "definition": "FOREIGN KEY (operator_id) REFERENCES pet_test_6704a01eecfe.app_user(id)"
+    },
+    {
+      "table_name": "dispatch_record",
+      "name": "dispatch_record_order_id_fkey",
+      "definition": "FOREIGN KEY (order_id) REFERENCES pet_test_6704a01eecfe.pet_order(id)"
+    },
+    {
+      "table_name": "dispatch_record",
+      "name": "dispatch_record_order_id_not_null",
+      "definition": "NOT NULL order_id"
+    },
+    {
+      "table_name": "dispatch_record",
+      "name": "dispatch_record_pkey",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "dispatch_record",
+      "name": "dispatch_record_reason_not_null",
+      "definition": "NOT NULL reason"
+    },
+    {
+      "table_name": "dispatch_record",
+      "name": "dispatch_record_sitter_id_fkey",
+      "definition": "FOREIGN KEY (sitter_id) REFERENCES pet_test_6704a01eecfe.sitter_profile(id)"
+    },
+    {
+      "table_name": "dispatch_record",
+      "name": "dispatch_record_sitter_id_not_null",
+      "definition": "NOT NULL sitter_id"
+    },
+    {
+      "table_name": "dispatch_record",
+      "name": "dispatch_record_status_not_null",
+      "definition": "NOT NULL status"
+    },
+    {
+      "table_name": "emergency_ticket",
+      "name": "emergency_ticket_created_at_not_null",
+      "definition": "NOT NULL created_at"
+    },
+    {
+      "table_name": "emergency_ticket",
+      "name": "emergency_ticket_description_not_null",
+      "definition": "NOT NULL description"
+    },
+    {
+      "table_name": "emergency_ticket",
+      "name": "emergency_ticket_hospital_id_fkey",
+      "definition": "FOREIGN KEY (hospital_id) REFERENCES pet_test_6704a01eecfe.hospital(id)"
+    },
+    {
+      "table_name": "emergency_ticket",
+      "name": "emergency_ticket_id_not_null",
+      "definition": "NOT NULL id"
+    },
+    {
+      "table_name": "emergency_ticket",
+      "name": "emergency_ticket_order_id_fkey",
+      "definition": "FOREIGN KEY (order_id) REFERENCES pet_test_6704a01eecfe.pet_order(id)"
+    },
+    {
+      "table_name": "emergency_ticket",
+      "name": "emergency_ticket_order_id_not_null",
+      "definition": "NOT NULL order_id"
+    },
+    {
+      "table_name": "emergency_ticket",
+      "name": "emergency_ticket_owner_consent_not_null",
+      "definition": "NOT NULL owner_consent"
+    },
+    {
+      "table_name": "emergency_ticket",
+      "name": "emergency_ticket_pkey",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "emergency_ticket",
+      "name": "emergency_ticket_reporter_id_fkey",
+      "definition": "FOREIGN KEY (reporter_id) REFERENCES pet_test_6704a01eecfe.app_user(id)"
+    },
+    {
+      "table_name": "emergency_ticket",
+      "name": "emergency_ticket_reporter_id_not_null",
+      "definition": "NOT NULL reporter_id"
+    },
+    {
+      "table_name": "emergency_ticket",
+      "name": "emergency_ticket_response_due_at_not_null",
+      "definition": "NOT NULL response_due_at"
+    },
+    {
+      "table_name": "emergency_ticket",
+      "name": "emergency_ticket_sitter_id_fkey",
+      "definition": "FOREIGN KEY (sitter_id) REFERENCES pet_test_6704a01eecfe.sitter_profile(id)"
+    },
+    {
+      "table_name": "emergency_ticket",
+      "name": "emergency_ticket_status_check",
+      "definition": "CHECK (((status)::text = ANY ((ARRAY['OPEN'::character varying, 'ACCEPTED'::character varying, 'TRANSPORTING'::character varying, 'RESOLVED'::character varying])::text[])))"
+    },
+    {
+      "table_name": "emergency_ticket",
+      "name": "emergency_ticket_status_not_null",
+      "definition": "NOT NULL status"
+    },
+    {
+      "table_name": "emergency_ticket",
+      "name": "emergency_ticket_updated_at_not_null",
+      "definition": "NOT NULL updated_at"
+    },
+    {
+      "table_name": "feeding_report",
+      "name": "feeding_report_id_not_null",
+      "definition": "NOT NULL id"
+    },
+    {
+      "table_name": "feeding_report",
+      "name": "feeding_report_order_id_fkey",
+      "definition": "FOREIGN KEY (order_id) REFERENCES pet_test_6704a01eecfe.pet_order(id)"
+    },
+    {
+      "table_name": "feeding_report",
+      "name": "feeding_report_order_id_key",
+      "definition": "UNIQUE (order_id)"
+    },
+    {
+      "table_name": "feeding_report",
+      "name": "feeding_report_order_id_not_null",
+      "definition": "NOT NULL order_id"
+    },
+    {
+      "table_name": "feeding_report",
+      "name": "feeding_report_pkey",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "feeding_report",
+      "name": "feeding_report_source_snapshot_not_null",
+      "definition": "NOT NULL source_snapshot"
+    },
+    {
+      "table_name": "feeding_report",
+      "name": "feeding_report_status_check",
+      "definition": "CHECK (((status)::text = ANY ((ARRAY['PENDING_AI'::character varying, 'MANUAL'::character varying, 'READY'::character varying])::text[])))"
+    },
+    {
+      "table_name": "feeding_report",
+      "name": "feeding_report_status_not_null",
+      "definition": "NOT NULL status"
+    },
+    {
+      "table_name": "feeding_report",
+      "name": "feeding_report_updated_at_not_null",
+      "definition": "NOT NULL updated_at"
+    },
+    {
+      "table_name": "flyway_schema_history",
+      "name": "flyway_schema_history_description_not_null",
+      "definition": "NOT NULL description"
+    },
+    {
+      "table_name": "flyway_schema_history",
+      "name": "flyway_schema_history_execution_time_not_null",
+      "definition": "NOT NULL execution_time"
+    },
+    {
+      "table_name": "flyway_schema_history",
+      "name": "flyway_schema_history_installed_by_not_null",
+      "definition": "NOT NULL installed_by"
+    },
+    {
+      "table_name": "flyway_schema_history",
+      "name": "flyway_schema_history_installed_on_not_null",
+      "definition": "NOT NULL installed_on"
+    },
+    {
+      "table_name": "flyway_schema_history",
+      "name": "flyway_schema_history_installed_rank_not_null",
+      "definition": "NOT NULL installed_rank"
+    },
+    {
+      "table_name": "flyway_schema_history",
+      "name": "flyway_schema_history_pk",
+      "definition": "PRIMARY KEY (installed_rank)"
+    },
+    {
+      "table_name": "flyway_schema_history",
+      "name": "flyway_schema_history_script_not_null",
+      "definition": "NOT NULL script"
+    },
+    {
+      "table_name": "flyway_schema_history",
+      "name": "flyway_schema_history_success_not_null",
+      "definition": "NOT NULL success"
+    },
+    {
+      "table_name": "flyway_schema_history",
+      "name": "flyway_schema_history_type_not_null",
+      "definition": "NOT NULL type"
+    },
+    {
+      "table_name": "hospital",
+      "name": "hospital_active_not_null",
+      "definition": "NOT NULL active"
+    },
+    {
+      "table_name": "hospital",
+      "name": "hospital_address_not_null",
+      "definition": "NOT NULL address"
+    },
+    {
+      "table_name": "hospital",
+      "name": "hospital_emergency_24h_not_null",
+      "definition": "NOT NULL emergency_24h"
+    },
+    {
+      "table_name": "hospital",
+      "name": "hospital_id_not_null",
+      "definition": "NOT NULL id"
+    },
+    {
+      "table_name": "hospital",
+      "name": "hospital_latitude_check",
+      "definition": "CHECK (((latitude >= ('-90'::integer)::numeric) AND (latitude <= (90)::numeric)))"
+    },
+    {
+      "table_name": "hospital",
+      "name": "hospital_latitude_not_null",
+      "definition": "NOT NULL latitude"
+    },
+    {
+      "table_name": "hospital",
+      "name": "hospital_longitude_check",
+      "definition": "CHECK (((longitude >= ('-180'::integer)::numeric) AND (longitude <= (180)::numeric)))"
+    },
+    {
+      "table_name": "hospital",
+      "name": "hospital_longitude_not_null",
+      "definition": "NOT NULL longitude"
+    },
+    {
+      "table_name": "hospital",
+      "name": "hospital_name_not_null",
+      "definition": "NOT NULL name"
+    },
+    {
+      "table_name": "hospital",
+      "name": "hospital_phone_not_null",
+      "definition": "NOT NULL phone"
+    },
+    {
+      "table_name": "hospital",
+      "name": "hospital_pkey",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "membership",
+      "name": "membership_check",
+      "definition": "CHECK ((starts_at < expires_at))"
+    },
+    {
+      "table_name": "membership",
+      "name": "membership_expires_at_not_null",
+      "definition": "NOT NULL expires_at"
+    },
+    {
+      "table_name": "membership",
+      "name": "membership_id_not_null",
+      "definition": "NOT NULL id"
+    },
+    {
+      "table_name": "membership",
+      "name": "membership_owner_id_fkey",
+      "definition": "FOREIGN KEY (owner_id) REFERENCES pet_test_6704a01eecfe.app_user(id)"
+    },
+    {
+      "table_name": "membership",
+      "name": "membership_owner_id_key",
+      "definition": "UNIQUE (owner_id)"
+    },
+    {
+      "table_name": "membership",
+      "name": "membership_owner_id_not_null",
+      "definition": "NOT NULL owner_id"
+    },
+    {
+      "table_name": "membership",
+      "name": "membership_pkey",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "membership",
+      "name": "membership_plan_id_fkey",
+      "definition": "FOREIGN KEY (plan_id) REFERENCES pet_test_6704a01eecfe.membership_plan(id)"
+    },
+    {
+      "table_name": "membership",
+      "name": "membership_plan_id_not_null1",
+      "definition": "NOT NULL plan_id"
+    },
+    {
+      "table_name": "membership",
+      "name": "membership_saved_amount_not_null",
+      "definition": "NOT NULL saved_amount"
+    },
+    {
+      "table_name": "membership",
+      "name": "membership_starts_at_not_null",
+      "definition": "NOT NULL starts_at"
+    },
+    {
+      "table_name": "membership",
+      "name": "membership_status_check",
+      "definition": "CHECK (((status)::text = ANY ((ARRAY['ACTIVE'::character varying, 'DISABLED'::character varying])::text[])))"
+    },
+    {
+      "table_name": "membership",
+      "name": "membership_status_not_null",
+      "definition": "NOT NULL status"
+    },
+    {
+      "table_name": "membership",
+      "name": "membership_updated_at_not_null",
+      "definition": "NOT NULL updated_at"
+    },
+    {
+      "table_name": "membership_benefit",
+      "name": "membership_benefit_code_key",
+      "definition": "UNIQUE (code)"
+    },
+    {
+      "table_name": "membership_benefit",
+      "name": "membership_benefit_code_not_null",
+      "definition": "NOT NULL code"
+    },
+    {
+      "table_name": "membership_benefit",
+      "name": "membership_benefit_discount_rate_check",
+      "definition": "CHECK (((discount_rate > (0)::numeric) AND (discount_rate <= (1)::numeric)))"
+    },
+    {
+      "table_name": "membership_benefit",
+      "name": "membership_benefit_discount_rate_not_null",
+      "definition": "NOT NULL discount_rate"
+    },
+    {
+      "table_name": "membership_benefit",
+      "name": "membership_benefit_enabled_not_null",
+      "definition": "NOT NULL enabled"
+    },
+    {
+      "table_name": "membership_benefit",
+      "name": "membership_benefit_id_not_null",
+      "definition": "NOT NULL id"
+    },
+    {
+      "table_name": "membership_benefit",
+      "name": "membership_benefit_name_not_null",
+      "definition": "NOT NULL name"
+    },
+    {
+      "table_name": "membership_benefit",
+      "name": "membership_benefit_pkey",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "membership_benefit",
+      "name": "membership_benefit_updated_at_not_null",
+      "definition": "NOT NULL updated_at"
+    },
+    {
+      "table_name": "membership_plan",
+      "name": "membership_plan_active_not_null",
+      "definition": "NOT NULL active"
+    },
+    {
+      "table_name": "membership_plan",
+      "name": "membership_plan_display_name_not_null",
+      "definition": "NOT NULL display_name"
+    },
+    {
+      "table_name": "membership_plan",
+      "name": "membership_plan_gift_coupon_quantity_check",
+      "definition": "CHECK (((gift_coupon_quantity >= 0) AND (gift_coupon_quantity <= 20)))"
+    },
+    {
+      "table_name": "membership_plan",
+      "name": "membership_plan_gift_coupon_quantity_not_null",
+      "definition": "NOT NULL gift_coupon_quantity"
+    },
+    {
+      "table_name": "membership_plan",
+      "name": "membership_plan_gift_coupon_template_id_fkey",
+      "definition": "FOREIGN KEY (gift_coupon_template_id) REFERENCES pet_test_6704a01eecfe.coupon_template(id)"
+    },
+    {
+      "table_name": "membership_plan",
+      "name": "membership_plan_id_not_null",
+      "definition": "NOT NULL id"
+    },
+    {
+      "table_name": "membership_plan",
+      "name": "membership_plan_months_check",
+      "definition": "CHECK (((months >= 1) AND (months <= 120)))"
+    },
+    {
+      "table_name": "membership_plan",
+      "name": "membership_plan_months_not_null",
+      "definition": "NOT NULL months"
+    },
+    {
+      "table_name": "membership_plan",
+      "name": "membership_plan_name_not_null",
+      "definition": "NOT NULL name"
+    },
+    {
+      "table_name": "membership_plan",
+      "name": "membership_plan_pkey",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "membership_plan",
+      "name": "membership_plan_price_check",
+      "definition": "CHECK (((price >= 0.01) AND (price <= (9999)::numeric)))"
+    },
+    {
+      "table_name": "membership_plan",
+      "name": "membership_plan_price_not_null",
+      "definition": "NOT NULL price"
+    },
+    {
+      "table_name": "membership_plan",
+      "name": "membership_plan_updated_at_not_null",
+      "definition": "NOT NULL updated_at"
+    },
+    {
+      "table_name": "membership_purchase",
+      "name": "membership_purchase_amount_not_null",
+      "definition": "NOT NULL amount"
+    },
+    {
+      "table_name": "membership_purchase",
+      "name": "membership_purchase_created_at_not_null",
+      "definition": "NOT NULL created_at"
+    },
+    {
+      "table_name": "membership_purchase",
+      "name": "membership_purchase_gift_coupon_quantity_not_null",
+      "definition": "NOT NULL gift_coupon_quantity"
+    },
+    {
+      "table_name": "membership_purchase",
+      "name": "membership_purchase_gift_coupon_template_id_fkey",
+      "definition": "FOREIGN KEY (gift_coupon_template_id) REFERENCES pet_test_6704a01eecfe.coupon_template(id)"
+    },
+    {
+      "table_name": "membership_purchase",
+      "name": "membership_purchase_id_not_null",
+      "definition": "NOT NULL id"
+    },
+    {
+      "table_name": "membership_purchase",
+      "name": "membership_purchase_months_not_null",
+      "definition": "NOT NULL months"
+    },
+    {
+      "table_name": "membership_purchase",
+      "name": "membership_purchase_owner_id_fkey",
+      "definition": "FOREIGN KEY (owner_id) REFERENCES pet_test_6704a01eecfe.app_user(id)"
+    },
+    {
+      "table_name": "membership_purchase",
+      "name": "membership_purchase_owner_id_not_null",
+      "definition": "NOT NULL owner_id"
+    },
+    {
+      "table_name": "membership_purchase",
+      "name": "membership_purchase_pkey",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "membership_purchase",
+      "name": "membership_purchase_plan_id_fkey",
+      "definition": "FOREIGN KEY (plan_id) REFERENCES pet_test_6704a01eecfe.membership_plan(id)"
+    },
+    {
+      "table_name": "membership_purchase",
+      "name": "membership_purchase_plan_id_not_null",
+      "definition": "NOT NULL plan_id"
+    },
+    {
+      "table_name": "membership_purchase",
+      "name": "membership_purchase_plan_name_not_null",
+      "definition": "NOT NULL plan_name"
+    },
+    {
+      "table_name": "membership_purchase",
+      "name": "membership_purchase_status_check",
+      "definition": "CHECK (((status)::text = ANY ((ARRAY['PENDING'::character varying, 'PAID'::character varying])::text[])))"
+    },
+    {
+      "table_name": "membership_purchase",
+      "name": "membership_purchase_status_not_null",
+      "definition": "NOT NULL status"
+    },
+    {
+      "table_name": "notification",
+      "name": "notification_code_not_null",
+      "definition": "NOT NULL code"
+    },
+    {
+      "table_name": "notification",
+      "name": "notification_content_not_null",
+      "definition": "NOT NULL content"
+    },
+    {
+      "table_name": "notification",
+      "name": "notification_created_at_not_null",
+      "definition": "NOT NULL created_at"
+    },
+    {
+      "table_name": "notification",
+      "name": "notification_delivery_status_not_null",
+      "definition": "NOT NULL delivery_status"
+    },
+    {
+      "table_name": "notification",
+      "name": "notification_id_not_null",
+      "definition": "NOT NULL id"
+    },
+    {
+      "table_name": "notification",
+      "name": "notification_order_id_fkey",
+      "definition": "FOREIGN KEY (order_id) REFERENCES pet_test_6704a01eecfe.pet_order(id)"
+    },
+    {
+      "table_name": "notification",
+      "name": "notification_pkey",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "notification",
+      "name": "notification_title_not_null",
+      "definition": "NOT NULL title"
+    },
+    {
+      "table_name": "notification",
+      "name": "notification_user_id_fkey",
+      "definition": "FOREIGN KEY (user_id) REFERENCES pet_test_6704a01eecfe.app_user(id)"
+    },
+    {
+      "table_name": "notification",
+      "name": "notification_user_id_not_null",
+      "definition": "NOT NULL user_id"
+    },
+    {
+      "table_name": "notification_template",
+      "name": "notification_template_channels_not_null",
+      "definition": "NOT NULL channels"
+    },
+    {
+      "table_name": "notification_template",
+      "name": "notification_template_code_key",
+      "definition": "UNIQUE (code)"
+    },
+    {
+      "table_name": "notification_template",
+      "name": "notification_template_code_not_null",
+      "definition": "NOT NULL code"
+    },
+    {
+      "table_name": "notification_template",
+      "name": "notification_template_enabled_not_null",
+      "definition": "NOT NULL enabled"
+    },
+    {
+      "table_name": "notification_template",
+      "name": "notification_template_id_not_null",
+      "definition": "NOT NULL id"
+    },
+    {
+      "table_name": "notification_template",
+      "name": "notification_template_name_not_null",
+      "definition": "NOT NULL name"
+    },
+    {
+      "table_name": "notification_template",
+      "name": "notification_template_pkey",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "notification_template",
+      "name": "notification_template_updated_at_not_null",
+      "definition": "NOT NULL updated_at"
+    },
+    {
+      "table_name": "operation_log",
+      "name": "operation_log_action_not_null",
+      "definition": "NOT NULL action"
+    },
+    {
+      "table_name": "operation_log",
+      "name": "operation_log_actor_id_fkey",
+      "definition": "FOREIGN KEY (actor_id) REFERENCES pet_test_6704a01eecfe.app_user(id)"
+    },
+    {
+      "table_name": "operation_log",
+      "name": "operation_log_created_at_not_null",
+      "definition": "NOT NULL created_at"
+    },
+    {
+      "table_name": "operation_log",
+      "name": "operation_log_id_not_null",
+      "definition": "NOT NULL id"
+    },
+    {
+      "table_name": "operation_log",
+      "name": "operation_log_pkey",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "operation_log",
+      "name": "operation_log_resource_not_null",
+      "definition": "NOT NULL resource"
+    },
+    {
+      "table_name": "operation_log",
+      "name": "operation_log_result_not_null",
+      "definition": "NOT NULL result"
+    },
+    {
+      "table_name": "order_event",
+      "name": "order_event_actor_id_fkey",
+      "definition": "FOREIGN KEY (actor_id) REFERENCES pet_test_6704a01eecfe.app_user(id)"
+    },
+    {
+      "table_name": "order_event",
+      "name": "order_event_created_at_not_null",
+      "definition": "NOT NULL created_at"
+    },
+    {
+      "table_name": "order_event",
+      "name": "order_event_detail_not_null",
+      "definition": "NOT NULL detail"
+    },
+    {
+      "table_name": "order_event",
+      "name": "order_event_event_not_null",
+      "definition": "NOT NULL event"
+    },
+    {
+      "table_name": "order_event",
+      "name": "order_event_id_not_null",
+      "definition": "NOT NULL id"
+    },
+    {
+      "table_name": "order_event",
+      "name": "order_event_order_id_fkey",
+      "definition": "FOREIGN KEY (order_id) REFERENCES pet_test_6704a01eecfe.pet_order(id)"
+    },
+    {
+      "table_name": "order_event",
+      "name": "order_event_order_id_not_null",
+      "definition": "NOT NULL order_id"
+    },
+    {
+      "table_name": "order_event",
+      "name": "order_event_pkey",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "order_item",
+      "name": "order_item_code_not_null",
+      "definition": "NOT NULL code"
+    },
+    {
+      "table_name": "order_item",
+      "name": "order_item_id_not_null",
+      "definition": "NOT NULL id"
+    },
+    {
+      "table_name": "order_item",
+      "name": "order_item_name_not_null",
+      "definition": "NOT NULL name"
+    },
+    {
+      "table_name": "order_item",
+      "name": "order_item_order_id_code_key",
+      "definition": "UNIQUE (order_id, code)"
+    },
+    {
+      "table_name": "order_item",
+      "name": "order_item_order_id_fkey",
+      "definition": "FOREIGN KEY (order_id) REFERENCES pet_test_6704a01eecfe.pet_order(id)"
+    },
+    {
+      "table_name": "order_item",
+      "name": "order_item_order_id_not_null",
+      "definition": "NOT NULL order_id"
+    },
+    {
+      "table_name": "order_item",
+      "name": "order_item_pkey",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "order_item",
+      "name": "order_item_quantity_check",
+      "definition": "CHECK ((quantity > 0))"
+    },
+    {
+      "table_name": "order_item",
+      "name": "order_item_quantity_not_null",
+      "definition": "NOT NULL quantity"
+    },
+    {
+      "table_name": "order_item",
+      "name": "order_item_service_id_fkey",
+      "definition": "FOREIGN KEY (service_id) REFERENCES pet_test_6704a01eecfe.service_item(id)"
+    },
+    {
+      "table_name": "order_item",
+      "name": "order_item_service_id_not_null",
+      "definition": "NOT NULL service_id"
+    },
+    {
+      "table_name": "order_item",
+      "name": "order_item_unit_price_not_null",
+      "definition": "NOT NULL unit_price"
+    },
+    {
+      "table_name": "owner_address",
+      "name": "owner_address_address_not_null",
+      "definition": "NOT NULL address"
+    },
+    {
+      "table_name": "owner_address",
+      "name": "owner_address_contact_name_not_null",
+      "definition": "NOT NULL contact_name"
+    },
+    {
+      "table_name": "owner_address",
+      "name": "owner_address_created_at_not_null",
+      "definition": "NOT NULL created_at"
+    },
+    {
+      "table_name": "owner_address",
+      "name": "owner_address_district_not_null",
+      "definition": "NOT NULL district"
+    },
+    {
+      "table_name": "owner_address",
+      "name": "owner_address_id_not_null",
+      "definition": "NOT NULL id"
+    },
+    {
+      "table_name": "owner_address",
+      "name": "owner_address_latitude_check",
+      "definition": "CHECK (((latitude >= ('-90'::integer)::numeric) AND (latitude <= (90)::numeric)))"
+    },
+    {
+      "table_name": "owner_address",
+      "name": "owner_address_latitude_not_null",
+      "definition": "NOT NULL latitude"
+    },
+    {
+      "table_name": "owner_address",
+      "name": "owner_address_longitude_check",
+      "definition": "CHECK (((longitude >= ('-180'::integer)::numeric) AND (longitude <= (180)::numeric)))"
+    },
+    {
+      "table_name": "owner_address",
+      "name": "owner_address_longitude_not_null",
+      "definition": "NOT NULL longitude"
+    },
+    {
+      "table_name": "owner_address",
+      "name": "owner_address_owner_id_fkey",
+      "definition": "FOREIGN KEY (owner_id) REFERENCES pet_test_6704a01eecfe.app_user(id)"
+    },
+    {
+      "table_name": "owner_address",
+      "name": "owner_address_owner_id_not_null",
+      "definition": "NOT NULL owner_id"
+    },
+    {
+      "table_name": "owner_address",
+      "name": "owner_address_phone_not_null",
+      "definition": "NOT NULL phone"
+    },
+    {
+      "table_name": "owner_address",
+      "name": "owner_address_pkey",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "payment_record",
+      "name": "payment_record_amount_check",
+      "definition": "CHECK ((amount >= (0)::numeric))"
+    },
+    {
+      "table_name": "payment_record",
+      "name": "payment_record_amount_not_null",
+      "definition": "NOT NULL amount"
+    },
+    {
+      "table_name": "payment_record",
+      "name": "payment_record_check",
+      "definition": "CHECK (((order_id IS NULL) <> (purchase_id IS NULL)))"
+    },
+    {
+      "table_name": "payment_record",
+      "name": "payment_record_id_not_null",
+      "definition": "NOT NULL id"
+    },
+    {
+      "table_name": "payment_record",
+      "name": "payment_record_order_id_fkey",
+      "definition": "FOREIGN KEY (order_id) REFERENCES pet_test_6704a01eecfe.pet_order(id)"
+    },
+    {
+      "table_name": "payment_record",
+      "name": "payment_record_order_id_key",
+      "definition": "UNIQUE (order_id)"
+    },
+    {
+      "table_name": "payment_record",
+      "name": "payment_record_paid_at_not_null",
+      "definition": "NOT NULL paid_at"
+    },
+    {
+      "table_name": "payment_record",
+      "name": "payment_record_pkey",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "payment_record",
+      "name": "payment_record_provider_not_null",
+      "definition": "NOT NULL provider"
+    },
+    {
+      "table_name": "payment_record",
+      "name": "payment_record_purchase_id_fkey",
+      "definition": "FOREIGN KEY (purchase_id) REFERENCES pet_test_6704a01eecfe.membership_purchase(id)"
+    },
+    {
+      "table_name": "payment_record",
+      "name": "payment_record_purchase_id_key",
+      "definition": "UNIQUE (purchase_id)"
+    },
+    {
+      "table_name": "payment_record",
+      "name": "payment_record_status_not_null",
+      "definition": "NOT NULL status"
+    },
+    {
+      "table_name": "payment_record",
+      "name": "payment_record_trade_no_key",
+      "definition": "UNIQUE (trade_no)"
+    },
+    {
+      "table_name": "payment_record",
+      "name": "payment_record_trade_no_not_null",
+      "definition": "NOT NULL trade_no"
+    },
+    {
+      "table_name": "pet",
+      "name": "pet_category_check",
+      "definition": "CHECK (((category)::text = ANY ((ARRAY['CAT'::character varying, 'DOG'::character varying, 'SMALL'::character varying, 'OTHER'::character varying])::text[])))"
+    },
+    {
+      "table_name": "pet",
+      "name": "pet_category_not_null",
+      "definition": "NOT NULL category"
+    },
+    {
+      "table_name": "pet",
+      "name": "pet_created_at_not_null",
+      "definition": "NOT NULL created_at"
+    },
+    {
+      "table_name": "pet",
+      "name": "pet_deleted_not_null",
+      "definition": "NOT NULL deleted"
+    },
+    {
+      "table_name": "pet",
+      "name": "pet_id_not_null",
+      "definition": "NOT NULL id"
+    },
+    {
+      "table_name": "pet",
+      "name": "pet_name_not_null",
+      "definition": "NOT NULL name"
+    },
+    {
+      "table_name": "pet",
+      "name": "pet_owner_id_fkey",
+      "definition": "FOREIGN KEY (owner_id) REFERENCES pet_test_6704a01eecfe.app_user(id)"
+    },
+    {
+      "table_name": "pet",
+      "name": "pet_owner_id_not_null",
+      "definition": "NOT NULL owner_id"
+    },
+    {
+      "table_name": "pet",
+      "name": "pet_pkey",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "pet",
+      "name": "pet_updated_at_not_null",
+      "definition": "NOT NULL updated_at"
+    },
+    {
+      "table_name": "pet",
+      "name": "pet_weight_check",
+      "definition": "CHECK ((weight > (0)::numeric))"
+    },
+    {
+      "table_name": "pet_order",
+      "name": "pet_order_address_snapshot_not_null",
+      "definition": "NOT NULL address_snapshot"
+    },
+    {
+      "table_name": "pet_order",
+      "name": "pet_order_check",
+      "definition": "CHECK ((service_start < service_end))"
+    },
+    {
+      "table_name": "pet_order",
+      "name": "pet_order_check1",
+      "definition": "CHECK ((payable_amount = ((total_amount - member_discount) - coupon_discount)))"
+    },
+    {
+      "table_name": "pet_order",
+      "name": "pet_order_commission_rate_check",
+      "definition": "CHECK (((commission_rate >= (0)::numeric) AND (commission_rate <= (50)::numeric)))"
+    },
+    {
+      "table_name": "pet_order",
+      "name": "pet_order_coupon_discount_not_null",
+      "definition": "NOT NULL coupon_discount"
+    },
+    {
+      "table_name": "pet_order",
+      "name": "pet_order_coupon_id_fkey",
+      "definition": "FOREIGN KEY (coupon_id) REFERENCES pet_test_6704a01eecfe.user_coupon(id)"
+    },
+    {
+      "table_name": "pet_order",
+      "name": "pet_order_coupon_id_key",
+      "definition": "UNIQUE (coupon_id)"
+    },
+    {
+      "table_name": "pet_order",
+      "name": "pet_order_created_at_not_null",
+      "definition": "NOT NULL created_at"
+    },
+    {
+      "table_name": "pet_order",
+      "name": "pet_order_id_not_null",
+      "definition": "NOT NULL id"
+    },
+    {
+      "table_name": "pet_order",
+      "name": "pet_order_member_discount_not_null",
+      "definition": "NOT NULL member_discount"
+    },
+    {
+      "table_name": "pet_order",
+      "name": "pet_order_order_no_key",
+      "definition": "UNIQUE (order_no)"
+    },
+    {
+      "table_name": "pet_order",
+      "name": "pet_order_order_no_not_null",
+      "definition": "NOT NULL order_no"
+    },
+    {
+      "table_name": "pet_order",
+      "name": "pet_order_owner_id_fkey",
+      "definition": "FOREIGN KEY (owner_id) REFERENCES pet_test_6704a01eecfe.app_user(id)"
+    },
+    {
+      "table_name": "pet_order",
+      "name": "pet_order_owner_id_not_null",
+      "definition": "NOT NULL owner_id"
+    },
+    {
+      "table_name": "pet_order",
+      "name": "pet_order_owner_id_request_key_key",
+      "definition": "UNIQUE (owner_id, request_key)"
+    },
+    {
+      "table_name": "pet_order",
+      "name": "pet_order_payable_amount_check",
+      "definition": "CHECK ((payable_amount >= (0)::numeric))"
+    },
+    {
+      "table_name": "pet_order",
+      "name": "pet_order_payable_amount_not_null",
+      "definition": "NOT NULL payable_amount"
+    },
+    {
+      "table_name": "pet_order",
+      "name": "pet_order_pet_snapshot_not_null",
+      "definition": "NOT NULL pet_snapshot"
+    },
+    {
+      "table_name": "pet_order",
+      "name": "pet_order_pkey",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "pet_order",
+      "name": "pet_order_request_key_not_null",
+      "definition": "NOT NULL request_key"
+    },
+    {
+      "table_name": "pet_order",
+      "name": "pet_order_service_end_not_null",
+      "definition": "NOT NULL service_end"
+    },
+    {
+      "table_name": "pet_order",
+      "name": "pet_order_service_start_not_null",
+      "definition": "NOT NULL service_start"
+    },
+    {
+      "table_name": "pet_order",
+      "name": "pet_order_signed_agreement_not_null",
+      "definition": "NOT NULL signed_agreement"
+    },
+    {
+      "table_name": "pet_order",
+      "name": "pet_order_sitter_id_fkey",
+      "definition": "FOREIGN KEY (sitter_id) REFERENCES pet_test_6704a01eecfe.sitter_profile(id)"
+    },
+    {
+      "table_name": "pet_order",
+      "name": "pet_order_status_check",
+      "definition": "CHECK (((status)::text = ANY ((ARRAY['PENDING_PAYMENT'::character varying, 'DISPATCHING'::character varying, 'PENDING_ACCEPT'::character varying, 'ACCEPTED'::character varying, 'SERVICING'::character varying, 'COMPLETED'::character varying, 'CANCELLED'::character varying, 'REFUNDED'::character varying])::text[])))"
+    },
+    {
+      "table_name": "pet_order",
+      "name": "pet_order_status_not_null",
+      "definition": "NOT NULL status"
+    },
+    {
+      "table_name": "pet_order",
+      "name": "pet_order_total_amount_check",
+      "definition": "CHECK ((total_amount >= (0)::numeric))"
+    },
+    {
+      "table_name": "pet_order",
+      "name": "pet_order_total_amount_not_null",
+      "definition": "NOT NULL total_amount"
+    },
+    {
+      "table_name": "refund_record",
+      "name": "refund_record_amount_not_null",
+      "definition": "NOT NULL amount"
+    },
+    {
+      "table_name": "refund_record",
+      "name": "refund_record_created_at_not_null",
+      "definition": "NOT NULL created_at"
+    },
+    {
+      "table_name": "refund_record",
+      "name": "refund_record_id_not_null",
+      "definition": "NOT NULL id"
+    },
+    {
+      "table_name": "refund_record",
+      "name": "refund_record_operator_id_fkey",
+      "definition": "FOREIGN KEY (operator_id) REFERENCES pet_test_6704a01eecfe.app_user(id)"
+    },
+    {
+      "table_name": "refund_record",
+      "name": "refund_record_operator_id_not_null",
+      "definition": "NOT NULL operator_id"
+    },
+    {
+      "table_name": "refund_record",
+      "name": "refund_record_order_id_fkey",
+      "definition": "FOREIGN KEY (order_id) REFERENCES pet_test_6704a01eecfe.pet_order(id)"
+    },
+    {
+      "table_name": "refund_record",
+      "name": "refund_record_order_id_key",
+      "definition": "UNIQUE (order_id)"
+    },
+    {
+      "table_name": "refund_record",
+      "name": "refund_record_order_id_not_null",
+      "definition": "NOT NULL order_id"
+    },
+    {
+      "table_name": "refund_record",
+      "name": "refund_record_pkey",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "refund_record",
+      "name": "refund_record_provider_not_null",
+      "definition": "NOT NULL provider"
+    },
+    {
+      "table_name": "refund_record",
+      "name": "refund_record_reason_not_null",
+      "definition": "NOT NULL reason"
+    },
+    {
+      "table_name": "review",
+      "name": "review_content_not_null",
+      "definition": "NOT NULL content"
+    },
+    {
+      "table_name": "review",
+      "name": "review_created_at_not_null",
+      "definition": "NOT NULL created_at"
+    },
+    {
+      "table_name": "review",
+      "name": "review_id_not_null",
+      "definition": "NOT NULL id"
+    },
+    {
+      "table_name": "review",
+      "name": "review_order_id_fkey",
+      "definition": "FOREIGN KEY (order_id) REFERENCES pet_test_6704a01eecfe.pet_order(id)"
+    },
+    {
+      "table_name": "review",
+      "name": "review_order_id_key",
+      "definition": "UNIQUE (order_id)"
+    },
+    {
+      "table_name": "review",
+      "name": "review_order_id_not_null",
+      "definition": "NOT NULL order_id"
+    },
+    {
+      "table_name": "review",
+      "name": "review_owner_id_fkey",
+      "definition": "FOREIGN KEY (owner_id) REFERENCES pet_test_6704a01eecfe.app_user(id)"
+    },
+    {
+      "table_name": "review",
+      "name": "review_owner_id_not_null",
+      "definition": "NOT NULL owner_id"
+    },
+    {
+      "table_name": "review",
+      "name": "review_pkey",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "review",
+      "name": "review_score_check",
+      "definition": "CHECK (((score >= 1) AND (score <= 5)))"
+    },
+    {
+      "table_name": "review",
+      "name": "review_score_not_null",
+      "definition": "NOT NULL score"
+    },
+    {
+      "table_name": "review",
+      "name": "review_sitter_id_fkey",
+      "definition": "FOREIGN KEY (sitter_id) REFERENCES pet_test_6704a01eecfe.sitter_profile(id)"
+    },
+    {
+      "table_name": "review",
+      "name": "review_sitter_id_not_null",
+      "definition": "NOT NULL sitter_id"
+    },
+    {
+      "table_name": "review",
+      "name": "review_tags_not_null",
+      "definition": "NOT NULL tags"
+    },
+    {
+      "table_name": "role_permission",
+      "name": "role_permission_id_not_null",
+      "definition": "NOT NULL id"
+    },
+    {
+      "table_name": "role_permission",
+      "name": "role_permission_permission_not_null",
+      "definition": "NOT NULL permission"
+    },
+    {
+      "table_name": "role_permission",
+      "name": "role_permission_pkey",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "role_permission",
+      "name": "role_permission_role_not_null",
+      "definition": "NOT NULL role"
+    },
+    {
+      "table_name": "role_permission",
+      "name": "role_permission_role_permission_key",
+      "definition": "UNIQUE (role, permission)"
+    },
+    {
+      "table_name": "service_checklist",
+      "name": "service_checklist_code_not_null",
+      "definition": "NOT NULL code"
+    },
+    {
+      "table_name": "service_checklist",
+      "name": "service_checklist_completed_not_null",
+      "definition": "NOT NULL completed"
+    },
+    {
+      "table_name": "service_checklist",
+      "name": "service_checklist_id_not_null",
+      "definition": "NOT NULL id"
+    },
+    {
+      "table_name": "service_checklist",
+      "name": "service_checklist_order_id_code_key",
+      "definition": "UNIQUE (order_id, code)"
+    },
+    {
+      "table_name": "service_checklist",
+      "name": "service_checklist_order_id_fkey",
+      "definition": "FOREIGN KEY (order_id) REFERENCES pet_test_6704a01eecfe.pet_order(id)"
+    },
+    {
+      "table_name": "service_checklist",
+      "name": "service_checklist_order_id_not_null",
+      "definition": "NOT NULL order_id"
+    },
+    {
+      "table_name": "service_checklist",
+      "name": "service_checklist_pkey",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "service_checklist",
+      "name": "service_checklist_updated_at_not_null",
+      "definition": "NOT NULL updated_at"
+    },
+    {
+      "table_name": "service_item",
+      "name": "service_item_active_not_null",
+      "definition": "NOT NULL active"
+    },
+    {
+      "table_name": "service_item",
+      "name": "service_item_code_key",
+      "definition": "UNIQUE (code)"
+    },
+    {
+      "table_name": "service_item",
+      "name": "service_item_code_not_null",
+      "definition": "NOT NULL code"
+    },
+    {
+      "table_name": "service_item",
+      "name": "service_item_id_not_null",
+      "definition": "NOT NULL id"
+    },
+    {
+      "table_name": "service_item",
+      "name": "service_item_name_not_null",
+      "definition": "NOT NULL name"
+    },
+    {
+      "table_name": "service_item",
+      "name": "service_item_pkey",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "service_item",
+      "name": "service_item_price_check",
+      "definition": "CHECK (((price >= (0)::numeric) AND (price <= (9999)::numeric)))"
+    },
+    {
+      "table_name": "service_item",
+      "name": "service_item_price_not_null",
+      "definition": "NOT NULL price"
+    },
+    {
+      "table_name": "service_item",
+      "name": "service_item_updated_at_not_null",
+      "definition": "NOT NULL updated_at"
+    },
+    {
+      "table_name": "service_media",
+      "name": "service_media_created_at_not_null",
+      "definition": "NOT NULL created_at"
+    },
+    {
+      "table_name": "service_media",
+      "name": "service_media_deleted_not_null",
+      "definition": "NOT NULL deleted"
+    },
+    {
+      "table_name": "service_media",
+      "name": "service_media_expires_at_not_null",
+      "definition": "NOT NULL expires_at"
+    },
+    {
+      "table_name": "service_media",
+      "name": "service_media_id_not_null",
+      "definition": "NOT NULL id"
+    },
+    {
+      "table_name": "service_media",
+      "name": "service_media_kind_check",
+      "definition": "CHECK (((kind)::text = ANY ((ARRAY['PHOTO'::character varying, 'VIDEO'::character varying, 'LIVE'::character varying])::text[])))"
+    },
+    {
+      "table_name": "service_media",
+      "name": "service_media_kind_not_null",
+      "definition": "NOT NULL kind"
+    },
+    {
+      "table_name": "service_media",
+      "name": "service_media_object_key_not_null",
+      "definition": "NOT NULL object_key"
+    },
+    {
+      "table_name": "service_media",
+      "name": "service_media_order_id_fkey",
+      "definition": "FOREIGN KEY (order_id) REFERENCES pet_test_6704a01eecfe.pet_order(id)"
+    },
+    {
+      "table_name": "service_media",
+      "name": "service_media_order_id_not_null",
+      "definition": "NOT NULL order_id"
+    },
+    {
+      "table_name": "service_media",
+      "name": "service_media_pkey",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "service_media",
+      "name": "service_media_uploader_id_fkey",
+      "definition": "FOREIGN KEY (uploader_id) REFERENCES pet_test_6704a01eecfe.app_user(id)"
+    },
+    {
+      "table_name": "service_media",
+      "name": "service_media_uploader_id_not_null",
+      "definition": "NOT NULL uploader_id"
+    },
+    {
+      "table_name": "settlement",
+      "name": "settlement_check",
+      "definition": "CHECK ((gross_amount = (platform_amount + sitter_amount)))"
+    },
+    {
+      "table_name": "settlement",
+      "name": "settlement_commission_rate_not_null",
+      "definition": "NOT NULL commission_rate"
+    },
+    {
+      "table_name": "settlement",
+      "name": "settlement_created_at_not_null",
+      "definition": "NOT NULL created_at"
+    },
+    {
+      "table_name": "settlement",
+      "name": "settlement_gross_amount_not_null",
+      "definition": "NOT NULL gross_amount"
+    },
+    {
+      "table_name": "settlement",
+      "name": "settlement_id_not_null",
+      "definition": "NOT NULL id"
+    },
+    {
+      "table_name": "settlement",
+      "name": "settlement_order_id_fkey",
+      "definition": "FOREIGN KEY (order_id) REFERENCES pet_test_6704a01eecfe.pet_order(id)"
+    },
+    {
+      "table_name": "settlement",
+      "name": "settlement_order_id_key",
+      "definition": "UNIQUE (order_id)"
+    },
+    {
+      "table_name": "settlement",
+      "name": "settlement_order_id_not_null",
+      "definition": "NOT NULL order_id"
+    },
+    {
+      "table_name": "settlement",
+      "name": "settlement_pkey",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "settlement",
+      "name": "settlement_platform_amount_not_null",
+      "definition": "NOT NULL platform_amount"
+    },
+    {
+      "table_name": "settlement",
+      "name": "settlement_sitter_amount_not_null",
+      "definition": "NOT NULL sitter_amount"
+    },
+    {
+      "table_name": "settlement",
+      "name": "settlement_sitter_id_fkey",
+      "definition": "FOREIGN KEY (sitter_id) REFERENCES pet_test_6704a01eecfe.sitter_profile(id)"
+    },
+    {
+      "table_name": "settlement",
+      "name": "settlement_sitter_id_not_null",
+      "definition": "NOT NULL sitter_id"
+    },
+    {
+      "table_name": "settlement",
+      "name": "settlement_status_check",
+      "definition": "CHECK (((status)::text = ANY ((ARRAY['PENDING'::character varying, 'SETTLED'::character varying, 'REVERSED'::character varying])::text[])))"
+    },
+    {
+      "table_name": "settlement",
+      "name": "settlement_status_not_null",
+      "definition": "NOT NULL status"
+    },
+    {
+      "table_name": "sitter_grade",
+      "name": "sitter_grade_active_not_null",
+      "definition": "NOT NULL active"
+    },
+    {
+      "table_name": "sitter_grade",
+      "name": "sitter_grade_code_key",
+      "definition": "UNIQUE (code)"
+    },
+    {
+      "table_name": "sitter_grade",
+      "name": "sitter_grade_code_not_null",
+      "definition": "NOT NULL code"
+    },
+    {
+      "table_name": "sitter_grade",
+      "name": "sitter_grade_commission_rate_check",
+      "definition": "CHECK (((commission_rate >= (0)::numeric) AND (commission_rate <= (50)::numeric)))"
+    },
+    {
+      "table_name": "sitter_grade",
+      "name": "sitter_grade_commission_rate_not_null",
+      "definition": "NOT NULL commission_rate"
+    },
+    {
+      "table_name": "sitter_grade",
+      "name": "sitter_grade_dispatch_weight_check",
+      "definition": "CHECK (((dispatch_weight >= (0)::numeric) AND (dispatch_weight <= (100)::numeric)))"
+    },
+    {
+      "table_name": "sitter_grade",
+      "name": "sitter_grade_dispatch_weight_not_null",
+      "definition": "NOT NULL dispatch_weight"
+    },
+    {
+      "table_name": "sitter_grade",
+      "name": "sitter_grade_effective_at_not_null",
+      "definition": "NOT NULL effective_at"
+    },
+    {
+      "table_name": "sitter_grade",
+      "name": "sitter_grade_high_risk_enabled_not_null",
+      "definition": "NOT NULL high_risk_enabled"
+    },
+    {
+      "table_name": "sitter_grade",
+      "name": "sitter_grade_id_not_null",
+      "definition": "NOT NULL id"
+    },
+    {
+      "table_name": "sitter_grade",
+      "name": "sitter_grade_max_complaints_check",
+      "definition": "CHECK ((max_complaints >= 0))"
+    },
+    {
+      "table_name": "sitter_grade",
+      "name": "sitter_grade_max_complaints_not_null",
+      "definition": "NOT NULL max_complaints"
+    },
+    {
+      "table_name": "sitter_grade",
+      "name": "sitter_grade_min_orders_check",
+      "definition": "CHECK ((min_orders >= 0))"
+    },
+    {
+      "table_name": "sitter_grade",
+      "name": "sitter_grade_min_orders_not_null",
+      "definition": "NOT NULL min_orders"
+    },
+    {
+      "table_name": "sitter_grade",
+      "name": "sitter_grade_min_rating_check",
+      "definition": "CHECK (((min_rating >= (0)::numeric) AND (min_rating <= (5)::numeric)))"
+    },
+    {
+      "table_name": "sitter_grade",
+      "name": "sitter_grade_min_rating_not_null",
+      "definition": "NOT NULL min_rating"
+    },
+    {
+      "table_name": "sitter_grade",
+      "name": "sitter_grade_name_not_null",
+      "definition": "NOT NULL name"
+    },
+    {
+      "table_name": "sitter_grade",
+      "name": "sitter_grade_pkey",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "sitter_grade",
+      "name": "sitter_grade_updated_at_not_null",
+      "definition": "NOT NULL updated_at"
+    },
+    {
+      "table_name": "sitter_grade_revision",
+      "name": "sitter_grade_revision_created_at_not_null",
+      "definition": "NOT NULL created_at"
+    },
+    {
+      "table_name": "sitter_grade_revision",
+      "name": "sitter_grade_revision_effective_at_not_null",
+      "definition": "NOT NULL effective_at"
+    },
+    {
+      "table_name": "sitter_grade_revision",
+      "name": "sitter_grade_revision_grade_id_fkey",
+      "definition": "FOREIGN KEY (grade_id) REFERENCES pet_test_6704a01eecfe.sitter_grade(id)"
+    },
+    {
+      "table_name": "sitter_grade_revision",
+      "name": "sitter_grade_revision_grade_id_not_null",
+      "definition": "NOT NULL grade_id"
+    },
+    {
+      "table_name": "sitter_grade_revision",
+      "name": "sitter_grade_revision_id_not_null",
+      "definition": "NOT NULL id"
+    },
+    {
+      "table_name": "sitter_grade_revision",
+      "name": "sitter_grade_revision_operator_id_fkey",
+      "definition": "FOREIGN KEY (operator_id) REFERENCES pet_test_6704a01eecfe.app_user(id)"
+    },
+    {
+      "table_name": "sitter_grade_revision",
+      "name": "sitter_grade_revision_operator_id_not_null",
+      "definition": "NOT NULL operator_id"
+    },
+    {
+      "table_name": "sitter_grade_revision",
+      "name": "sitter_grade_revision_pkey",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "sitter_grade_revision",
+      "name": "sitter_grade_revision_rule_data_not_null",
+      "definition": "NOT NULL rule_data"
+    },
+    {
+      "table_name": "sitter_profile",
+      "name": "sitter_profile_address_not_null",
+      "definition": "NOT NULL address"
+    },
+    {
+      "table_name": "sitter_profile",
+      "name": "sitter_profile_categories_not_null",
+      "definition": "NOT NULL categories"
+    },
+    {
+      "table_name": "sitter_profile",
+      "name": "sitter_profile_code_key",
+      "definition": "UNIQUE (code)"
+    },
+    {
+      "table_name": "sitter_profile",
+      "name": "sitter_profile_code_not_null",
+      "definition": "NOT NULL code"
+    },
+    {
+      "table_name": "sitter_profile",
+      "name": "sitter_profile_completed_orders_not_null",
+      "definition": "NOT NULL completed_orders"
+    },
+    {
+      "table_name": "sitter_profile",
+      "name": "sitter_profile_created_at_not_null",
+      "definition": "NOT NULL created_at"
+    },
+    {
+      "table_name": "sitter_profile",
+      "name": "sitter_profile_district_not_null",
+      "definition": "NOT NULL district"
+    },
+    {
+      "table_name": "sitter_profile",
+      "name": "sitter_profile_grade_id_fkey",
+      "definition": "FOREIGN KEY (grade_id) REFERENCES pet_test_6704a01eecfe.sitter_grade(id)"
+    },
+    {
+      "table_name": "sitter_profile",
+      "name": "sitter_profile_grade_id_not_null",
+      "definition": "NOT NULL grade_id"
+    },
+    {
+      "table_name": "sitter_profile",
+      "name": "sitter_profile_id_not_null",
+      "definition": "NOT NULL id"
+    },
+    {
+      "table_name": "sitter_profile",
+      "name": "sitter_profile_latitude_check",
+      "definition": "CHECK (((latitude >= 22.4) AND (latitude <= 22.9)))"
+    },
+    {
+      "table_name": "sitter_profile",
+      "name": "sitter_profile_latitude_not_null",
+      "definition": "NOT NULL latitude"
+    },
+    {
+      "table_name": "sitter_profile",
+      "name": "sitter_profile_longitude_check",
+      "definition": "CHECK (((longitude >= 113.7) AND (longitude <= 114.7)))"
+    },
+    {
+      "table_name": "sitter_profile",
+      "name": "sitter_profile_longitude_not_null",
+      "definition": "NOT NULL longitude"
+    },
+    {
+      "table_name": "sitter_profile",
+      "name": "sitter_profile_major_complaints_not_null",
+      "definition": "NOT NULL major_complaints"
+    },
+    {
+      "table_name": "sitter_profile",
+      "name": "sitter_profile_pkey",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "sitter_profile",
+      "name": "sitter_profile_radius_km_check",
+      "definition": "CHECK (((radius_km >= 0.5) AND (radius_km <= (50)::numeric)))"
+    },
+    {
+      "table_name": "sitter_profile",
+      "name": "sitter_profile_radius_km_not_null",
+      "definition": "NOT NULL radius_km"
+    },
+    {
+      "table_name": "sitter_profile",
+      "name": "sitter_profile_rating_check",
+      "definition": "CHECK (((rating >= (0)::numeric) AND (rating <= (5)::numeric)))"
+    },
+    {
+      "table_name": "sitter_profile",
+      "name": "sitter_profile_rating_not_null",
+      "definition": "NOT NULL rating"
+    },
+    {
+      "table_name": "sitter_profile",
+      "name": "sitter_profile_settlement_method_not_null",
+      "definition": "NOT NULL settlement_method"
+    },
+    {
+      "table_name": "sitter_profile",
+      "name": "sitter_profile_status_check",
+      "definition": "CHECK (((status)::text = ANY ((ARRAY['PENDING'::character varying, 'ACTIVE'::character varying, 'REST'::character varying, 'DISABLED'::character varying, 'REJECTED'::character varying])::text[])))"
+    },
+    {
+      "table_name": "sitter_profile",
+      "name": "sitter_profile_status_not_null",
+      "definition": "NOT NULL status"
+    },
+    {
+      "table_name": "sitter_profile",
+      "name": "sitter_profile_transport_not_null",
+      "definition": "NOT NULL transport"
+    },
+    {
+      "table_name": "sitter_profile",
+      "name": "sitter_profile_updated_at_not_null",
+      "definition": "NOT NULL updated_at"
+    },
+    {
+      "table_name": "sitter_profile",
+      "name": "sitter_profile_user_id_fkey",
+      "definition": "FOREIGN KEY (user_id) REFERENCES pet_test_6704a01eecfe.app_user(id)"
+    },
+    {
+      "table_name": "sitter_profile",
+      "name": "sitter_profile_user_id_key",
+      "definition": "UNIQUE (user_id)"
+    },
+    {
+      "table_name": "sitter_profile",
+      "name": "sitter_profile_user_id_not_null",
+      "definition": "NOT NULL user_id"
+    },
+    {
+      "table_name": "sitter_qualification",
+      "name": "sitter_qualification_category_not_null",
+      "definition": "NOT NULL category"
+    },
+    {
+      "table_name": "sitter_qualification",
+      "name": "sitter_qualification_expires_at_not_null",
+      "definition": "NOT NULL expires_at"
+    },
+    {
+      "table_name": "sitter_qualification",
+      "name": "sitter_qualification_id_not_null",
+      "definition": "NOT NULL id"
+    },
+    {
+      "table_name": "sitter_qualification",
+      "name": "sitter_qualification_materials_not_null",
+      "definition": "NOT NULL materials"
+    },
+    {
+      "table_name": "sitter_qualification",
+      "name": "sitter_qualification_pkey",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "sitter_qualification",
+      "name": "sitter_qualification_practice_passed_not_null",
+      "definition": "NOT NULL practice_passed"
+    },
+    {
+      "table_name": "sitter_qualification",
+      "name": "sitter_qualification_real_verified_not_null",
+      "definition": "NOT NULL real_verified"
+    },
+    {
+      "table_name": "sitter_qualification",
+      "name": "sitter_qualification_reviewer_id_fkey",
+      "definition": "FOREIGN KEY (reviewer_id) REFERENCES pet_test_6704a01eecfe.app_user(id)"
+    },
+    {
+      "table_name": "sitter_qualification",
+      "name": "sitter_qualification_sitter_id_category_key",
+      "definition": "UNIQUE (sitter_id, category)"
+    },
+    {
+      "table_name": "sitter_qualification",
+      "name": "sitter_qualification_sitter_id_fkey",
+      "definition": "FOREIGN KEY (sitter_id) REFERENCES pet_test_6704a01eecfe.sitter_profile(id)"
+    },
+    {
+      "table_name": "sitter_qualification",
+      "name": "sitter_qualification_sitter_id_not_null",
+      "definition": "NOT NULL sitter_id"
+    },
+    {
+      "table_name": "sitter_qualification",
+      "name": "sitter_qualification_status_check",
+      "definition": "CHECK (((status)::text = ANY ((ARRAY['PENDING'::character varying, 'APPROVED'::character varying, 'REJECTED'::character varying])::text[])))"
+    },
+    {
+      "table_name": "sitter_qualification",
+      "name": "sitter_qualification_status_not_null",
+      "definition": "NOT NULL status"
+    },
+    {
+      "table_name": "sitter_qualification",
+      "name": "sitter_qualification_training_passed_not_null",
+      "definition": "NOT NULL training_passed"
+    },
+    {
+      "table_name": "sitter_qualification",
+      "name": "sitter_qualification_updated_at_not_null",
+      "definition": "NOT NULL updated_at"
+    },
+    {
+      "table_name": "sitter_schedule",
+      "name": "sitter_schedule_capacity_check",
+      "definition": "CHECK (((capacity >= 0) AND (capacity <= 20)))"
+    },
+    {
+      "table_name": "sitter_schedule",
+      "name": "sitter_schedule_capacity_not_null",
+      "definition": "NOT NULL capacity"
+    },
+    {
+      "table_name": "sitter_schedule",
+      "name": "sitter_schedule_check",
+      "definition": "CHECK ((start_time < end_time))"
+    },
+    {
+      "table_name": "sitter_schedule",
+      "name": "sitter_schedule_check1",
+      "definition": "CHECK (((longitude IS NULL) = (latitude IS NULL)))"
+    },
+    {
+      "table_name": "sitter_schedule",
+      "name": "sitter_schedule_end_time_not_null",
+      "definition": "NOT NULL end_time"
+    },
+    {
+      "table_name": "sitter_schedule",
+      "name": "sitter_schedule_id_not_null",
+      "definition": "NOT NULL id"
+    },
+    {
+      "table_name": "sitter_schedule",
+      "name": "sitter_schedule_latitude_check",
+      "definition": "CHECK (((latitude IS NULL) OR ((latitude >= 22.4) AND (latitude <= 22.9))))"
+    },
+    {
+      "table_name": "sitter_schedule",
+      "name": "sitter_schedule_longitude_check",
+      "definition": "CHECK (((longitude IS NULL) OR ((longitude >= 113.7) AND (longitude <= 114.7))))"
+    },
+    {
+      "table_name": "sitter_schedule",
+      "name": "sitter_schedule_pkey",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "sitter_schedule",
+      "name": "sitter_schedule_rest_not_null",
+      "definition": "NOT NULL rest"
+    },
+    {
+      "table_name": "sitter_schedule",
+      "name": "sitter_schedule_sitter_id_fkey",
+      "definition": "FOREIGN KEY (sitter_id) REFERENCES pet_test_6704a01eecfe.sitter_profile(id)"
+    },
+    {
+      "table_name": "sitter_schedule",
+      "name": "sitter_schedule_sitter_id_not_null",
+      "definition": "NOT NULL sitter_id"
+    },
+    {
+      "table_name": "sitter_schedule",
+      "name": "sitter_schedule_sitter_id_weekday_key",
+      "definition": "UNIQUE (sitter_id, weekday)"
+    },
+    {
+      "table_name": "sitter_schedule",
+      "name": "sitter_schedule_start_time_not_null",
+      "definition": "NOT NULL start_time"
+    },
+    {
+      "table_name": "sitter_schedule",
+      "name": "sitter_schedule_weekday_check",
+      "definition": "CHECK (((weekday >= 1) AND (weekday <= 7)))"
+    },
+    {
+      "table_name": "sitter_schedule",
+      "name": "sitter_schedule_weekday_not_null",
+      "definition": "NOT NULL weekday"
+    },
+    {
+      "table_name": "support_conversation",
+      "name": "support_conversation_agent_id_fkey",
+      "definition": "FOREIGN KEY (agent_id) REFERENCES pet_test_6704a01eecfe.app_user(id)"
+    },
+    {
+      "table_name": "support_conversation",
+      "name": "support_conversation_created_at_not_null",
+      "definition": "NOT NULL created_at"
+    },
+    {
+      "table_name": "support_conversation",
+      "name": "support_conversation_id_not_null",
+      "definition": "NOT NULL id"
+    },
+    {
+      "table_name": "support_conversation",
+      "name": "support_conversation_order_id_fkey",
+      "definition": "FOREIGN KEY (order_id) REFERENCES pet_test_6704a01eecfe.pet_order(id)"
+    },
+    {
+      "table_name": "support_conversation",
+      "name": "support_conversation_owner_id_fkey",
+      "definition": "FOREIGN KEY (owner_id) REFERENCES pet_test_6704a01eecfe.app_user(id)"
+    },
+    {
+      "table_name": "support_conversation",
+      "name": "support_conversation_owner_id_not_null",
+      "definition": "NOT NULL owner_id"
+    },
+    {
+      "table_name": "support_conversation",
+      "name": "support_conversation_pkey",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "support_conversation",
+      "name": "support_conversation_status_check",
+      "definition": "CHECK (((status)::text = ANY ((ARRAY['WAITING_HUMAN'::character varying, 'HUMAN'::character varying, 'CLOSED'::character varying])::text[])))"
+    },
+    {
+      "table_name": "support_conversation",
+      "name": "support_conversation_status_not_null",
+      "definition": "NOT NULL status"
+    },
+    {
+      "table_name": "user_coupon",
+      "name": "user_coupon_amount_not_null",
+      "definition": "NOT NULL amount"
+    },
+    {
+      "table_name": "user_coupon",
+      "name": "user_coupon_created_at_not_null",
+      "definition": "NOT NULL created_at"
+    },
+    {
+      "table_name": "user_coupon",
+      "name": "user_coupon_expires_at_not_null",
+      "definition": "NOT NULL expires_at"
+    },
+    {
+      "table_name": "user_coupon",
+      "name": "user_coupon_id_not_null",
+      "definition": "NOT NULL id"
+    },
+    {
+      "table_name": "user_coupon",
+      "name": "user_coupon_owner_id_fkey",
+      "definition": "FOREIGN KEY (owner_id) REFERENCES pet_test_6704a01eecfe.app_user(id)"
+    },
+    {
+      "table_name": "user_coupon",
+      "name": "user_coupon_owner_id_not_null",
+      "definition": "NOT NULL owner_id"
+    },
+    {
+      "table_name": "user_coupon",
+      "name": "user_coupon_pkey",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "user_coupon",
+      "name": "user_coupon_service_codes_not_null",
+      "definition": "NOT NULL service_codes"
+    },
+    {
+      "table_name": "user_coupon",
+      "name": "user_coupon_source_check",
+      "definition": "CHECK (((source)::text = ANY ((ARRAY['push'::character varying, 'claim'::character varying])::text[])))"
+    },
+    {
+      "table_name": "user_coupon",
+      "name": "user_coupon_source_not_null",
+      "definition": "NOT NULL source"
+    },
+    {
+      "table_name": "user_coupon",
+      "name": "user_coupon_status_check",
+      "definition": "CHECK (((status)::text = ANY ((ARRAY['AVAILABLE'::character varying, 'LOCKED'::character varying, 'USED'::character varying, 'EXPIRED'::character varying])::text[])))"
+    },
+    {
+      "table_name": "user_coupon",
+      "name": "user_coupon_status_not_null",
+      "definition": "NOT NULL status"
+    },
+    {
+      "table_name": "user_coupon",
+      "name": "user_coupon_template_id_fkey",
+      "definition": "FOREIGN KEY (template_id) REFERENCES pet_test_6704a01eecfe.coupon_template(id)"
+    },
+    {
+      "table_name": "user_coupon",
+      "name": "user_coupon_template_id_not_null",
+      "definition": "NOT NULL template_id"
+    },
+    {
+      "table_name": "user_coupon",
+      "name": "user_coupon_threshold_not_null",
+      "definition": "NOT NULL threshold"
+    }
+  ],
+  "indexes": [
+    {
+      "table_name": "app_user",
+      "name": "app_user_phone_key",
+      "definition": "CREATE UNIQUE INDEX app_user_phone_key ON pet_test_6704a01eecfe.app_user USING btree (phone)"
+    },
+    {
+      "table_name": "app_user",
+      "name": "app_user_pkey",
+      "definition": "CREATE UNIQUE INDEX app_user_pkey ON pet_test_6704a01eecfe.app_user USING btree (id)"
+    },
+    {
+      "table_name": "app_user",
+      "name": "app_user_username_key",
+      "definition": "CREATE UNIQUE INDEX app_user_username_key ON pet_test_6704a01eecfe.app_user USING btree (username)"
+    },
+    {
+      "table_name": "auth_session",
+      "name": "auth_session_pkey",
+      "definition": "CREATE UNIQUE INDEX auth_session_pkey ON pet_test_6704a01eecfe.auth_session USING btree (id)"
+    },
+    {
+      "table_name": "auth_session",
+      "name": "auth_session_token_hash_key",
+      "definition": "CREATE UNIQUE INDEX auth_session_token_hash_key ON pet_test_6704a01eecfe.auth_session USING btree (token_hash)"
+    },
+    {
+      "table_name": "auth_session",
+      "name": "idx_session_expiry",
+      "definition": "CREATE INDEX idx_session_expiry ON pet_test_6704a01eecfe.auth_session USING btree (expires_at)"
+    },
+    {
+      "table_name": "chat_message",
+      "name": "chat_message_pkey",
+      "definition": "CREATE UNIQUE INDEX chat_message_pkey ON pet_test_6704a01eecfe.chat_message USING btree (id)"
+    },
+    {
+      "table_name": "chat_message",
+      "name": "idx_chat_order",
+      "definition": "CREATE INDEX idx_chat_order ON pet_test_6704a01eecfe.chat_message USING btree (order_id, created_at)"
+    },
+    {
+      "table_name": "complaint",
+      "name": "complaint_pkey",
+      "definition": "CREATE UNIQUE INDEX complaint_pkey ON pet_test_6704a01eecfe.complaint USING btree (id)"
+    },
+    {
+      "table_name": "coupon_claim_log",
+      "name": "coupon_claim_log_pkey",
+      "definition": "CREATE UNIQUE INDEX coupon_claim_log_pkey ON pet_test_6704a01eecfe.coupon_claim_log USING btree (id)"
+    },
+    {
+      "table_name": "coupon_claim_log",
+      "name": "idx_claim_risk",
+      "definition": "CREATE INDEX idx_claim_risk ON pet_test_6704a01eecfe.coupon_claim_log USING btree (template_id, success, device_hash, phone_hash, ip_hash)"
+    },
+    {
+      "table_name": "coupon_template",
+      "name": "coupon_template_pkey",
+      "definition": "CREATE UNIQUE INDEX coupon_template_pkey ON pet_test_6704a01eecfe.coupon_template USING btree (id)"
+    },
+    {
+      "table_name": "coupon_template",
+      "name": "coupon_template_redeem_code_key",
+      "definition": "CREATE UNIQUE INDEX coupon_template_redeem_code_key ON pet_test_6704a01eecfe.coupon_template USING btree (redeem_code)"
+    },
+    {
+      "table_name": "dispatch_record",
+      "name": "dispatch_record_pkey",
+      "definition": "CREATE UNIQUE INDEX dispatch_record_pkey ON pet_test_6704a01eecfe.dispatch_record USING btree (id)"
+    },
+    {
+      "table_name": "emergency_ticket",
+      "name": "emergency_ticket_pkey",
+      "definition": "CREATE UNIQUE INDEX emergency_ticket_pkey ON pet_test_6704a01eecfe.emergency_ticket USING btree (id)"
+    },
+    {
+      "table_name": "feeding_report",
+      "name": "feeding_report_order_id_key",
+      "definition": "CREATE UNIQUE INDEX feeding_report_order_id_key ON pet_test_6704a01eecfe.feeding_report USING btree (order_id)"
+    },
+    {
+      "table_name": "feeding_report",
+      "name": "feeding_report_pkey",
+      "definition": "CREATE UNIQUE INDEX feeding_report_pkey ON pet_test_6704a01eecfe.feeding_report USING btree (id)"
+    },
+    {
+      "table_name": "flyway_schema_history",
+      "name": "flyway_schema_history_pk",
+      "definition": "CREATE UNIQUE INDEX flyway_schema_history_pk ON pet_test_6704a01eecfe.flyway_schema_history USING btree (installed_rank)"
+    },
+    {
+      "table_name": "flyway_schema_history",
+      "name": "flyway_schema_history_s_idx",
+      "definition": "CREATE INDEX flyway_schema_history_s_idx ON pet_test_6704a01eecfe.flyway_schema_history USING btree (success)"
+    },
+    {
+      "table_name": "hospital",
+      "name": "hospital_pkey",
+      "definition": "CREATE UNIQUE INDEX hospital_pkey ON pet_test_6704a01eecfe.hospital USING btree (id)"
+    },
+    {
+      "table_name": "membership",
+      "name": "membership_owner_id_key",
+      "definition": "CREATE UNIQUE INDEX membership_owner_id_key ON pet_test_6704a01eecfe.membership USING btree (owner_id)"
+    },
+    {
+      "table_name": "membership",
+      "name": "membership_pkey",
+      "definition": "CREATE UNIQUE INDEX membership_pkey ON pet_test_6704a01eecfe.membership USING btree (id)"
+    },
+    {
+      "table_name": "membership_benefit",
+      "name": "membership_benefit_code_key",
+      "definition": "CREATE UNIQUE INDEX membership_benefit_code_key ON pet_test_6704a01eecfe.membership_benefit USING btree (code)"
+    },
+    {
+      "table_name": "membership_benefit",
+      "name": "membership_benefit_pkey",
+      "definition": "CREATE UNIQUE INDEX membership_benefit_pkey ON pet_test_6704a01eecfe.membership_benefit USING btree (id)"
+    },
+    {
+      "table_name": "membership_plan",
+      "name": "membership_plan_pkey",
+      "definition": "CREATE UNIQUE INDEX membership_plan_pkey ON pet_test_6704a01eecfe.membership_plan USING btree (id)"
+    },
+    {
+      "table_name": "membership_purchase",
+      "name": "membership_purchase_pkey",
+      "definition": "CREATE UNIQUE INDEX membership_purchase_pkey ON pet_test_6704a01eecfe.membership_purchase USING btree (id)"
+    },
+    {
+      "table_name": "notification",
+      "name": "idx_notice_user",
+      "definition": "CREATE INDEX idx_notice_user ON pet_test_6704a01eecfe.notification USING btree (user_id, created_at DESC)"
+    },
+    {
+      "table_name": "notification",
+      "name": "notification_pkey",
+      "definition": "CREATE UNIQUE INDEX notification_pkey ON pet_test_6704a01eecfe.notification USING btree (id)"
+    },
+    {
+      "table_name": "notification_template",
+      "name": "notification_template_code_key",
+      "definition": "CREATE UNIQUE INDEX notification_template_code_key ON pet_test_6704a01eecfe.notification_template USING btree (code)"
+    },
+    {
+      "table_name": "notification_template",
+      "name": "notification_template_pkey",
+      "definition": "CREATE UNIQUE INDEX notification_template_pkey ON pet_test_6704a01eecfe.notification_template USING btree (id)"
+    },
+    {
+      "table_name": "operation_log",
+      "name": "idx_operation_time",
+      "definition": "CREATE INDEX idx_operation_time ON pet_test_6704a01eecfe.operation_log USING btree (created_at DESC)"
+    },
+    {
+      "table_name": "operation_log",
+      "name": "operation_log_pkey",
+      "definition": "CREATE UNIQUE INDEX operation_log_pkey ON pet_test_6704a01eecfe.operation_log USING btree (id)"
+    },
+    {
+      "table_name": "order_event",
+      "name": "idx_event_order",
+      "definition": "CREATE INDEX idx_event_order ON pet_test_6704a01eecfe.order_event USING btree (order_id, created_at)"
+    },
+    {
+      "table_name": "order_event",
+      "name": "order_event_pkey",
+      "definition": "CREATE UNIQUE INDEX order_event_pkey ON pet_test_6704a01eecfe.order_event USING btree (id)"
+    },
+    {
+      "table_name": "order_item",
+      "name": "order_item_order_id_code_key",
+      "definition": "CREATE UNIQUE INDEX order_item_order_id_code_key ON pet_test_6704a01eecfe.order_item USING btree (order_id, code)"
+    },
+    {
+      "table_name": "order_item",
+      "name": "order_item_pkey",
+      "definition": "CREATE UNIQUE INDEX order_item_pkey ON pet_test_6704a01eecfe.order_item USING btree (id)"
+    },
+    {
+      "table_name": "owner_address",
+      "name": "owner_address_pkey",
+      "definition": "CREATE UNIQUE INDEX owner_address_pkey ON pet_test_6704a01eecfe.owner_address USING btree (id)"
+    },
+    {
+      "table_name": "payment_record",
+      "name": "payment_record_order_id_key",
+      "definition": "CREATE UNIQUE INDEX payment_record_order_id_key ON pet_test_6704a01eecfe.payment_record USING btree (order_id)"
+    },
+    {
+      "table_name": "payment_record",
+      "name": "payment_record_pkey",
+      "definition": "CREATE UNIQUE INDEX payment_record_pkey ON pet_test_6704a01eecfe.payment_record USING btree (id)"
+    },
+    {
+      "table_name": "payment_record",
+      "name": "payment_record_purchase_id_key",
+      "definition": "CREATE UNIQUE INDEX payment_record_purchase_id_key ON pet_test_6704a01eecfe.payment_record USING btree (purchase_id)"
+    },
+    {
+      "table_name": "payment_record",
+      "name": "payment_record_trade_no_key",
+      "definition": "CREATE UNIQUE INDEX payment_record_trade_no_key ON pet_test_6704a01eecfe.payment_record USING btree (trade_no)"
+    },
+    {
+      "table_name": "pet",
+      "name": "idx_pet_owner",
+      "definition": "CREATE INDEX idx_pet_owner ON pet_test_6704a01eecfe.pet USING btree (owner_id) WHERE (NOT deleted)"
+    },
+    {
+      "table_name": "pet",
+      "name": "pet_pkey",
+      "definition": "CREATE UNIQUE INDEX pet_pkey ON pet_test_6704a01eecfe.pet USING btree (id)"
+    },
+    {
+      "table_name": "pet_order",
+      "name": "idx_order_owner",
+      "definition": "CREATE INDEX idx_order_owner ON pet_test_6704a01eecfe.pet_order USING btree (owner_id, created_at DESC)"
+    },
+    {
+      "table_name": "pet_order",
+      "name": "idx_order_sitter_time",
+      "definition": "CREATE INDEX idx_order_sitter_time ON pet_test_6704a01eecfe.pet_order USING btree (sitter_id, service_start) WHERE ((status)::text = ANY ((ARRAY['PENDING_ACCEPT'::character varying, 'ACCEPTED'::character varying, 'SERVICING'::character varying])::text[]))"
+    },
+    {
+      "table_name": "pet_order",
+      "name": "idx_order_status",
+      "definition": "CREATE INDEX idx_order_status ON pet_test_6704a01eecfe.pet_order USING btree (status, created_at)"
+    },
+    {
+      "table_name": "pet_order",
+      "name": "pet_order_coupon_id_key",
+      "definition": "CREATE UNIQUE INDEX pet_order_coupon_id_key ON pet_test_6704a01eecfe.pet_order USING btree (coupon_id)"
+    },
+    {
+      "table_name": "pet_order",
+      "name": "pet_order_order_no_key",
+      "definition": "CREATE UNIQUE INDEX pet_order_order_no_key ON pet_test_6704a01eecfe.pet_order USING btree (order_no)"
+    },
+    {
+      "table_name": "pet_order",
+      "name": "pet_order_owner_id_request_key_key",
+      "definition": "CREATE UNIQUE INDEX pet_order_owner_id_request_key_key ON pet_test_6704a01eecfe.pet_order USING btree (owner_id, request_key)"
+    },
+    {
+      "table_name": "pet_order",
+      "name": "pet_order_pkey",
+      "definition": "CREATE UNIQUE INDEX pet_order_pkey ON pet_test_6704a01eecfe.pet_order USING btree (id)"
+    },
+    {
+      "table_name": "refund_record",
+      "name": "refund_record_order_id_key",
+      "definition": "CREATE UNIQUE INDEX refund_record_order_id_key ON pet_test_6704a01eecfe.refund_record USING btree (order_id)"
+    },
+    {
+      "table_name": "refund_record",
+      "name": "refund_record_pkey",
+      "definition": "CREATE UNIQUE INDEX refund_record_pkey ON pet_test_6704a01eecfe.refund_record USING btree (id)"
+    },
+    {
+      "table_name": "review",
+      "name": "review_order_id_key",
+      "definition": "CREATE UNIQUE INDEX review_order_id_key ON pet_test_6704a01eecfe.review USING btree (order_id)"
+    },
+    {
+      "table_name": "review",
+      "name": "review_pkey",
+      "definition": "CREATE UNIQUE INDEX review_pkey ON pet_test_6704a01eecfe.review USING btree (id)"
+    },
+    {
+      "table_name": "role_permission",
+      "name": "role_permission_pkey",
+      "definition": "CREATE UNIQUE INDEX role_permission_pkey ON pet_test_6704a01eecfe.role_permission USING btree (id)"
+    },
+    {
+      "table_name": "role_permission",
+      "name": "role_permission_role_permission_key",
+      "definition": "CREATE UNIQUE INDEX role_permission_role_permission_key ON pet_test_6704a01eecfe.role_permission USING btree (role, permission)"
+    },
+    {
+      "table_name": "service_checklist",
+      "name": "service_checklist_order_id_code_key",
+      "definition": "CREATE UNIQUE INDEX service_checklist_order_id_code_key ON pet_test_6704a01eecfe.service_checklist USING btree (order_id, code)"
+    },
+    {
+      "table_name": "service_checklist",
+      "name": "service_checklist_pkey",
+      "definition": "CREATE UNIQUE INDEX service_checklist_pkey ON pet_test_6704a01eecfe.service_checklist USING btree (id)"
+    },
+    {
+      "table_name": "service_item",
+      "name": "service_item_code_key",
+      "definition": "CREATE UNIQUE INDEX service_item_code_key ON pet_test_6704a01eecfe.service_item USING btree (code)"
+    },
+    {
+      "table_name": "service_item",
+      "name": "service_item_pkey",
+      "definition": "CREATE UNIQUE INDEX service_item_pkey ON pet_test_6704a01eecfe.service_item USING btree (id)"
+    },
+    {
+      "table_name": "service_media",
+      "name": "service_media_pkey",
+      "definition": "CREATE UNIQUE INDEX service_media_pkey ON pet_test_6704a01eecfe.service_media USING btree (id)"
+    },
+    {
+      "table_name": "settlement",
+      "name": "settlement_order_id_key",
+      "definition": "CREATE UNIQUE INDEX settlement_order_id_key ON pet_test_6704a01eecfe.settlement USING btree (order_id)"
+    },
+    {
+      "table_name": "settlement",
+      "name": "settlement_pkey",
+      "definition": "CREATE UNIQUE INDEX settlement_pkey ON pet_test_6704a01eecfe.settlement USING btree (id)"
+    },
+    {
+      "table_name": "sitter_grade",
+      "name": "sitter_grade_code_key",
+      "definition": "CREATE UNIQUE INDEX sitter_grade_code_key ON pet_test_6704a01eecfe.sitter_grade USING btree (code)"
+    },
+    {
+      "table_name": "sitter_grade",
+      "name": "sitter_grade_pkey",
+      "definition": "CREATE UNIQUE INDEX sitter_grade_pkey ON pet_test_6704a01eecfe.sitter_grade USING btree (id)"
+    },
+    {
+      "table_name": "sitter_grade_revision",
+      "name": "idx_grade_revision_due",
+      "definition": "CREATE INDEX idx_grade_revision_due ON pet_test_6704a01eecfe.sitter_grade_revision USING btree (effective_at) WHERE (applied_at IS NULL)"
+    },
+    {
+      "table_name": "sitter_grade_revision",
+      "name": "sitter_grade_revision_pkey",
+      "definition": "CREATE UNIQUE INDEX sitter_grade_revision_pkey ON pet_test_6704a01eecfe.sitter_grade_revision USING btree (id)"
+    },
+    {
+      "table_name": "sitter_profile",
+      "name": "sitter_profile_code_key",
+      "definition": "CREATE UNIQUE INDEX sitter_profile_code_key ON pet_test_6704a01eecfe.sitter_profile USING btree (code)"
+    },
+    {
+      "table_name": "sitter_profile",
+      "name": "sitter_profile_pkey",
+      "definition": "CREATE UNIQUE INDEX sitter_profile_pkey ON pet_test_6704a01eecfe.sitter_profile USING btree (id)"
+    },
+    {
+      "table_name": "sitter_profile",
+      "name": "sitter_profile_user_id_key",
+      "definition": "CREATE UNIQUE INDEX sitter_profile_user_id_key ON pet_test_6704a01eecfe.sitter_profile USING btree (user_id)"
+    },
+    {
+      "table_name": "sitter_qualification",
+      "name": "sitter_qualification_pkey",
+      "definition": "CREATE UNIQUE INDEX sitter_qualification_pkey ON pet_test_6704a01eecfe.sitter_qualification USING btree (id)"
+    },
+    {
+      "table_name": "sitter_qualification",
+      "name": "sitter_qualification_sitter_id_category_key",
+      "definition": "CREATE UNIQUE INDEX sitter_qualification_sitter_id_category_key ON pet_test_6704a01eecfe.sitter_qualification USING btree (sitter_id, category)"
+    },
+    {
+      "table_name": "sitter_schedule",
+      "name": "sitter_schedule_pkey",
+      "definition": "CREATE UNIQUE INDEX sitter_schedule_pkey ON pet_test_6704a01eecfe.sitter_schedule USING btree (id)"
+    },
+    {
+      "table_name": "sitter_schedule",
+      "name": "sitter_schedule_sitter_id_weekday_key",
+      "definition": "CREATE UNIQUE INDEX sitter_schedule_sitter_id_weekday_key ON pet_test_6704a01eecfe.sitter_schedule USING btree (sitter_id, weekday)"
+    },
+    {
+      "table_name": "support_conversation",
+      "name": "support_conversation_pkey",
+      "definition": "CREATE UNIQUE INDEX support_conversation_pkey ON pet_test_6704a01eecfe.support_conversation USING btree (id)"
+    },
+    {
+      "table_name": "user_coupon",
+      "name": "idx_coupon_owner",
+      "definition": "CREATE INDEX idx_coupon_owner ON pet_test_6704a01eecfe.user_coupon USING btree (owner_id, status, expires_at)"
+    },
+    {
+      "table_name": "user_coupon",
+      "name": "user_coupon_pkey",
+      "definition": "CREATE UNIQUE INDEX user_coupon_pkey ON pet_test_6704a01eecfe.user_coupon USING btree (id)"
+    }
+  ]
+}

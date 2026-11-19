@@ -1,0 +1,14 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import {fileURLToPath} from 'node:url';
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+const builder=path.join(root,'build-deck.mjs');
+let s=fs.readFileSync(builder,'utf8');
+s=s.replace('横向网页 PPT，非 PPTX；沿用 guizang-ppt-skill 模板及演讲者运行时。','横向动态网页与原生动画 PowerPoint（.ppt / .pptx）；网页沿用 guizang-ppt-skill 演讲者运行时。');
+s=s.replace('已获用户确认的瑞士风＋安全橙。','瑞士风＋安全橙，全稿统一暖白底。');
+if(!s.includes('for(const p of plan)'))s=s.replace('const outline=',"for(const p of plan){p[2]='统一暖白底＋安全橙';}\nplan[0][5]='浅色留白与橙色大标题建立品牌记忆。';\nplan[11][5]='暖白底延续开场，三个投资判断收束。';\nconst outline=");
+s=s.replace('封面与封底使用模板推荐的强调色 ASCII，04 为 hero dark，06 为 hero dark 路线规划，09 为 dark 正文，10 为 hero light。共 10 种登记版式，无三页连续相同主题。','十二页统一暖白背景，以安全橙强调重点，不使用黑白或整页橙色交替。PowerPoint 使用可编辑文字与流程图，加入淡入、路线分段擦除和淡化转场。');
+s=s.replace('静态校验、逐页视觉与浏览器交互验收结果见 验收/ 目录。','本版网页通过静态结构与演讲者模式校验；PowerPoint 使用本机 Office 重新打开验证动画，并逐页导出图片检查。旧版浏览器截图不作为本版视觉验收记录。详见 验收/dynamic-powerpoint/。');
+s=s.replace('这是一份网页 PPT，非 .pptx 文件。','同时提供独立 PowerPoint 文件：上一级目录的“暖爪-投资人路演-12页-动态版.ppt”及 .pptx 版本。十二页统一暖白底＋安全橙。PowerPoint 按 F5 放映，每页内容自动分组入场，单击或方向键切换页面；路线分段显示，文字和图表可编辑。');
+fs.writeFileSync(builder,s);
+console.log('Updated delivery documentation.');

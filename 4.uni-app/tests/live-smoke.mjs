@@ -1,0 +1,64 @@
+// Real HTTP + PostgreSQL in an isolated schema. No business/public-schema writes.
+import assert from 'node:assert/strict'
+import { spawn } from 'node:child_process'
+import { createServer } from 'node:http'
+import { readFile, writeFile, mkdir, mkdtemp, rm } from 'node:fs/promises'
+import { join, resolve, extname } from 'node:path'
+import { tmpdir } from 'node:os'
+const root=resolve(import.meta.dirname,'..'), backend=resolve(root,'../3.petSpringboot')
+const schema='mobile_e2e_'+Date.now(), apiPort=18081, webPort=4175, debugPort=9457
+const password='MobileTest2026!', origin='http://127.0.0.1:'+webPort, apiOrigin='http://127.0.0.1:'+apiPort
+const out=join(root,'test-results');await mkdir(out,{recursive:true})
+const profile=await mkdtemp(join(tmpdir(),'warm-paw-mobile-'))
+let java,browser,ws,server;const errors=[],requests=[];let backendLog=''
+const delay=ms=>new Promise(r=>setTimeout(r,ms))
+async function api(path,token,method='GET',body){const res=await fetch(apiOrigin+'/api'+path,{method,headers:{...(token?{Authorization:'Bearer '+token}:{}),...(body?{'Content-Type':'application/json'}:{})},body:body?JSON.stringify(body):undefined});const data=await res.json();assert.equal(res.status,200,path+': '+JSON.stringify(data));return data.data}
+try {
+ java=spawn('java',['-jar','target/pet-backend-mobile.jar','--server.port='+apiPort,'--spring.datasource.url=jdbc:postgresql://localhost:5432/pet_demo?currentSchema='+schema,'--spring.flyway.schemas='+schema,'--spring.flyway.default-schema='+schema,'--app.demo-enabled=true','--app.bootstrap-password='+password,'--app.media-root='+join(out,'uploads'),'--logging.file.path='+join(out,'logs')],{cwd:backend,windowsHide:true,stdio:['ignore','pipe','pipe']});java.stdout.on('data',d=>backendLog+=d);java.stderr.on('data',d=>backendLog+=d)
+ let ready=false;for(let i=0;i<120;i++){try{const res=await fetch(apiOrigin+'/api/public/health');if(res.ok){ready=true;break}}catch{}await delay(500)}assert.ok(ready,'Backend startup failed: '+backendLog.slice(-3000))
+ const owner=await api('/auth/login',null,'POST',{username:'owner',password}),sitter=await api('/auth/login',null,'POST',{username:'sitter',password}),admin=await api('/auth/login',null,'POST',{username:'admin',password})
+ const pet=await api('/owner/pets',owner.token,'POST',{name:'年糕',category:'CAT',breed:'英国短毛猫',dietaryNotes:'每次猫粮 35 克，忌乳制品',medicalHistory:'无已知病史',weight:4.5})
+ const address=await api('/owner/addresses',owner.token,'POST',{contactName:'林女士',phone:'13800000001',district:'南山区',address:'科技园 · 暖爪联调测试地址',longitude:113.95,latitude:22.55})
+ const sp=await api('/sitter/profile',sitter.token)
+ await api('/admin/sitters/'+sp.id,admin.token,'PUT',{personal:{name:sp.name,phone:sp.phone,district:sp.district,address:sp.address,longitude:sp.longitude,latitude:sp.latitude,radiusKm:5,transport:'步行'},gradeId:sp.grade_id,status:'ACTIVE',settlementMethod:sp.settlement_method,categories:JSON.parse(sp.categories),schedule:sp.schedule.map(d=>({weekday:d.weekday,rest:false,startTime:'00:00',endTime:'23:59:59',capacity:20}))})
+ server=createServer(async(req,res)=>{try{if(req.url.startsWith('/api/')){const chunks=[];for await(const c of req)chunks.push(c);const body=Buffer.concat(chunks);const headers={...req.headers};delete headers.host;delete headers.origin;const remote=await fetch(apiOrigin+req.url,{method:req.method,headers,body:body.length?body:undefined});requests.push({method:req.method,path:req.url,status:remote.status});res.statusCode=remote.status;res.setHeader('Content-Type',remote.headers.get('content-type')||'application/json');res.end(Buffer.from(await remote.arrayBuffer()));return}const pathname=decodeURIComponent(new URL(req.url,origin).pathname);const file=join(root,'dist/build/h5',pathname==='/'?'index.html':pathname);if(!file.startsWith(join(root,'dist/build/h5')))throw Error('Invalid path');const bytes=await readFile(file);res.setHeader('Content-Type',({'.html':'text/html','.js':'text/javascript','.css':'text/css','.svg':'image/svg+xml','.png':'image/png','.jpg':'image/jpeg'})[extname(file)]||'application/octet-stream');res.end(bytes)}catch{res.statusCode=404;res.end('Not found')}});await new Promise(r=>server.listen(webPort,'127.0.0.1',r))
+ browser=spawn(process.env.BROWSER_PATH||'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe',['--headless=new','--disable-gpu','--no-first-run','--no-default-browser-check','--remote-debugging-port='+debugPort,'--guest','--disable-features=msImplicitSignin,msSingleSignOnOSForPrimaryAccount','--user-data-dir='+profile,'about:blank'],{windowsHide:true,stdio:'ignore'})
+ let tabs;for(let i=0;i<80;i++){try{tabs=await(await fetch('http://127.0.0.1:'+debugPort+'/json/list')).json();if(tabs.length)break}catch{}await delay(250)}assert.ok(tabs?.length,'Browser did not start')
+ ws=new WebSocket(tabs.find(t=>t.type==='page').webSocketDebuggerUrl);await new Promise((r,j)=>{ws.onopen=r;ws.onerror=j});let seq=0;const pending=new Map()
+ ws.onmessage=e=>{const p=JSON.parse(e.data);if(p.id){const task=pending.get(p.id);if(task){pending.delete(p.id);p.error?task.reject(Error(p.error.message)):task.resolve(p.result)}}if(p.method==='Runtime.exceptionThrown')errors.push(p.params.exceptionDetails.exception?.description||p.params.exceptionDetails.text)}
+ const call=(method,params={})=>new Promise((resolve,reject)=>{const id=++seq;pending.set(id,{resolve,reject});ws.send(JSON.stringify({id,method,params}))})
+ const evaluate=async expression=>{const r=await call('Runtime.evaluate',{expression,awaitPromise:true,returnByValue:true});if(r.exceptionDetails)throw Error(r.exceptionDetails.exception?.description||r.exceptionDetails.text);return r.result.value}
+ const until=async expression=>{for(let i=0;i<120;i++){if(await evaluate(expression))return;await delay(100)}throw Error('Timed out '+expression+'\n'+await evaluate('document.body.innerText'))}
+ const click=async label=>{await until(`!![...document.querySelectorAll('uni-button,button,uni-view,uni-text,div,span')].find(e=>e.textContent.trim()===${JSON.stringify(label)}&&e.getClientRects().length)`);await evaluate(`(()=>{const es=[...document.querySelectorAll('uni-button,button,uni-view,uni-text,div,span')].filter(e=>e.textContent.trim()===${JSON.stringify(label)}&&e.getClientRects().length);es[es.length-1].click()})()`);await delay(120)}
+ const fill=async(selector,value)=>{if(selector.includes('请输入账号'))selector='input[type="text"]';if(selector.includes('请输入密码'))selector='input[type="password"]';await until('!!document.querySelector('+JSON.stringify(selector)+')');await evaluate(`(()=>{const e=document.querySelector(${JSON.stringify(selector)});e.value=${JSON.stringify(value)};e.dispatchEvent(new Event('input',{bubbles:true}));e.dispatchEvent(new Event('change',{bubbles:true}))})()`)}
+ const route=async path=>{await call('Page.navigate',{url:origin+'/#/pages/'+path});await delay(300);await until(`!document.querySelector('.loading')`);await delay(200)}
+ const screenshot=async name=>{const r=await call('Page.captureScreenshot',{format:'png',captureBeyondViewport:false});await writeFile(join(out,name+'.png'),Buffer.from(r.data,'base64'))}
+ await call('Runtime.enable');await call('Page.enable');await call('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:true});
+ await route('login/index');await fill('input[placeholder="请输入账号"]','owner');await fill('input[placeholder="请输入密码（至少 8 位）"]',password);await evaluate('document.querySelector(".checkbox").click()');await click('登录');await until('document.body.innerText.includes("放心出门")');await screenshot('owner-home')
+ await route('owner/petdetail?id='+pet);await until('document.querySelector("input")?.value==="年糕"');await screenshot('pet-profile')
+ await route('owner/booking');await click('年糕');await click('南山区 · 科技园 · 暖爪联调测试地址');await click('下一步 · 照护要求 →');await until('document.body.innerText.includes("多一点，贴心照顾")');await click('下一步 · 阅读上门授权 →');await until('document.body.innerText.includes("把信任")');await evaluate('document.querySelector(".checkbox").click()');await click('同意并确认订单');await click('创建订单并查看应付金额');await until('document.body.innerText.includes("实际应付")');await screenshot('checkout');await click('演示支付 ¥35.00');await until('document.body.innerText.includes("订单详情")');
+ const created=(await api('/orders',owner.token)).list[0];assert.equal(created.status,'DISPATCHING');assert.equal(Number(created.payable_amount),35)
+ // A second near-future fixture allows the real checkin time window to be exercised.
+ const catalog=await api('/public/catalog'),start=new Date(Date.now()+5*60000),end=new Date(start.getTime()+30*60000)
+ const order=await api('/orders',owner.token,'POST',{requestKey:'mobile-e2e-service',addressId:address,petIds:[pet],serviceStart:start.toISOString(),serviceEnd:end.toISOString(),items:[{serviceId:catalog.services.find(s=>s.code==='BASE').id,quantity:1}],agreementVersion:'v1',agreementAccepted:true,authorizationScope:'仅限本次上门照护'})
+ await api('/orders/'+order.id+'/demo-pay',owner.token,'POST');await api('/admin/orders/'+order.id+'/assign',admin.token,'POST',{sitterId:sp.id,reason:'已核对距离、档期及猫咪照护资质'})
+ for(const path of ['owner/orders','owner/profile','owner/notice','owner/coupon','owner/claim','owner/member','owner/service','owner/emergency']){await route(path);assert.equal(await evaluate('document.querySelector(".error")?.textContent||""'),'','Page failed: '+path)}
+ await evaluate(`localStorage.setItem('warm-paw-token',JSON.stringify({type:'string',data:${JSON.stringify(sitter.token)}}))`)
+ // Use the actual login screen instead of relying on storage implementation details.
+ await route('login/index');await fill('input[placeholder="请输入账号"]','sitter');await fill('input[placeholder="请输入密码（至少 8 位）"]',password);await evaluate('document.querySelector(".checkbox").click()');await click('登录');await until('document.body.innerText.includes("新派单")');await screenshot('sitter-tasks');await click('确认接单');await until('!document.body.innerText.includes("新派单")');
+ await route('sitter/execute?id='+order.id);await click('开始进门打卡');await click('确定');await until('document.body.innerText.includes("标准照护清单")');await screenshot('sitter-execute')
+ for(let i=0;i<5;i++){await evaluate(`(()=>{const c=[...document.querySelectorAll('.card')].find(c=>c.textContent.includes('确认已完成'));const input=c.querySelector('input[type="number"],input[inputmode="decimal"]');if(input){input.value='10';input.dispatchEvent(new Event('input',{bubbles:true}))}c.querySelector('uni-button,button').click()})()`);await delay(500)}
+ // Upload bytes through the same HTTP multipart endpoint used by uni.uploadFile.
+ const form=new FormData();form.append('file',new Blob([new Uint8Array([0,0,0,16,102,116,121,112,105,115,111,109,0,0,0,0])],{type:'video/mp4'}),'fixture.mp4');const uploaded=await fetch(apiOrigin+'/api/orders/'+order.id+'/upload',{method:'POST',headers:{Authorization:'Bearer '+sitter.token},body:form});assert.equal(uploaded.status,200)
+ await route('sitter/tasks');await route('sitter/execute?id='+order.id);await click('确认离门并完成服务');await click('确定');await until('document.body.innerText.includes("辛苦了")');await screenshot('sitter-done');assert.equal((await api('/orders/'+order.id,sitter.token)).status,'COMPLETED')
+ for(const path of ['sitter/schedule','sitter/income','sitter/profile','sitter/profile-edit','sitter/apply']){await route(path);assert.equal(await evaluate('document.querySelector(".error")?.textContent||""'),'','Page failed: '+path);if(path==='sitter/income')await screenshot('sitter-income')}
+ await route('login/index');await fill('input[placeholder="请输入账号"]','owner');await fill('input[placeholder="请输入密码（至少 8 位）"]',password);await evaluate('document.querySelector(".checkbox").click()');await click('登录');await until('document.body.innerText.includes("放心出门")');
+ await route('owner/report?id='+order.id);await until('document.body.innerText.includes("原始记录")');await screenshot('feeding-report');await route('owner/review?id='+order.id);await fill('textarea','联调验证：服务认真负责，记录完整。');await click('提交评价');await delay(500);assert.equal((await api('/orders/'+order.id,owner.token)).review.score,5)
+ assert.deepEqual(errors,[],'Browser runtime errors');assert.deepEqual(requests.filter(r=>r.status>=400),[],'Failed frontend HTTP requests')
+ await writeFile(join(out,'result.json'),JSON.stringify({passed:true,schema,orderId:order.id,frontendRequests:requests.length,requests,browserErrors:errors},null,2));console.log('PASS: real owner checkout/payment, sitter accept/checkin/checklist/upload/complete, report/review, both role pages; '+requests.length+' frontend HTTP requests; schema='+schema)
+} finally {
+ await writeFile(join(out,'backend.log'),backendLog);ws?.close();browser?.kill();java?.kill();if(server){server.closeAllConnections();await new Promise(r=>server.close(r));}try{await rm(profile,{recursive:true,force:true})}catch{}
+}
+
+
+

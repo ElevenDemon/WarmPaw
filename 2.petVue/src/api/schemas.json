@@ -1,0 +1,1317 @@
+{
+  "Personal": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "type": "string",
+        "description": "名称",
+        "maxLength": 12,
+        "minLength": 0
+      },
+      "phone": {
+        "type": "string",
+        "description": "手机号码",
+        "pattern": "1[3-9]\\d{9}"
+      },
+      "emergencyContact": {
+        "type": "string",
+        "description": "紧急联系人",
+        "maxLength": 80,
+        "minLength": 0
+      },
+      "avatarUrl": {
+        "type": "string",
+        "description": "头像地址",
+        "maxLength": 1000,
+        "minLength": 0
+      },
+      "notes": {
+        "type": "string",
+        "description": "备注",
+        "maxLength": 60,
+        "minLength": 0
+      },
+      "servicePreferences": {
+        "type": "string",
+        "description": "可照护的特殊情况与明确不承接的类型，仅用于推荐，不替代资质审核",
+        "maxLength": 1000,
+        "minLength": 0
+      },
+      "district": {
+        "type": "string",
+        "description": "行政区",
+        "maxLength": 60,
+        "minLength": 0
+      },
+      "address": {
+        "type": "string",
+        "description": "详细地址",
+        "maxLength": 300,
+        "minLength": 0
+      },
+      "longitude": {
+        "type": "number",
+        "description": "经度",
+        "maximum": 114.7,
+        "minimum": 113.7
+      },
+      "latitude": {
+        "type": "number",
+        "description": "纬度",
+        "maximum": 22.9,
+        "minimum": 22.4
+      },
+      "radiusKm": {
+        "type": "number",
+        "description": "服务半径0.5至50km",
+        "maximum": 50,
+        "minimum": 0.5
+      },
+      "transport": {
+        "type": "string",
+        "description": "交通方式",
+        "maxLength": 30,
+        "minLength": 0
+      }
+    },
+    "required": [
+      "address",
+      "district",
+      "latitude",
+      "longitude",
+      "name",
+      "phone",
+      "radiusKm",
+      "transport"
+    ]
+  },
+  "ApiObject": {
+    "type": "object",
+    "properties": {
+      "code": {
+        "type": "integer",
+        "format": "int32"
+      },
+      "message": {
+        "type": "string"
+      },
+      "data": {}
+    }
+  },
+  "Pet": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "type": "string",
+        "description": "名称",
+        "maxLength": 32,
+        "minLength": 0
+      },
+      "category": {
+        "type": "string",
+        "description": "宠物或认证类别",
+        "pattern": "CAT|DOG|SMALL|OTHER"
+      },
+      "breed": {
+        "type": "string",
+        "description": "品种",
+        "maxLength": 60,
+        "minLength": 0
+      },
+      "birthday": {
+        "type": "string",
+        "format": "date",
+        "description": "出生日期"
+      },
+      "weight": {
+        "type": "number",
+        "description": "体重kg",
+        "maximum": 9999.99,
+        "minimum": 0.01
+      },
+      "temperament": {
+        "type": "string",
+        "description": "性格与注意事项",
+        "maxLength": 500,
+        "minLength": 0
+      },
+      "dietaryNotes": {
+        "type": "string",
+        "description": "饮食说明",
+        "maxLength": 5000,
+        "minLength": 0
+      },
+      "medicalHistory": {
+        "type": "string",
+        "description": "病史说明",
+        "maxLength": 5000,
+        "minLength": 0
+      },
+      "photoUrl": {
+        "type": "string",
+        "description": "照片地址",
+        "maxLength": 1000,
+        "minLength": 0
+      }
+    },
+    "required": [
+      "category",
+      "name"
+    ]
+  },
+  "Address": {
+    "type": "object",
+    "properties": {
+      "contactName": {
+        "type": "string",
+        "description": "联系人",
+        "maxLength": 32,
+        "minLength": 0
+      },
+      "phone": {
+        "type": "string",
+        "description": "手机号码",
+        "pattern": "1[3-9]\\d{9}"
+      },
+      "district": {
+        "type": "string",
+        "description": "行政区",
+        "maxLength": 60,
+        "minLength": 0
+      },
+      "address": {
+        "type": "string",
+        "description": "详细地址",
+        "maxLength": 300,
+        "minLength": 0
+      },
+      "longitude": {
+        "type": "number",
+        "description": "经度",
+        "maximum": 114.7,
+        "minimum": 113.7
+      },
+      "latitude": {
+        "type": "number",
+        "description": "纬度",
+        "maximum": 22.9,
+        "minimum": 22.4
+      }
+    },
+    "required": [
+      "address",
+      "contactName",
+      "district",
+      "latitude",
+      "longitude",
+      "phone"
+    ]
+  },
+  "Checklist": {
+    "type": "object",
+    "properties": {
+      "code": {
+        "type": "string",
+        "description": "稳定业务代码",
+        "minLength": 1,
+        "pattern": "FEED|WATER|CLEAN|PLAY|DOOR"
+      },
+      "completed": {
+        "type": "boolean",
+        "description": "是否完成"
+      },
+      "quantity": {
+        "type": "number",
+        "description": "数量",
+        "maximum": 100000,
+        "minimum": 0
+      },
+      "unit": {
+        "type": "string",
+        "description": "计量单位，陪玩必须MINUTE",
+        "maxLength": 20,
+        "minLength": 0
+      },
+      "notes": {
+        "type": "string",
+        "description": "备注",
+        "maxLength": 1000,
+        "minLength": 0
+      }
+    },
+    "required": [
+      "code"
+    ]
+  },
+  "Day": {
+    "type": "object",
+    "properties": {
+      "weekday": {
+        "type": "integer",
+        "format": "int32",
+        "description": "星期1至7，周一为1",
+        "maximum": 7,
+        "minimum": 1
+      },
+      "rest": {
+        "type": "boolean",
+        "description": "是否休息"
+      },
+      "startTime": {
+        "type": "string",
+        "description": "当日接单开始时间"
+      },
+      "endTime": {
+        "type": "string",
+        "description": "当日接单结束时间"
+      },
+      "capacity": {
+        "type": "integer",
+        "format": "int32",
+        "description": "当日容量0至20",
+        "maximum": 20,
+        "minimum": 0
+      },
+      "district": {
+        "type": "string",
+        "description": "行政区",
+        "maxLength": 60,
+        "minLength": 0
+      },
+      "address": {
+        "type": "string",
+        "description": "详细地址",
+        "maxLength": 300,
+        "minLength": 0
+      },
+      "longitude": {
+        "type": "number",
+        "description": "经度",
+        "maximum": 114.7,
+        "minimum": 113.7
+      },
+      "latitude": {
+        "type": "number",
+        "description": "纬度",
+        "maximum": 22.9,
+        "minimum": 22.4
+      }
+    },
+    "required": [
+      "endTime",
+      "startTime"
+    ]
+  },
+  "Profile": {
+    "type": "object",
+    "properties": {
+      "personal": {
+        "$ref": "#/components/schemas/Personal"
+      },
+      "gradeId": {
+        "type": "integer",
+        "format": "int64",
+        "description": "等级ID"
+      },
+      "status": {
+        "type": "string",
+        "description": "业务状态，枚举见本表CHECK约束",
+        "pattern": "PENDING|ACTIVE|REST|DISABLED|REJECTED"
+      },
+      "settlementMethod": {
+        "type": "string",
+        "description": "结算方式",
+        "maxLength": 30,
+        "minLength": 0
+      },
+      "categories": {
+        "type": "array",
+        "description": "擅长宠物类别JSON数组",
+        "items": {
+          "type": "string",
+          "pattern": "CAT|DOG|SMALL|OTHER"
+        },
+        "maxItems": 4,
+        "minItems": 0,
+        "uniqueItems": true
+      },
+      "schedule": {
+        "type": "array",
+        "description": "七天档期，星期1至7必须完整且不重复",
+        "items": {
+          "$ref": "#/components/schemas/Day"
+        },
+        "maxItems": 7,
+        "minItems": 7
+      }
+    },
+    "required": [
+      "categories",
+      "gradeId",
+      "personal",
+      "schedule",
+      "settlementMethod",
+      "status"
+    ]
+  },
+  "Permissions": {
+    "type": "object",
+    "properties": {
+      "permissions": {
+        "type": "array",
+        "description": "受控业务权限集合",
+        "items": {
+          "type": "string",
+          "pattern": "[a-z]+:(read|update|settle|refund|risk|rule)"
+        },
+        "maxItems": 100,
+        "minItems": 0,
+        "uniqueItems": true
+      }
+    },
+    "required": [
+      "permissions"
+    ]
+  },
+  "Price": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "type": "string",
+        "description": "名称",
+        "maxLength": 60,
+        "minLength": 0
+      },
+      "description": {
+        "type": "string",
+        "description": "说明",
+        "maxLength": 500,
+        "minLength": 0
+      },
+      "price": {
+        "type": "number",
+        "description": "单价，人民币元",
+        "maximum": 9999,
+        "minimum": 0
+      },
+      "active": {
+        "type": "boolean",
+        "description": "是否启用"
+      }
+    },
+    "required": [
+      "name",
+      "price"
+    ]
+  },
+  "Plan": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "type": "string",
+        "description": "名称",
+        "maxLength": 60,
+        "minLength": 0
+      },
+      "displayName": {
+        "type": "string",
+        "description": "展示名称",
+        "maxLength": 60,
+        "minLength": 0
+      },
+      "months": {
+        "type": "integer",
+        "format": "int32",
+        "description": "套餐月数",
+        "maximum": 120,
+        "minimum": 1
+      },
+      "price": {
+        "type": "number",
+        "description": "单价，人民币元",
+        "maximum": 9999,
+        "minimum": 0.01
+      },
+      "active": {
+        "type": "boolean",
+        "description": "是否启用"
+      }
+    },
+    "required": [
+      "displayName",
+      "name",
+      "price"
+    ]
+  },
+  "Status": {
+    "type": "object",
+    "properties": {
+      "status": {
+        "type": "string",
+        "description": "业务状态，枚举见本表CHECK约束",
+        "pattern": "ACTIVE|BLOCKED"
+      }
+    },
+    "required": [
+      "status"
+    ]
+  },
+  "Notice": {
+    "type": "object",
+    "properties": {
+      "enabled": {
+        "type": "boolean",
+        "description": "开关"
+      },
+      "channels": {
+        "type": "array",
+        "description": "配置投递渠道JSON，目前仅站内落地",
+        "items": {
+          "type": "string",
+          "pattern": "IN_APP|WECHAT|SMS|GROUP"
+        },
+        "maxItems": 4,
+        "minItems": 0
+      }
+    },
+    "required": [
+      "channels"
+    ]
+  },
+  "MemberStatus": {
+    "type": "object",
+    "properties": {
+      "status": {
+        "type": "string",
+        "description": "业务状态，枚举见本表CHECK约束",
+        "pattern": "ACTIVE|DISABLED"
+      }
+    },
+    "required": [
+      "status"
+    ]
+  },
+  "Grade": {
+    "type": "object",
+    "properties": {
+      "code": {
+        "type": "string",
+        "description": "稳定业务代码",
+        "minLength": 1,
+        "pattern": "L[1-9][0-9]?"
+      },
+      "name": {
+        "type": "string",
+        "description": "名称",
+        "maxLength": 32,
+        "minLength": 0
+      },
+      "minOrders": {
+        "type": "integer",
+        "format": "int32",
+        "description": "等级最低完成单量",
+        "minimum": 0
+      },
+      "minRating": {
+        "type": "number",
+        "description": "等级最低平均评分",
+        "maximum": 5,
+        "minimum": 0
+      },
+      "maxComplaints": {
+        "type": "integer",
+        "format": "int32",
+        "description": "最大重大投诉数",
+        "minimum": 0
+      },
+      "commissionRate": {
+        "type": "number",
+        "description": "平台抽成百分数，18表示18%",
+        "maximum": 50,
+        "minimum": 0
+      },
+      "dispatchWeight": {
+        "type": "number",
+        "description": "预留派单权重，不执行AI计算",
+        "maximum": 100,
+        "minimum": 0
+      },
+      "highRiskEnabled": {
+        "type": "boolean",
+        "description": "能否承接遛狗/用药/驱虫高风险服务"
+      },
+      "active": {
+        "type": "boolean",
+        "description": "是否启用"
+      },
+      "effectiveAt": {
+        "type": "string",
+        "format": "date-time",
+        "description": "规则生效时间"
+      }
+    },
+    "required": [
+      "code",
+      "commissionRate",
+      "dispatchWeight",
+      "minRating",
+      "name"
+    ]
+  },
+  "EmergencyUpdate": {
+    "type": "object",
+    "properties": {
+      "status": {
+        "type": "string",
+        "description": "业务状态，枚举见本表CHECK约束",
+        "pattern": "ACCEPTED|TRANSPORTING|RESOLVED"
+      },
+      "sitterId": {
+        "type": "integer",
+        "format": "int64",
+        "description": "喂养师档案ID"
+      },
+      "hospitalId": {
+        "type": "integer",
+        "format": "int64",
+        "description": "合作医院ID"
+      },
+      "resolution": {
+        "type": "string",
+        "description": "处理结果",
+        "maxLength": 5000,
+        "minLength": 0
+      }
+    },
+    "required": [
+      "status"
+    ]
+  },
+  "Coupon": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "type": "string",
+        "description": "名称",
+        "maxLength": 60,
+        "minLength": 0
+      },
+      "issueType": {
+        "type": "string",
+        "description": "push直发或claim主动领取",
+        "pattern": "push|claim"
+      },
+      "amount": {
+        "type": "number",
+        "description": "金额，人民币元",
+        "maximum": 9999,
+        "minimum": 0.01
+      },
+      "threshold": {
+        "type": "number",
+        "description": "最低消费门槛，元",
+        "maximum": 9999,
+        "minimum": 0
+      },
+      "serviceCodes": {
+        "type": "array",
+        "description": "可用服务代码JSON数组，空表示不限",
+        "items": {
+          "type": "string",
+          "pattern": "[A-Z_]{1,32}"
+        },
+        "maxItems": 30,
+        "minItems": 0
+      },
+      "validDays": {
+        "type": "integer",
+        "format": "int32",
+        "description": "有效天数",
+        "maximum": 3650,
+        "minimum": 1
+      },
+      "active": {
+        "type": "boolean",
+        "description": "是否启用"
+      },
+      "audience": {
+        "type": "string",
+        "description": "适用人群ALL/NEW/NORMAL/MEMBER/SMALL",
+        "pattern": "ALL|NEW|NORMAL|MEMBER|SMALL"
+      },
+      "perUserLimit": {
+        "type": "integer",
+        "format": "int32",
+        "description": "每人主动领取上限",
+        "maximum": 100,
+        "minimum": 1
+      },
+      "stock": {
+        "type": "integer",
+        "format": "int32",
+        "description": "主动领取剩余库存",
+        "minimum": 0
+      },
+      "claimStartsAt": {
+        "type": "string",
+        "format": "date-time",
+        "description": "领取开始时间"
+      },
+      "claimEndsAt": {
+        "type": "string",
+        "format": "date-time",
+        "description": "领取截止时间"
+      },
+      "redeemCode": {
+        "type": "string",
+        "description": "兑换码，唯一",
+        "maxLength": 32,
+        "minLength": 0
+      },
+      "limitDevice": {
+        "type": "boolean",
+        "description": "同设备限制开关"
+      },
+      "limitPhone": {
+        "type": "boolean",
+        "description": "同手机号限制开关"
+      },
+      "limitIp": {
+        "type": "boolean",
+        "description": "同IP限制开关"
+      }
+    },
+    "required": [
+      "amount",
+      "audience",
+      "claimEndsAt",
+      "claimStartsAt",
+      "issueType",
+      "name",
+      "serviceCodes",
+      "threshold"
+    ]
+  },
+  "ComplaintUpdate": {
+    "type": "object",
+    "properties": {
+      "status": {
+        "type": "string",
+        "description": "业务状态，枚举见本表CHECK约束",
+        "pattern": "PROCESSING|RESOLVED"
+      },
+      "resolution": {
+        "type": "string",
+        "description": "处理结果",
+        "maxLength": 5000,
+        "minLength": 0
+      }
+    },
+    "required": [
+      "resolution",
+      "status"
+    ]
+  },
+  "Benefit": {
+    "type": "object",
+    "properties": {
+      "enabled": {
+        "type": "boolean",
+        "description": "开关"
+      },
+      "discountRate": {
+        "type": "number",
+        "description": "优惠乘数，例如0.900为九折",
+        "maximum": 1,
+        "minimum": 0.001
+      }
+    },
+    "required": [
+      "discountRate"
+    ]
+  },
+  "Conversation": {
+    "type": "object",
+    "properties": {
+      "orderId": {
+        "type": "integer",
+        "format": "int64",
+        "description": "服务订单ID"
+      }
+    }
+  },
+  "Qualification": {
+    "type": "object",
+    "properties": {
+      "category": {
+        "type": "string",
+        "description": "宠物或认证类别",
+        "pattern": "CAT|DOG|SMALL|OTHER|WALK|MEDICINE|DEWORM"
+      },
+      "materials": {
+        "type": "array",
+        "description": "证明材料对象键JSON数组",
+        "items": {
+          "type": "string",
+          "maxLength": 1000,
+          "minLength": 0
+        },
+        "maxItems": 20,
+        "minItems": 0
+      }
+    },
+    "required": [
+      "category",
+      "materials"
+    ]
+  },
+  "Application": {
+    "type": "object",
+    "properties": {
+      "personal": {
+        "$ref": "#/components/schemas/Personal"
+      },
+      "categories": {
+        "type": "array",
+        "description": "擅长宠物类别JSON数组",
+        "items": {
+          "type": "string",
+          "pattern": "CAT|DOG|SMALL|OTHER"
+        },
+        "maxItems": 4,
+        "minItems": 0,
+        "uniqueItems": true
+      }
+    },
+    "required": [
+      "categories",
+      "personal"
+    ]
+  },
+  "Create": {
+    "type": "object",
+    "properties": {
+      "requestKey": {
+        "type": "string",
+        "description": "同宠主下单幂等键",
+        "maxLength": 80,
+        "minLength": 0
+      },
+      "addressId": {
+        "type": "integer",
+        "format": "int64",
+        "description": "当前宠主的地址ID"
+      },
+      "petIds": {
+        "type": "array",
+        "description": "本次服务的宠物ID列表",
+        "items": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "maxItems": 20,
+        "minItems": 0
+      },
+      "serviceStart": {
+        "type": "string",
+        "format": "date-time",
+        "description": "预约服务开始"
+      },
+      "serviceEnd": {
+        "type": "string",
+        "format": "date-time",
+        "description": "预约服务结束"
+      },
+      "items": {
+        "type": "array",
+        "description": "服务明细，必须包含一次BASE基础服务",
+        "items": {
+          "$ref": "#/components/schemas/Item"
+        },
+        "maxItems": 20,
+        "minItems": 0
+      },
+      "couponId": {
+        "type": "integer",
+        "format": "int64",
+        "description": "本次锁定或核销的用户券ID"
+      },
+      "agreementVersion": {
+        "type": "string",
+        "description": "已阅读的服务协议版本",
+        "maxLength": 40,
+        "minLength": 0
+      },
+      "agreementAccepted": {
+        "type": "boolean",
+        "description": "必须明确同意服务协议"
+      },
+      "authorizationScope": {
+        "type": "string",
+        "description": "本次服务授权范围",
+        "maxLength": 500,
+        "minLength": 0
+      },
+      "notes": {
+        "type": "string",
+        "description": "备注",
+        "maxLength": 1000,
+        "minLength": 0
+      }
+    },
+    "required": [
+      "addressId",
+      "agreementVersion",
+      "authorizationScope",
+      "items",
+      "petIds",
+      "requestKey",
+      "serviceEnd",
+      "serviceStart"
+    ]
+  },
+  "Item": {
+    "type": "object",
+    "properties": {
+      "serviceId": {
+        "type": "integer",
+        "format": "int64",
+        "description": "价格配置ID"
+      },
+      "quantity": {
+        "type": "integer",
+        "format": "int32",
+        "description": "数量",
+        "maximum": 20,
+        "minimum": 1
+      }
+    },
+    "required": [
+      "serviceId"
+    ]
+  },
+  "Review": {
+    "type": "object",
+    "properties": {
+      "score": {
+        "type": "integer",
+        "format": "int32",
+        "description": "评分1至5",
+        "maximum": 5,
+        "minimum": 1
+      },
+      "tags": {
+        "type": "array",
+        "description": "评价标签JSON数组",
+        "items": {
+          "type": "string",
+          "maxLength": 32,
+          "minLength": 0
+        },
+        "maxItems": 20,
+        "minItems": 0
+      },
+      "content": {
+        "type": "string",
+        "description": "文本内容",
+        "maxLength": 1000,
+        "minLength": 0
+      }
+    },
+    "required": [
+      "content"
+    ]
+  },
+  "Media": {
+    "type": "object",
+    "properties": {
+      "kind": {
+        "type": "string",
+        "description": "媒体类型PHOTO/VIDEO/LIVE",
+        "pattern": "PHOTO|VIDEO|LIVE"
+      },
+      "objectKey": {
+        "type": "string",
+        "description": "相对存储对象键，不是公网播放地址",
+        "maxLength": 500,
+        "minLength": 0
+      }
+    },
+    "required": [
+      "kind",
+      "objectKey"
+    ]
+  },
+  "Reason": {
+    "type": "object",
+    "properties": {
+      "reason": {
+        "type": "string",
+        "description": "业务说明或失败理由",
+        "maxLength": 1000,
+        "minLength": 0
+      }
+    },
+    "required": [
+      "reason"
+    ]
+  },
+  "Message": {
+    "type": "object",
+    "properties": {
+      "conversationId": {
+        "type": "integer",
+        "format": "int64",
+        "description": "客服会话ID"
+      },
+      "orderId": {
+        "type": "integer",
+        "format": "int64",
+        "description": "服务订单ID"
+      },
+      "content": {
+        "type": "string",
+        "description": "文本内容",
+        "maxLength": 2000,
+        "minLength": 0
+      },
+      "mediaKeys": {
+        "type": "array",
+        "description": "媒体对象键JSON数组",
+        "items": {
+          "type": "string",
+          "maxLength": 500,
+          "minLength": 0
+        },
+        "maxItems": 20,
+        "minItems": 0
+      }
+    },
+    "required": [
+      "content"
+    ]
+  },
+  "Purchase": {
+    "type": "object",
+    "properties": {
+      "planId": {
+        "type": "integer",
+        "format": "int64",
+        "description": "会员套餐ID"
+      }
+    },
+    "required": [
+      "planId"
+    ]
+  },
+  "Ticket": {
+    "type": "object",
+    "properties": {
+      "orderId": {
+        "type": "integer",
+        "format": "int64",
+        "description": "服务订单ID"
+      },
+      "content": {
+        "type": "string",
+        "description": "文本内容",
+        "maxLength": 2000,
+        "minLength": 0
+      }
+    },
+    "required": [
+      "content",
+      "orderId"
+    ]
+  },
+  "Claim": {
+    "type": "object",
+    "properties": {
+      "deviceId": {
+        "type": "string",
+        "description": "设备标识，服务端仅保存摘要",
+        "maxLength": 200,
+        "minLength": 0
+      }
+    }
+  },
+  "Redeem": {
+    "type": "object",
+    "properties": {
+      "code": {
+        "type": "string",
+        "description": "稳定业务代码",
+        "maxLength": 32,
+        "minLength": 0
+      },
+      "deviceId": {
+        "type": "string",
+        "description": "设备标识，服务端仅保存摘要",
+        "maxLength": 200,
+        "minLength": 0
+      }
+    },
+    "required": [
+      "code"
+    ]
+  },
+  "Register": {
+    "type": "object",
+    "properties": {
+      "username": {
+        "type": "string",
+        "description": "登录账号",
+        "pattern": "[a-zA-Z0-9_]{4,32}"
+      },
+      "password": {
+        "type": "string",
+        "description": "password",
+        "maxLength": 64,
+        "minLength": 8
+      },
+      "name": {
+        "type": "string",
+        "description": "名称",
+        "maxLength": 32,
+        "minLength": 0
+      },
+      "phone": {
+        "type": "string",
+        "description": "手机号码",
+        "pattern": "1[3-9]\\d{9}"
+      }
+    },
+    "required": [
+      "name",
+      "password",
+      "phone",
+      "username"
+    ]
+  },
+  "Login": {
+    "type": "object",
+    "properties": {
+      "username": {
+        "type": "string",
+        "description": "登录账号",
+        "maxLength": 64,
+        "minLength": 0
+      },
+      "password": {
+        "type": "string",
+        "description": "password",
+        "maxLength": 72,
+        "minLength": 0
+      }
+    },
+    "required": [
+      "password",
+      "username"
+    ]
+  },
+  "Staff": {
+    "type": "object",
+    "properties": {
+      "username": {
+        "type": "string",
+        "description": "登录账号",
+        "minLength": 1,
+        "pattern": "[a-zA-Z0-9_]{4,32}"
+      },
+      "password": {
+        "type": "string",
+        "description": "password",
+        "maxLength": 64,
+        "minLength": 8
+      },
+      "name": {
+        "type": "string",
+        "description": "名称",
+        "maxLength": 32,
+        "minLength": 0
+      },
+      "role": {
+        "type": "string",
+        "description": "账号角色",
+        "pattern": "SUPPORT|FINANCE"
+      }
+    },
+    "required": [
+      "name",
+      "password",
+      "role",
+      "username"
+    ]
+  },
+  "AdmissionAudit": {
+    "type": "object",
+    "properties": {
+      "decision": {
+        "type": "string",
+        "enum": [
+          "APPROVE",
+          "REJECT"
+        ],
+        "description": "审核决定：通过或驳回"
+      },
+      "note": {
+        "type": "string",
+        "description": "审核意见；驳回时必填，说明需补充或修改的内容",
+        "maxLength": 1000,
+        "minLength": 0
+      }
+    },
+    "required": [
+      "decision"
+    ]
+  },
+  "Batch": {
+    "type": "object",
+    "properties": {
+      "ids": {
+        "type": "array",
+        "description": "业务记录ID列表",
+        "items": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "maxItems": 100,
+        "minItems": 0
+      }
+    },
+    "required": [
+      "ids"
+    ]
+  },
+  "Audit": {
+    "type": "object",
+    "properties": {
+      "approved": {
+        "type": "boolean",
+        "description": "approved"
+      },
+      "realVerified": {
+        "type": "boolean",
+        "description": "实名认证是否通过"
+      },
+      "trainingPassed": {
+        "type": "boolean",
+        "description": "培训是否通过"
+      },
+      "practicePassed": {
+        "type": "boolean",
+        "description": "实操考核是否通过"
+      },
+      "expiresAt": {
+        "type": "string",
+        "format": "date-time",
+        "description": "到期时间"
+      },
+      "note": {
+        "type": "string",
+        "description": "note",
+        "maxLength": 1000,
+        "minLength": 0
+      }
+    },
+    "required": [
+      "expiresAt",
+      "note"
+    ]
+  },
+  "Assign": {
+    "type": "object",
+    "properties": {
+      "sitterId": {
+        "type": "integer",
+        "format": "int64",
+        "description": "喂养师档案ID"
+      },
+      "reason": {
+        "type": "string",
+        "description": "业务说明或失败理由",
+        "maxLength": 1000,
+        "minLength": 0
+      }
+    },
+    "required": [
+      "reason",
+      "sitterId"
+    ]
+  },
+  "Hospital": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "type": "string",
+        "description": "名称",
+        "maxLength": 100,
+        "minLength": 0
+      },
+      "phone": {
+        "type": "string",
+        "description": "手机号码",
+        "maxLength": 32,
+        "minLength": 0
+      },
+      "address": {
+        "type": "string",
+        "description": "详细地址",
+        "maxLength": 300,
+        "minLength": 0
+      },
+      "longitude": {
+        "type": "number",
+        "description": "经度",
+        "maximum": 180,
+        "minimum": -180
+      },
+      "latitude": {
+        "type": "number",
+        "description": "纬度",
+        "maximum": 90,
+        "minimum": -90
+      },
+      "emergency24h": {
+        "type": "boolean",
+        "description": "emergency24h"
+      },
+      "active": {
+        "type": "boolean",
+        "description": "是否启用"
+      }
+    },
+    "required": [
+      "address",
+      "latitude",
+      "longitude",
+      "name",
+      "phone"
+    ]
+  },
+  "Push": {
+    "type": "object",
+    "properties": {
+      "ownerIds": {
+        "type": "array",
+        "description": "目标宠主账号ID列表",
+        "items": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "maxItems": 100,
+        "minItems": 0
+      },
+      "quantity": {
+        "type": "integer",
+        "format": "int32",
+        "description": "数量",
+        "maximum": 20,
+        "minimum": 1
+      }
+    },
+    "required": [
+      "ownerIds"
+    ]
+  }
+}

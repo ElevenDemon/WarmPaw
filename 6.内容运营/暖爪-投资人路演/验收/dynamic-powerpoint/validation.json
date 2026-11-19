@@ -1,0 +1,502 @@
+{
+  "ppt": "D:\\CodeDemo\\petDemo\\6.内容运营\\暖爪-投资人路演-12页-动态版.ppt",
+  "pptx": "D:\\CodeDemo\\petDemo\\6.内容运营\\暖爪-投资人路演-12页-动态版.pptx",
+  "slides": 12,
+  "signature": "D0-CF-11-E0-A1-B1-1A-E1",
+  "pages": [
+    {
+      "background": 16317178,
+      "effects": [
+        {
+          "type": 10,
+          "shape": "Text-b4154865601c43f18d422c4789f5a97f",
+          "trigger": 2,
+          "duration": 0.38
+        },
+        {
+          "type": 10,
+          "shape": "Text-6a51fc07aa184cfc81ee47c8623b47a7",
+          "trigger": 3,
+          "duration": 0.38
+        },
+        {
+          "type": 10,
+          "shape": "Text-515e9ec20243470dbcca9283f8e63d75",
+          "trigger": 3,
+          "duration": 0.38
+        },
+        {
+          "type": 10,
+          "shape": "Group 11",
+          "trigger": 3,
+          "duration": 0.38
+        }
+      ],
+      "slide": 1,
+      "transition": 3849,
+      "shapes": 8,
+      "animations": 4
+    },
+    {
+      "background": 16317178,
+      "effects": [
+        {
+          "type": 10,
+          "shape": "Text-3f9e5a25b09f4004a4b4f4799316028f",
+          "trigger": 2,
+          "duration": 0.38
+        },
+        {
+          "type": 10,
+          "shape": "Group 13",
+          "trigger": 3,
+          "duration": 0.38
+        },
+        {
+          "type": 10,
+          "shape": "Group 18",
+          "trigger": 3,
+          "duration": 0.38
+        }
+      ],
+      "slide": 2,
+      "transition": 3849,
+      "shapes": 9,
+      "animations": 3
+    },
+    {
+      "background": 16317178,
+      "effects": [
+        {
+          "type": 10,
+          "shape": "Text-029733ee267c4d908c80eb711f3df6f6",
+          "trigger": 2,
+          "duration": 0.38
+        },
+        {
+          "type": 10,
+          "shape": "Group 12",
+          "trigger": 3,
+          "duration": 0.38
+        },
+        {
+          "type": 10,
+          "shape": "Group 17",
+          "trigger": 3,
+          "duration": 0.38
+        },
+        {
+          "type": 10,
+          "shape": "Group 22",
+          "trigger": 3,
+          "duration": 0.38
+        },
+        {
+          "type": 10,
+          "shape": "Group 27",
+          "trigger": 3,
+          "duration": 0.38
+        },
+        {
+          "type": 10,
+          "shape": "Group 34",
+          "trigger": 3,
+          "duration": 0.38
+        }
+      ],
+      "slide": 3,
+      "transition": 3849,
+      "shapes": 11,
+      "animations": 6
+    },
+    {
+      "background": 16317178,
+      "effects": [
+        {
+          "type": 10,
+          "shape": "Text-8a9bc787c4fe477c8916b10e7ffcbcfa",
+          "trigger": 2,
+          "duration": 0.38
+        },
+        {
+          "type": 10,
+          "shape": "Group 13",
+          "trigger": 3,
+          "duration": 0.38
+        },
+        {
+          "type": 10,
+          "shape": "Group 19",
+          "trigger": 3,
+          "duration": 0.38
+        },
+        {
+          "type": 10,
+          "shape": "Group 25",
+          "trigger": 3,
+          "duration": 0.38
+        }
+      ],
+      "slide": 4,
+      "transition": 3849,
+      "shapes": 9,
+      "animations": 4
+    },
+    {
+      "background": 16317178,
+      "effects": [
+        {
+          "type": 10,
+          "shape": "Text-bfc77cbf90a848b9a93e6d0f10546852",
+          "trigger": 2,
+          "duration": 0.38
+        },
+        {
+          "type": 10,
+          "shape": "Group 11",
+          "trigger": 3,
+          "duration": 0.38
+        },
+        {
+          "type": 10,
+          "shape": "Group 16",
+          "trigger": 3,
+          "duration": 0.38
+        },
+        {
+          "type": 10,
+          "shape": "Group 21",
+          "trigger": 3,
+          "duration": 0.38
+        },
+        {
+          "type": 10,
+          "shape": "Group 26",
+          "trigger": 3,
+          "duration": 0.38
+        }
+      ],
+      "slide": 5,
+      "transition": 3849,
+      "shapes": 10,
+      "animations": 5
+    },
+    {
+      "background": 16317178,
+      "effects": [
+        {
+          "type": 10,
+          "shape": "Text-eef8265998624db4ad85ffe20d55fa44",
+          "trigger": 2,
+          "duration": 0.38
+        },
+        {
+          "type": 10,
+          "shape": "Group 12",
+          "trigger": 3,
+          "duration": 0.38
+        },
+        {
+          "type": 10,
+          "shape": "Group 17",
+          "trigger": 3,
+          "duration": 0.38
+        },
+        {
+          "type": 10,
+          "shape": "Group 22",
+          "trigger": 3,
+          "duration": 0.38
+        },
+        {
+          "type": 22,
+          "shape": "Group 40",
+          "trigger": 3,
+          "duration": 0.38
+        },
+        {
+          "type": 22,
+          "shape": "Group 43",
+          "trigger": 3,
+          "duration": 0.38
+        },
+        {
+          "type": 22,
+          "shape": "Group 47",
+          "trigger": 3,
+          "duration": 0.38
+        }
+      ],
+      "slide": 6,
+      "transition": 3849,
+      "shapes": 26,
+      "animations": 7
+    },
+    {
+      "background": 16317178,
+      "effects": [
+        {
+          "type": 10,
+          "shape": "Text-805af2466c744bffa9faa962beff18c8",
+          "trigger": 2,
+          "duration": 0.38
+        },
+        {
+          "type": 10,
+          "shape": "Group 12",
+          "trigger": 3,
+          "duration": 0.38
+        },
+        {
+          "type": 10,
+          "shape": "Group 17",
+          "trigger": 3,
+          "duration": 0.38
+        },
+        {
+          "type": 10,
+          "shape": "Group 22",
+          "trigger": 3,
+          "duration": 0.38
+        },
+        {
+          "type": 10,
+          "shape": "Group 27",
+          "trigger": 3,
+          "duration": 0.38
+        }
+      ],
+      "slide": 7,
+      "transition": 3849,
+      "shapes": 10,
+      "animations": 5
+    },
+    {
+      "background": 16317178,
+      "effects": [
+        {
+          "type": 10,
+          "shape": "Text-675da62be0324cebb0e300d86980d1df",
+          "trigger": 2,
+          "duration": 0.38
+        },
+        {
+          "type": 10,
+          "shape": "Group 12",
+          "trigger": 3,
+          "duration": 0.38
+        },
+        {
+          "type": 10,
+          "shape": "Group 17",
+          "trigger": 3,
+          "duration": 0.38
+        },
+        {
+          "type": 10,
+          "shape": "Group 22",
+          "trigger": 3,
+          "duration": 0.38
+        },
+        {
+          "type": 10,
+          "shape": "Group 27",
+          "trigger": 3,
+          "duration": 0.38
+        },
+        {
+          "type": 10,
+          "shape": "Group 32",
+          "trigger": 3,
+          "duration": 0.38
+        },
+        {
+          "type": 10,
+          "shape": "Group 37",
+          "trigger": 3,
+          "duration": 0.38
+        }
+      ],
+      "slide": 8,
+      "transition": 3849,
+      "shapes": 12,
+      "animations": 7
+    },
+    {
+      "background": 16317178,
+      "effects": [
+        {
+          "type": 10,
+          "shape": "Text-4b2946f64720475eab13dda4c6829e1e",
+          "trigger": 2,
+          "duration": 0.38
+        },
+        {
+          "type": 10,
+          "shape": "Group 10",
+          "trigger": 3,
+          "duration": 0.38
+        },
+        {
+          "type": 10,
+          "shape": "Group 15",
+          "trigger": 3,
+          "duration": 0.38
+        },
+        {
+          "type": 10,
+          "shape": "Group 20",
+          "trigger": 3,
+          "duration": 0.38
+        },
+        {
+          "type": 10,
+          "shape": "Group 25",
+          "trigger": 3,
+          "duration": 0.38
+        }
+      ],
+      "slide": 9,
+      "transition": 3849,
+      "shapes": 10,
+      "animations": 5
+    },
+    {
+      "background": 16317178,
+      "effects": [
+        {
+          "type": 10,
+          "shape": "Text-9c2b25a695ed4e9b8fe674ec6df12c1e",
+          "trigger": 2,
+          "duration": 0.38
+        },
+        {
+          "type": 10,
+          "shape": "Group 13",
+          "trigger": 3,
+          "duration": 0.38
+        },
+        {
+          "type": 10,
+          "shape": "Group 18",
+          "trigger": 3,
+          "duration": 0.38
+        },
+        {
+          "type": 10,
+          "shape": "Group 23",
+          "trigger": 3,
+          "duration": 0.38
+        },
+        {
+          "type": 10,
+          "shape": "Group 28",
+          "trigger": 3,
+          "duration": 0.38
+        },
+        {
+          "type": 10,
+          "shape": "Group 33",
+          "trigger": 3,
+          "duration": 0.38
+        },
+        {
+          "type": 10,
+          "shape": "Group 37",
+          "trigger": 3,
+          "duration": 0.38
+        },
+        {
+          "type": 10,
+          "shape": "Group 41",
+          "trigger": 3,
+          "duration": 0.38
+        },
+        {
+          "type": 10,
+          "shape": "Group 45",
+          "trigger": 3,
+          "duration": 0.38
+        }
+      ],
+      "slide": 10,
+      "transition": 3849,
+      "shapes": 15,
+      "animations": 9
+    },
+    {
+      "background": 16317178,
+      "effects": [
+        {
+          "type": 10,
+          "shape": "Text-b2ee026c855a47f485726e547688329f",
+          "trigger": 2,
+          "duration": 0.38
+        },
+        {
+          "type": 10,
+          "shape": "Group 13",
+          "trigger": 3,
+          "duration": 0.38
+        },
+        {
+          "type": 10,
+          "shape": "Group 18",
+          "trigger": 3,
+          "duration": 0.38
+        },
+        {
+          "type": 10,
+          "shape": "Group 23",
+          "trigger": 3,
+          "duration": 0.38
+        }
+      ],
+      "slide": 11,
+      "transition": 3849,
+      "shapes": 10,
+      "animations": 4
+    },
+    {
+      "background": 16317178,
+      "effects": [
+        {
+          "type": 10,
+          "shape": "Text-66c4ff9f5f23481fa4235a389fab23f5",
+          "trigger": 2,
+          "duration": 0.38
+        },
+        {
+          "type": 10,
+          "shape": "Group 9",
+          "trigger": 3,
+          "duration": 0.38
+        },
+        {
+          "type": 10,
+          "shape": "Group 14",
+          "trigger": 3,
+          "duration": 0.38
+        },
+        {
+          "type": 10,
+          "shape": "Group 19",
+          "trigger": 3,
+          "duration": 0.38
+        },
+        {
+          "type": 10,
+          "shape": "Group 24",
+          "trigger": 3,
+          "duration": 0.38
+        }
+      ],
+      "slide": 12,
+      "transition": 3849,
+      "shapes": 9,
+      "animations": 5
+    }
+  ],
+  "overflow": [],
+  "verifiedIn": "Microsoft PowerPoint 16.0"
+}

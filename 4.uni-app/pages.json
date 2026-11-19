@@ -1,0 +1,13 @@
+{
+ "pages":[
+  {"path":"pages/index/index"},{"path":"pages/login/index"},{"path":"pages/detail/detail"},
+  {"path":"pages/owner/profile-edit"},{"path":"pages/owner/booking"},{"path":"pages/owner/booking-extra"},{"path":"pages/owner/agreement"},{"path":"pages/owner/pay"},
+  {"path":"pages/owner/servicing"},{"path":"pages/owner/report"},{"path":"pages/owner/review"},{"path":"pages/owner/orders"},
+  {"path":"pages/owner/service"},{"path":"pages/owner/emergency"},{"path":"pages/owner/profile"},{"path":"pages/owner/petdetail"},
+  {"path":"pages/owner/petadd"},{"path":"pages/owner/notice"},{"path":"pages/owner/coupon"},{"path":"pages/owner/claim"},{"path":"pages/owner/member"},{"path":"pages/owner/addresses"},
+  {"path":"pages/sitter/tasks"},{"path":"pages/sitter/execute"},{"path":"pages/sitter/done"},{"path":"pages/sitter/schedule"},
+  {"path":"pages/sitter/income"},{"path":"pages/sitter/profile"},{"path":"pages/sitter/profile-edit"},{"path":"pages/sitter/apply"}
+ ],
+ "globalStyle":{"navigationStyle":"custom","navigationBarTextStyle":"black","navigationBarTitleText":"暖爪","backgroundColor":"#F6F3ED","enablePullDownRefresh":true},
+ "easycom":{"autoscan":true}
+}

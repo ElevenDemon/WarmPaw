@@ -1,0 +1,32 @@
+{
+  "name": "warm-paw-client",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev:h5": "node scripts/run.mjs -p h5",
+    "build:h5": "node scripts/run.mjs build -p h5",
+    "dev:mp-weixin": "node scripts/run.mjs -p mp-weixin",
+    "build:mp-weixin": "node scripts/run.mjs build -p mp-weixin",
+    "build:app": "node scripts/run.mjs build -p app",
+    "typecheck": "vue-tsc --noEmit"
+  },
+  "dependencies": {
+    "@dcloudio/uni-app": "3.0.0-alpha-5030620261112001",
+    "@dcloudio/uni-app-plus": "3.0.0-alpha-5030620261112001",
+    "@dcloudio/uni-components": "3.0.0-alpha-5030620261112001",
+    "@dcloudio/uni-h5": "3.0.0-alpha-5030620261112001",
+    "@dcloudio/uni-mp-weixin": "3.0.0-alpha-5030620261112001",
+    "pinia": "2.1.7",
+    "vue": "3.4.21"
+  },
+  "devDependencies": {
+    "@dcloudio/types": "3.4.31",
+    "@dcloudio/vite-plugin-uni": "3.0.0-alpha-5030620261112001",
+    "@types/node": "^22.20.5",
+    "@vue/runtime-core": "3.4.21",
+    "sass": "1.77.8",
+    "typescript": "5.6.3",
+    "vite": "5.2.8",
+    "vue-tsc": "2.2.0"
+  }
+}

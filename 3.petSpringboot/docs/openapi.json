@@ -1,0 +1,4385 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "暖爪宠物上门喂养平台 API",
+    "description": "Spring Boot + MyBatis-Plus + PostgreSQL。先调用登录接口，再在Authorize中填入token。AI功能预留，返回501。演示支付需显式启用。",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:18082",
+      "description": "Generated server url"
+    }
+  ],
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "会员与公开配置",
+      "description": "会员与公开配置相关接口"
+    },
+    {
+      "name": "运营查询",
+      "description": "运营查询相关接口"
+    },
+    {
+      "name": "喂养师与资质",
+      "description": "喂养师与资质相关接口"
+    },
+    {
+      "name": "订单与服务",
+      "description": "订单与服务相关接口"
+    },
+    {
+      "name": "账号认证",
+      "description": "账号认证相关接口"
+    },
+    {
+      "name": "后台业务配置",
+      "description": "后台业务配置相关接口"
+    },
+    {
+      "name": "优惠券",
+      "description": "优惠券相关接口"
+    },
+    {
+      "name": "宠主档案",
+      "description": "宠主档案相关接口"
+    },
+    {
+      "name": "客服通知及应急",
+      "description": "客服通知及应急相关接口"
+    }
+  ],
+  "paths": {
+    "/api/sitter/profile": {
+      "get": {
+        "tags": [
+          "喂养师与资质"
+        ],
+        "summary": "查询当前登录人自己的业务数据",
+        "operationId": "mine",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "喂养师与资质"
+        ],
+        "summary": "保存喂养师可自主编辑的信息，后台专有字段不允许自改",
+        "operationId": "personal",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Personal"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/owner/pets/{id}": {
+      "put": {
+        "tags": [
+          "宠主档案"
+        ],
+        "summary": "更新当前宠主自己的宠物档案",
+        "operationId": "updatePet",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Pet"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "宠主档案"
+        ],
+        "summary": "软删除当前宠主的宠物档案",
+        "operationId": "deletePet",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/owner/addresses/{id}": {
+      "put": {
+        "tags": [
+          "宠主档案"
+        ],
+        "summary": "更新当前宠主自己的地址",
+        "operationId": "updateAddress",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Address"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/orders/{id}/checklist": {
+      "put": {
+        "tags": [
+          "订单与服务"
+        ],
+        "summary": "保存标准服务清单；陪玩至少10分钟且单位为MINUTE",
+        "operationId": "checklist",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Checklist"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/sitters/{id}": {
+      "get": {
+        "tags": [
+          "喂养师与资质"
+        ],
+        "summary": "查询业务详情，并校验访问权限",
+        "operationId": "detail",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "喂养师与资质"
+        ],
+        "summary": "事务保存业务配置或档案，并记录变更审计",
+        "operationId": "save",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Profile"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/roles/{role}/permissions": {
+      "put": {
+        "tags": [
+          "后台业务配置"
+        ],
+        "summary": "更新受控角色权限集合",
+        "operationId": "permissions",
+        "parameters": [
+          {
+            "name": "role",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Permissions"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/prices/{id}": {
+      "put": {
+        "tags": [
+          "后台业务配置"
+        ],
+        "summary": "更新服务价格和启用状态，不修改历史订单快照",
+        "operationId": "price",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Price"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/plans/{id}": {
+      "put": {
+        "tags": [
+          "后台业务配置"
+        ],
+        "summary": "保存会员套餐；历史购买价格不受新配置影响",
+        "operationId": "plan",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Plan"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/owners/{id}/status": {
+      "put": {
+        "tags": [
+          "后台业务配置"
+        ],
+        "summary": "启用或封禁宠主账号",
+        "operationId": "ownerStatus",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Status"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/notification-templates/{id}": {
+      "put": {
+        "tags": [
+          "后台业务配置"
+        ],
+        "summary": "保存消息模板，安全类进出提醒不可关闭",
+        "operationId": "notice",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Notice"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/memberships/{id}/status": {
+      "put": {
+        "tags": [
+          "后台业务配置"
+        ],
+        "summary": "更新会员账户启停状态",
+        "operationId": "memberStatus",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MemberStatus"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/grades/{id}": {
+      "put": {
+        "tags": [
+          "后台业务配置"
+        ],
+        "summary": "保存等级规则；未来生效规则独立留存，避免提前修改现行抽成",
+        "operationId": "grade",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Grade"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/emergencies/{id}": {
+      "put": {
+        "tags": [
+          "客服通知及应急"
+        ],
+        "summary": "推进应急工单；送医前必须有宠主同意和目标医院",
+        "operationId": "updateEmergency",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EmergencyUpdate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/coupons/{id}": {
+      "put": {
+        "tags": [
+          "后台业务配置"
+        ],
+        "summary": "保存优惠券模板，参数来自受控DTO",
+        "operationId": "coupon",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Coupon"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/complaints/{id}": {
+      "put": {
+        "tags": [
+          "客服通知及应急"
+        ],
+        "summary": "处理或关闭投诉并保存解决说明",
+        "operationId": "resolve",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComplaintUpdate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/benefits/{id}": {
+      "put": {
+        "tags": [
+          "后台业务配置"
+        ],
+        "summary": "保存会员权益开关及折扣乘数",
+        "operationId": "benefit",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Benefit"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/support/conversations": {
+      "get": {
+        "tags": [
+          "客服通知及应急"
+        ],
+        "summary": "分页查询可访问的客服会话",
+        "operationId": "conversations",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 10
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "客服通知及应急"
+        ],
+        "summary": "查询或创建客服会话并校验归属",
+        "operationId": "conversation",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Conversation"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/sitter/qualifications": {
+      "post": {
+        "tags": [
+          "喂养师与资质"
+        ],
+        "summary": "提交分类资质材料并进入待审核状态",
+        "operationId": "qualification",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Qualification"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/sitter/application": {
+      "post": {
+        "tags": [
+          "喂养师与资质"
+        ],
+        "summary": "提交入驻申请或执行到期等级规则",
+        "operationId": "apply",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Application"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/owner/pets": {
+      "get": {
+        "tags": [
+          "宠主档案"
+        ],
+        "summary": "查询当前宠主未删除的宠物",
+        "operationId": "pets",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "宠主档案"
+        ],
+        "summary": "新增当前宠主的宠物档案",
+        "operationId": "addPet",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Pet"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/owner/addresses": {
+      "get": {
+        "tags": [
+          "宠主档案"
+        ],
+        "summary": "查询当前宠主的地址簿",
+        "operationId": "addresses",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "宠主档案"
+        ],
+        "summary": "新增当前宠主的服务地址",
+        "operationId": "addAddress",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Address"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/orders": {
+      "get": {
+        "tags": [
+          "订单与服务"
+        ],
+        "summary": "分页查询业务列表，表名与过滤列由服务端白名单提供",
+        "operationId": "list",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 10
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "订单与服务"
+        ],
+        "summary": "创建订单；按服务端价格计算，冻结协议和价格快照，requestKey保证幂等",
+        "operationId": "create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Create"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/orders/{id}/review": {
+      "post": {
+        "tags": [
+          "订单与服务"
+        ],
+        "summary": "订单完成后评价，单订单只允许一次并更新综合评分",
+        "operationId": "review",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Review"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/orders/{id}/reject": {
+      "post": {
+        "tags": [
+          "订单与服务"
+        ],
+        "summary": "喂养师拒单，退回人工待派单",
+        "operationId": "reject",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/orders/{id}/media": {
+      "get": {
+        "tags": [
+          "订单与服务"
+        ],
+        "summary": "查询未删除且未过期的订单媒体元数据",
+        "operationId": "mediaList",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "订单与服务"
+        ],
+        "summary": "登记服务媒体元数据，不处理文件上传或生成播放地址",
+        "operationId": "media",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Media"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/orders/{id}/demo-pay": {
+      "post": {
+        "tags": [
+          "订单与服务"
+        ],
+        "summary": "本地演示支付入口；必须开启DEMO_ENABLED",
+        "operationId": "pay",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/orders/{id}/complete": {
+      "post": {
+        "tags": [
+          "订单与服务"
+        ],
+        "summary": "完成服务；校验清单和录像，原子创建待处理报告、结算及离门通知",
+        "operationId": "complete",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/orders/{id}/checkin": {
+      "post": {
+        "tags": [
+          "订单与服务"
+        ],
+        "summary": "喂养师进门打卡；创建标准清单并通知宠主",
+        "operationId": "checkin",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/orders/{id}/cancel": {
+      "post": {
+        "tags": [
+          "订单与服务"
+        ],
+        "summary": "取消待付款订单并释放锁定优惠券",
+        "operationId": "cancel",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Reason"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/orders/{id}/accept": {
+      "post": {
+        "tags": [
+          "订单与服务"
+        ],
+        "summary": "喂养师确认接单；必须在接单期限内操作",
+        "operationId": "accept",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/notifications/{id}/read": {
+      "post": {
+        "tags": [
+          "客服通知及应急"
+        ],
+        "summary": "标记自己的通知已读",
+        "operationId": "read",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/notifications/read-all": {
+      "post": {
+        "tags": [
+          "客服通知及应急"
+        ],
+        "summary": "标记当前账号全部通知已读",
+        "operationId": "readAll",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/messages": {
+      "get": {
+        "tags": [
+          "客服通知及应急"
+        ],
+        "summary": "分页查询客服或订单消息，必须且只能指定一种会话",
+        "operationId": "messages",
+        "parameters": [
+          {
+            "name": "conversationId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "orderId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 20
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "客服通知及应急"
+        ],
+        "summary": "发送客服或订单消息；人工回复前必须接管会话",
+        "operationId": "send",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Message"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/membership/purchases": {
+      "post": {
+        "tags": [
+          "会员与公开配置"
+        ],
+        "summary": "按当前套餐创建待付款会员购买单，冻结价格、期限及赠券",
+        "operationId": "purchase",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Purchase"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/membership/purchases/{id}/demo-pay": {
+      "post": {
+        "tags": [
+          "会员与公开配置"
+        ],
+        "summary": "本地演示支付入口；必须开启DEMO_ENABLED",
+        "operationId": "pay_1",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/emergencies": {
+      "post": {
+        "tags": [
+          "客服通知及应急"
+        ],
+        "summary": "创建应急工单并向宠主和运营人员发送站内提醒",
+        "operationId": "emergency",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Ticket"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/emergencies/{id}/consent": {
+      "post": {
+        "tags": [
+          "客服通知及应急"
+        ],
+        "summary": "记录宠主明确同意紧急送医",
+        "operationId": "consent",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/coupons/{id}/claim": {
+      "post": {
+        "tags": [
+          "优惠券"
+        ],
+        "summary": "按七步规则领取优惠券；失败原因同样持久化",
+        "operationId": "claim",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Claim"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/coupons/redeem": {
+      "post": {
+        "tags": [
+          "优惠券"
+        ],
+        "summary": "根据兑换码领取优惠券，仍执行完整领取规则",
+        "operationId": "redeem",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Redeem"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/complaints": {
+      "post": {
+        "tags": [
+          "客服通知及应急"
+        ],
+        "summary": "创建关联订单的投诉工单",
+        "operationId": "complaint",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Ticket"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/register": {
+      "post": {
+        "tags": [
+          "账号认证"
+        ],
+        "summary": "注册宠主账号，使用BaseMapper持久化并校验账号和手机重复",
+        "operationId": "register",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Register"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/api/auth/logout": {
+      "post": {
+        "tags": [
+          "账号认证"
+        ],
+        "summary": "删除当前登录会话，令牌立即失效",
+        "operationId": "logout",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/login": {
+      "post": {
+        "tags": [
+          "账号认证"
+        ],
+        "summary": "校验账号密码并生成有时效的随机Bearer会话",
+        "operationId": "login",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Login"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/api/admin/staff": {
+      "post": {
+        "tags": [
+          "后台业务配置"
+        ],
+        "summary": "新增客服或财务账号，初始密码以BCrypt摘要保存",
+        "operationId": "staff",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Staff"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/sitters/{id}/audit": {
+      "post": {
+        "tags": [
+          "喂养师与资质"
+        ],
+        "summary": "通过或驳回喂养师入驻申请，驳回意见可用于再次申请",
+        "operationId": "admission",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdmissionAudit"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/settlements/batch-settle": {
+      "post": {
+        "tags": [
+          "后台业务配置"
+        ],
+        "summary": "批量结算，锁定订单后锁定结算，防止与退款并发冲突",
+        "operationId": "settle",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Batch"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/qualifications/{id}/audit": {
+      "post": {
+        "tags": [
+          "喂养师与资质"
+        ],
+        "summary": "审核分类资质及有效期",
+        "operationId": "audit",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Audit"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/plans": {
+      "post": {
+        "tags": [
+          "后台业务配置"
+        ],
+        "summary": "新增自定义会员套餐",
+        "operationId": "addPlan",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Plan"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/orders/{id}/demo-refund": {
+      "post": {
+        "tags": [
+          "订单与服务"
+        ],
+        "summary": "本地演示退款入口；需要财务退款权限",
+        "operationId": "refund",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Reason"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/orders/{id}/assign": {
+      "post": {
+        "tags": [
+          "订单与服务"
+        ],
+        "summary": "人工派单；校验档期、半径、容量与资质，按订单再喂养师顺序加锁",
+        "operationId": "assign",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Assign"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/hospitals": {
+      "post": {
+        "tags": [
+          "客服通知及应急"
+        ],
+        "summary": "新增合作医院",
+        "operationId": "hospital",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Hospital"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/grades": {
+      "post": {
+        "tags": [
+          "后台业务配置"
+        ],
+        "summary": "新增等级规则，默认下个结算期生效",
+        "operationId": "addGrade",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Grade"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/coupons": {
+      "post": {
+        "tags": [
+          "后台业务配置"
+        ],
+        "summary": "新增优惠券模板及领取限制",
+        "operationId": "addCoupon",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Coupon"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/coupons/{id}/push": {
+      "post": {
+        "tags": [
+          "优惠券"
+        ],
+        "summary": "批量直发优惠券，区别于主动领取库存",
+        "operationId": "push",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Push"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/conversations/{id}/takeover": {
+      "post": {
+        "tags": [
+          "客服通知及应急"
+        ],
+        "summary": "人工接管客服会话，防止多个客服同时接管",
+        "operationId": "takeover",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/conversations/{id}/close": {
+      "post": {
+        "tags": [
+          "客服通知及应急"
+        ],
+        "summary": "关闭人工客服会话",
+        "operationId": "close",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/ai/chat": {
+      "post": {
+        "tags": [
+          "订单与服务"
+        ],
+        "summary": "AI功能预留；当前返回HTTP 501，后续由Python实现",
+        "operationId": "ai",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/ai/dispatch": {
+      "post": {
+        "tags": [
+          "订单与服务"
+        ],
+        "summary": "AI功能预留；当前返回HTTP 501，后续由Python实现",
+        "operationId": "ai_1",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/ai/route": {
+      "post": {
+        "tags": [
+          "订单与服务"
+        ],
+        "summary": "AI功能预留；当前返回HTTP 501，后续由Python实现",
+        "operationId": "ai_2",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/ai/report": {
+      "post": {
+        "tags": [
+          "订单与服务"
+        ],
+        "summary": "AI功能预留；当前返回HTTP 501，后续由Python实现",
+        "operationId": "ai_3",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/sitter/income": {
+      "get": {
+        "tags": [
+          "喂养师与资质"
+        ],
+        "summary": "汇总喂养师本月待结算和已结算收入",
+        "operationId": "income",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/public/health": {
+      "get": {
+        "tags": [
+          "会员与公开配置"
+        ],
+        "summary": "公开查询应用健康状态和AI开关",
+        "operationId": "health",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/api/public/catalog": {
+      "get": {
+        "tags": [
+          "会员与公开配置"
+        ],
+        "summary": "公开查询服务价格、会员套餐及已启用权益",
+        "operationId": "catalog",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/api/orders/{id}": {
+      "get": {
+        "tags": [
+          "订单与服务"
+        ],
+        "summary": "查询业务详情，并校验访问权限",
+        "operationId": "detail_1",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/orders/{id}/report": {
+      "get": {
+        "tags": [
+          "订单与服务"
+        ],
+        "summary": "读取订单报告；当前仅返回原始快照及PENDING_AI状态",
+        "operationId": "report",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/notifications": {
+      "get": {
+        "tags": [
+          "客服通知及应急"
+        ],
+        "summary": "分页查询当前账号的站内通知",
+        "operationId": "notifications",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 20
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/membership/mine": {
+      "get": {
+        "tags": [
+          "会员与公开配置"
+        ],
+        "summary": "查询当前登录人自己的业务数据",
+        "operationId": "mine_1",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/hospitals/nearby": {
+      "get": {
+        "tags": [
+          "客服通知及应急"
+        ],
+        "summary": "按直线距离查询最近的合作医院",
+        "operationId": "hospitals",
+        "parameters": [
+          {
+            "name": "longitude",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "latitude",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/coupons/mine": {
+      "get": {
+        "tags": [
+          "优惠券"
+        ],
+        "summary": "查询当前登录人自己的业务数据",
+        "operationId": "mine_2",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 10
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/coupons/center": {
+      "get": {
+        "tags": [
+          "优惠券"
+        ],
+        "summary": "查询可领取优惠券中心",
+        "operationId": "center",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/me": {
+      "get": {
+        "tags": [
+          "账号认证"
+        ],
+        "summary": "返回当前登录人及权限",
+        "operationId": "me",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/owners/{id}": {
+      "get": {
+        "tags": [
+          "运营查询"
+        ],
+        "summary": "查询宠主基本信息、宠物、地址和会员档案",
+        "operationId": "owner",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/orders/{id}/eligibility/{sitterId}": {
+      "get": {
+        "tags": [
+          "订单与服务"
+        ],
+        "summary": "返回人工派单准入结果及所有淘汰原因，不执行AI排序",
+        "operationId": "eligibility",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "sitterId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/modules/{module}": {
+      "get": {
+        "tags": [
+          "运营查询"
+        ],
+        "summary": "分页查询业务列表，表名与过滤列由服务端白名单提供",
+        "operationId": "list_1",
+        "parameters": [
+          {
+            "name": "module",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 10
+            }
+          },
+          {
+            "name": "keyword",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": ""
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": ""
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/grades/simulate": {
+      "get": {
+        "tags": [
+          "后台业务配置"
+        ],
+        "summary": "按当前生效规则模拟符合条件的等级，不修改档案",
+        "operationId": "simulate",
+        "parameters": [
+          {
+            "name": "orders",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "rating",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "complaints",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/grades/estimate": {
+      "get": {
+        "tags": [
+          "后台业务配置"
+        ],
+        "summary": "按当前生效等级试算平台与喂养师结算金额",
+        "operationId": "estimate",
+        "parameters": [
+          {
+            "name": "amount",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/dictionary": {
+      "get": {
+        "tags": [
+          "运营查询"
+        ],
+        "summary": "查询当前schema的数据字典",
+        "operationId": "dictionary",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/dashboard": {
+      "get": {
+        "tags": [
+          "运营查询"
+        ],
+        "summary": "查询运营工作台汇总指标",
+        "operationId": "dashboard",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/orders/{id}/media/{mediaId}": {
+      "delete": {
+        "tags": [
+          "订单与服务"
+        ],
+        "summary": "软删除指定订单媒体；仅限有权限的订单参与人",
+        "operationId": "deleteMedia",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "mediaId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Personal": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "名称",
+            "maxLength": 12,
+            "minLength": 0
+          },
+          "phone": {
+            "type": "string",
+            "description": "手机号码",
+            "pattern": "1[3-9]\\d{9}"
+          },
+          "emergencyContact": {
+            "type": "string",
+            "description": "紧急联系人",
+            "maxLength": 80,
+            "minLength": 0
+          },
+          "avatarUrl": {
+            "type": "string",
+            "description": "头像地址",
+            "maxLength": 1000,
+            "minLength": 0
+          },
+          "notes": {
+            "type": "string",
+            "description": "备注",
+            "maxLength": 60,
+            "minLength": 0
+          },
+          "district": {
+            "type": "string",
+            "description": "行政区",
+            "maxLength": 60,
+            "minLength": 0
+          },
+          "address": {
+            "type": "string",
+            "description": "详细地址",
+            "maxLength": 300,
+            "minLength": 0
+          },
+          "longitude": {
+            "type": "number",
+            "description": "经度",
+            "maximum": 114.7,
+            "minimum": 113.7
+          },
+          "latitude": {
+            "type": "number",
+            "description": "纬度",
+            "maximum": 22.9,
+            "minimum": 22.4
+          },
+          "radiusKm": {
+            "type": "number",
+            "description": "服务半径0.5至50km",
+            "maximum": 50,
+            "minimum": 0.5
+          },
+          "transport": {
+            "type": "string",
+            "description": "交通方式",
+            "maxLength": 30,
+            "minLength": 0
+          }
+        },
+        "required": [
+          "address",
+          "district",
+          "latitude",
+          "longitude",
+          "name",
+          "phone",
+          "radiusKm",
+          "transport"
+        ]
+      },
+      "ApiObject": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {}
+        }
+      },
+      "Pet": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "名称",
+            "maxLength": 32,
+            "minLength": 0
+          },
+          "category": {
+            "type": "string",
+            "description": "宠物或认证类别",
+            "pattern": "CAT|DOG|SMALL|OTHER"
+          },
+          "breed": {
+            "type": "string",
+            "description": "品种",
+            "maxLength": 60,
+            "minLength": 0
+          },
+          "birthday": {
+            "type": "string",
+            "format": "date",
+            "description": "出生日期"
+          },
+          "weight": {
+            "type": "number",
+            "description": "体重kg",
+            "maximum": 9999.99,
+            "minimum": 0.01
+          },
+          "temperament": {
+            "type": "string",
+            "description": "性格与注意事项",
+            "maxLength": 500,
+            "minLength": 0
+          },
+          "dietaryNotes": {
+            "type": "string",
+            "description": "饮食说明",
+            "maxLength": 5000,
+            "minLength": 0
+          },
+          "medicalHistory": {
+            "type": "string",
+            "description": "病史说明",
+            "maxLength": 5000,
+            "minLength": 0
+          },
+          "photoUrl": {
+            "type": "string",
+            "description": "照片地址",
+            "maxLength": 1000,
+            "minLength": 0
+          }
+        },
+        "required": [
+          "category",
+          "name"
+        ]
+      },
+      "Address": {
+        "type": "object",
+        "properties": {
+          "contactName": {
+            "type": "string",
+            "description": "联系人",
+            "maxLength": 32,
+            "minLength": 0
+          },
+          "phone": {
+            "type": "string",
+            "description": "手机号码",
+            "pattern": "1[3-9]\\d{9}"
+          },
+          "district": {
+            "type": "string",
+            "description": "行政区",
+            "maxLength": 60,
+            "minLength": 0
+          },
+          "address": {
+            "type": "string",
+            "description": "详细地址",
+            "maxLength": 300,
+            "minLength": 0
+          },
+          "longitude": {
+            "type": "number",
+            "description": "经度",
+            "maximum": 114.7,
+            "minimum": 113.7
+          },
+          "latitude": {
+            "type": "number",
+            "description": "纬度",
+            "maximum": 22.9,
+            "minimum": 22.4
+          }
+        },
+        "required": [
+          "address",
+          "contactName",
+          "district",
+          "latitude",
+          "longitude",
+          "phone"
+        ]
+      },
+      "Checklist": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "稳定业务代码",
+            "minLength": 1,
+            "pattern": "FEED|WATER|CLEAN|PLAY|DOOR"
+          },
+          "completed": {
+            "type": "boolean",
+            "description": "是否完成"
+          },
+          "quantity": {
+            "type": "number",
+            "description": "数量",
+            "maximum": 100000,
+            "minimum": 0
+          },
+          "unit": {
+            "type": "string",
+            "description": "计量单位，陪玩必须MINUTE",
+            "maxLength": 20,
+            "minLength": 0
+          },
+          "notes": {
+            "type": "string",
+            "description": "备注",
+            "maxLength": 1000,
+            "minLength": 0
+          }
+        },
+        "required": [
+          "code"
+        ]
+      },
+      "Day": {
+        "type": "object",
+        "properties": {
+          "weekday": {
+            "type": "integer",
+            "format": "int32",
+            "description": "星期1至7，周一为1",
+            "maximum": 7,
+            "minimum": 1
+          },
+          "rest": {
+            "type": "boolean",
+            "description": "是否休息"
+          },
+          "startTime": {
+            "type": "string",
+            "description": "当日接单开始时间"
+          },
+          "endTime": {
+            "type": "string",
+            "description": "当日接单结束时间"
+          },
+          "capacity": {
+            "type": "integer",
+            "format": "int32",
+            "description": "当日容量0至20",
+            "maximum": 20,
+            "minimum": 0
+          },
+          "district": {
+            "type": "string",
+            "description": "行政区",
+            "maxLength": 60,
+            "minLength": 0
+          },
+          "address": {
+            "type": "string",
+            "description": "详细地址",
+            "maxLength": 300,
+            "minLength": 0
+          },
+          "longitude": {
+            "type": "number",
+            "description": "经度",
+            "maximum": 114.7,
+            "minimum": 113.7
+          },
+          "latitude": {
+            "type": "number",
+            "description": "纬度",
+            "maximum": 22.9,
+            "minimum": 22.4
+          }
+        },
+        "required": [
+          "endTime",
+          "startTime"
+        ]
+      },
+      "Profile": {
+        "type": "object",
+        "properties": {
+          "personal": {
+            "$ref": "#/components/schemas/Personal"
+          },
+          "gradeId": {
+            "type": "integer",
+            "format": "int64",
+            "description": "等级ID"
+          },
+          "status": {
+            "type": "string",
+            "description": "业务状态，枚举见本表CHECK约束",
+            "pattern": "PENDING|ACTIVE|REST|DISABLED|REJECTED"
+          },
+          "settlementMethod": {
+            "type": "string",
+            "description": "结算方式",
+            "maxLength": 30,
+            "minLength": 0
+          },
+          "categories": {
+            "type": "array",
+            "description": "擅长宠物类别JSON数组",
+            "items": {
+              "type": "string",
+              "pattern": "CAT|DOG|SMALL|OTHER"
+            },
+            "maxItems": 4,
+            "minItems": 0,
+            "uniqueItems": true
+          },
+          "schedule": {
+            "type": "array",
+            "description": "七天档期，星期1至7必须完整且不重复",
+            "items": {
+              "$ref": "#/components/schemas/Day"
+            },
+            "maxItems": 7,
+            "minItems": 7
+          }
+        },
+        "required": [
+          "categories",
+          "gradeId",
+          "personal",
+          "schedule",
+          "settlementMethod",
+          "status"
+        ]
+      },
+      "Permissions": {
+        "type": "object",
+        "properties": {
+          "permissions": {
+            "type": "array",
+            "description": "受控业务权限集合",
+            "items": {
+              "type": "string",
+              "pattern": "[a-z]+:(read|update|settle|refund|risk|rule)"
+            },
+            "maxItems": 100,
+            "minItems": 0,
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "permissions"
+        ]
+      },
+      "Price": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "名称",
+            "maxLength": 60,
+            "minLength": 0
+          },
+          "description": {
+            "type": "string",
+            "description": "说明",
+            "maxLength": 500,
+            "minLength": 0
+          },
+          "price": {
+            "type": "number",
+            "description": "单价，人民币元",
+            "maximum": 9999,
+            "minimum": 0
+          },
+          "active": {
+            "type": "boolean",
+            "description": "是否启用"
+          }
+        },
+        "required": [
+          "name",
+          "price"
+        ]
+      },
+      "Plan": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "名称",
+            "maxLength": 60,
+            "minLength": 0
+          },
+          "displayName": {
+            "type": "string",
+            "description": "展示名称",
+            "maxLength": 60,
+            "minLength": 0
+          },
+          "months": {
+            "type": "integer",
+            "format": "int32",
+            "description": "套餐月数",
+            "maximum": 120,
+            "minimum": 1
+          },
+          "price": {
+            "type": "number",
+            "description": "单价，人民币元",
+            "maximum": 9999,
+            "minimum": 0.01
+          },
+          "active": {
+            "type": "boolean",
+            "description": "是否启用"
+          }
+        },
+        "required": [
+          "displayName",
+          "name",
+          "price"
+        ]
+      },
+      "Status": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "业务状态，枚举见本表CHECK约束",
+            "pattern": "ACTIVE|BLOCKED"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "Notice": {
+        "type": "object",
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "description": "开关"
+          },
+          "channels": {
+            "type": "array",
+            "description": "配置投递渠道JSON，目前仅站内落地",
+            "items": {
+              "type": "string",
+              "pattern": "IN_APP|WECHAT|SMS|GROUP"
+            },
+            "maxItems": 4,
+            "minItems": 0
+          }
+        },
+        "required": [
+          "channels"
+        ]
+      },
+      "MemberStatus": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "业务状态，枚举见本表CHECK约束",
+            "pattern": "ACTIVE|DISABLED"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "Grade": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "稳定业务代码",
+            "minLength": 1,
+            "pattern": "L[1-9][0-9]?"
+          },
+          "name": {
+            "type": "string",
+            "description": "名称",
+            "maxLength": 32,
+            "minLength": 0
+          },
+          "minOrders": {
+            "type": "integer",
+            "format": "int32",
+            "description": "等级最低完成单量",
+            "minimum": 0
+          },
+          "minRating": {
+            "type": "number",
+            "description": "等级最低平均评分",
+            "maximum": 5,
+            "minimum": 0
+          },
+          "maxComplaints": {
+            "type": "integer",
+            "format": "int32",
+            "description": "最大重大投诉数",
+            "minimum": 0
+          },
+          "commissionRate": {
+            "type": "number",
+            "description": "平台抽成百分数，18表示18%",
+            "maximum": 50,
+            "minimum": 0
+          },
+          "dispatchWeight": {
+            "type": "number",
+            "description": "预留派单权重，不执行AI计算",
+            "maximum": 100,
+            "minimum": 0
+          },
+          "highRiskEnabled": {
+            "type": "boolean",
+            "description": "能否承接遛狗/用药/驱虫高风险服务"
+          },
+          "active": {
+            "type": "boolean",
+            "description": "是否启用"
+          },
+          "effectiveAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "规则生效时间"
+          }
+        },
+        "required": [
+          "code",
+          "commissionRate",
+          "dispatchWeight",
+          "minRating",
+          "name"
+        ]
+      },
+      "EmergencyUpdate": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "业务状态，枚举见本表CHECK约束",
+            "pattern": "ACCEPTED|TRANSPORTING|RESOLVED"
+          },
+          "sitterId": {
+            "type": "integer",
+            "format": "int64",
+            "description": "喂养师档案ID"
+          },
+          "hospitalId": {
+            "type": "integer",
+            "format": "int64",
+            "description": "合作医院ID"
+          },
+          "resolution": {
+            "type": "string",
+            "description": "处理结果",
+            "maxLength": 5000,
+            "minLength": 0
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "Coupon": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "名称",
+            "maxLength": 60,
+            "minLength": 0
+          },
+          "issueType": {
+            "type": "string",
+            "description": "push直发或claim主动领取",
+            "pattern": "push|claim"
+          },
+          "amount": {
+            "type": "number",
+            "description": "金额，人民币元",
+            "maximum": 9999,
+            "minimum": 0.01
+          },
+          "threshold": {
+            "type": "number",
+            "description": "最低消费门槛，元",
+            "maximum": 9999,
+            "minimum": 0
+          },
+          "serviceCodes": {
+            "type": "array",
+            "description": "可用服务代码JSON数组，空表示不限",
+            "items": {
+              "type": "string",
+              "pattern": "[A-Z_]{1,32}"
+            },
+            "maxItems": 30,
+            "minItems": 0
+          },
+          "validDays": {
+            "type": "integer",
+            "format": "int32",
+            "description": "有效天数",
+            "maximum": 3650,
+            "minimum": 1
+          },
+          "active": {
+            "type": "boolean",
+            "description": "是否启用"
+          },
+          "audience": {
+            "type": "string",
+            "description": "适用人群ALL/NEW/NORMAL/MEMBER/SMALL",
+            "pattern": "ALL|NEW|NORMAL|MEMBER|SMALL"
+          },
+          "perUserLimit": {
+            "type": "integer",
+            "format": "int32",
+            "description": "每人主动领取上限",
+            "maximum": 100,
+            "minimum": 1
+          },
+          "stock": {
+            "type": "integer",
+            "format": "int32",
+            "description": "主动领取剩余库存",
+            "minimum": 0
+          },
+          "claimStartsAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "领取开始时间"
+          },
+          "claimEndsAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "领取截止时间"
+          },
+          "redeemCode": {
+            "type": "string",
+            "description": "兑换码，唯一",
+            "maxLength": 32,
+            "minLength": 0
+          },
+          "limitDevice": {
+            "type": "boolean",
+            "description": "同设备限制开关"
+          },
+          "limitPhone": {
+            "type": "boolean",
+            "description": "同手机号限制开关"
+          },
+          "limitIp": {
+            "type": "boolean",
+            "description": "同IP限制开关"
+          }
+        },
+        "required": [
+          "amount",
+          "audience",
+          "claimEndsAt",
+          "claimStartsAt",
+          "issueType",
+          "name",
+          "serviceCodes",
+          "threshold"
+        ]
+      },
+      "ComplaintUpdate": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "业务状态，枚举见本表CHECK约束",
+            "pattern": "PROCESSING|RESOLVED"
+          },
+          "resolution": {
+            "type": "string",
+            "description": "处理结果",
+            "maxLength": 5000,
+            "minLength": 0
+          }
+        },
+        "required": [
+          "resolution",
+          "status"
+        ]
+      },
+      "Benefit": {
+        "type": "object",
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "description": "开关"
+          },
+          "discountRate": {
+            "type": "number",
+            "description": "优惠乘数，例如0.900为九折",
+            "maximum": 1,
+            "minimum": 0.001
+          }
+        },
+        "required": [
+          "discountRate"
+        ]
+      },
+      "Conversation": {
+        "type": "object",
+        "properties": {
+          "orderId": {
+            "type": "integer",
+            "format": "int64",
+            "description": "服务订单ID"
+          }
+        }
+      },
+      "Qualification": {
+        "type": "object",
+        "properties": {
+          "category": {
+            "type": "string",
+            "description": "宠物或认证类别",
+            "pattern": "CAT|DOG|SMALL|OTHER|WALK|MEDICINE|DEWORM"
+          },
+          "materials": {
+            "type": "array",
+            "description": "证明材料对象键JSON数组",
+            "items": {
+              "type": "string",
+              "maxLength": 1000,
+              "minLength": 0
+            },
+            "maxItems": 20,
+            "minItems": 0
+          }
+        },
+        "required": [
+          "category",
+          "materials"
+        ]
+      },
+      "Application": {
+        "type": "object",
+        "properties": {
+          "personal": {
+            "$ref": "#/components/schemas/Personal"
+          },
+          "categories": {
+            "type": "array",
+            "description": "擅长宠物类别JSON数组",
+            "items": {
+              "type": "string",
+              "pattern": "CAT|DOG|SMALL|OTHER"
+            },
+            "maxItems": 4,
+            "minItems": 0,
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "categories",
+          "personal"
+        ]
+      },
+      "Create": {
+        "type": "object",
+        "properties": {
+          "requestKey": {
+            "type": "string",
+            "description": "同宠主下单幂等键",
+            "maxLength": 80,
+            "minLength": 0
+          },
+          "addressId": {
+            "type": "integer",
+            "format": "int64",
+            "description": "当前宠主的地址ID"
+          },
+          "petIds": {
+            "type": "array",
+            "description": "本次服务的宠物ID列表",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "maxItems": 20,
+            "minItems": 0
+          },
+          "serviceStart": {
+            "type": "string",
+            "format": "date-time",
+            "description": "预约服务开始"
+          },
+          "serviceEnd": {
+            "type": "string",
+            "format": "date-time",
+            "description": "预约服务结束"
+          },
+          "items": {
+            "type": "array",
+            "description": "服务明细，必须包含一次BASE基础服务",
+            "items": {
+              "$ref": "#/components/schemas/Item"
+            },
+            "maxItems": 20,
+            "minItems": 0
+          },
+          "couponId": {
+            "type": "integer",
+            "format": "int64",
+            "description": "本次锁定或核销的用户券ID"
+          },
+          "agreementVersion": {
+            "type": "string",
+            "description": "已阅读的服务协议版本",
+            "maxLength": 40,
+            "minLength": 0
+          },
+          "agreementAccepted": {
+            "type": "boolean",
+            "description": "必须明确同意服务协议"
+          },
+          "authorizationScope": {
+            "type": "string",
+            "description": "本次服务授权范围",
+            "maxLength": 500,
+            "minLength": 0
+          },
+          "notes": {
+            "type": "string",
+            "description": "备注",
+            "maxLength": 1000,
+            "minLength": 0
+          }
+        },
+        "required": [
+          "addressId",
+          "agreementVersion",
+          "authorizationScope",
+          "items",
+          "petIds",
+          "requestKey",
+          "serviceEnd",
+          "serviceStart"
+        ]
+      },
+      "Item": {
+        "type": "object",
+        "properties": {
+          "serviceId": {
+            "type": "integer",
+            "format": "int64",
+            "description": "价格配置ID"
+          },
+          "quantity": {
+            "type": "integer",
+            "format": "int32",
+            "description": "数量",
+            "maximum": 20,
+            "minimum": 1
+          }
+        },
+        "required": [
+          "serviceId"
+        ]
+      },
+      "Review": {
+        "type": "object",
+        "properties": {
+          "score": {
+            "type": "integer",
+            "format": "int32",
+            "description": "评分1至5",
+            "maximum": 5,
+            "minimum": 1
+          },
+          "tags": {
+            "type": "array",
+            "description": "评价标签JSON数组",
+            "items": {
+              "type": "string",
+              "maxLength": 32,
+              "minLength": 0
+            },
+            "maxItems": 20,
+            "minItems": 0
+          },
+          "content": {
+            "type": "string",
+            "description": "文本内容",
+            "maxLength": 1000,
+            "minLength": 0
+          }
+        },
+        "required": [
+          "content"
+        ]
+      },
+      "Media": {
+        "type": "object",
+        "properties": {
+          "kind": {
+            "type": "string",
+            "description": "媒体类型PHOTO/VIDEO/LIVE",
+            "pattern": "PHOTO|VIDEO|LIVE"
+          },
+          "objectKey": {
+            "type": "string",
+            "description": "相对存储对象键，不是公网播放地址",
+            "maxLength": 500,
+            "minLength": 0
+          }
+        },
+        "required": [
+          "kind",
+          "objectKey"
+        ]
+      },
+      "Reason": {
+        "type": "object",
+        "properties": {
+          "reason": {
+            "type": "string",
+            "description": "业务说明或失败理由",
+            "maxLength": 1000,
+            "minLength": 0
+          }
+        },
+        "required": [
+          "reason"
+        ]
+      },
+      "Message": {
+        "type": "object",
+        "properties": {
+          "conversationId": {
+            "type": "integer",
+            "format": "int64",
+            "description": "客服会话ID"
+          },
+          "orderId": {
+            "type": "integer",
+            "format": "int64",
+            "description": "服务订单ID"
+          },
+          "content": {
+            "type": "string",
+            "description": "文本内容",
+            "maxLength": 2000,
+            "minLength": 0
+          },
+          "mediaKeys": {
+            "type": "array",
+            "description": "媒体对象键JSON数组",
+            "items": {
+              "type": "string",
+              "maxLength": 500,
+              "minLength": 0
+            },
+            "maxItems": 20,
+            "minItems": 0
+          }
+        },
+        "required": [
+          "content"
+        ]
+      },
+      "Purchase": {
+        "type": "object",
+        "properties": {
+          "planId": {
+            "type": "integer",
+            "format": "int64",
+            "description": "会员套餐ID"
+          }
+        },
+        "required": [
+          "planId"
+        ]
+      },
+      "Ticket": {
+        "type": "object",
+        "properties": {
+          "orderId": {
+            "type": "integer",
+            "format": "int64",
+            "description": "服务订单ID"
+          },
+          "content": {
+            "type": "string",
+            "description": "文本内容",
+            "maxLength": 2000,
+            "minLength": 0
+          }
+        },
+        "required": [
+          "content",
+          "orderId"
+        ]
+      },
+      "Claim": {
+        "type": "object",
+        "properties": {
+          "deviceId": {
+            "type": "string",
+            "description": "设备标识，服务端仅保存摘要",
+            "maxLength": 200,
+            "minLength": 0
+          }
+        }
+      },
+      "Redeem": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "稳定业务代码",
+            "maxLength": 32,
+            "minLength": 0
+          },
+          "deviceId": {
+            "type": "string",
+            "description": "设备标识，服务端仅保存摘要",
+            "maxLength": 200,
+            "minLength": 0
+          }
+        },
+        "required": [
+          "code"
+        ]
+      },
+      "Register": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "description": "登录账号",
+            "pattern": "[a-zA-Z0-9_]{4,32}"
+          },
+          "password": {
+            "type": "string",
+            "description": "password",
+            "maxLength": 64,
+            "minLength": 8
+          },
+          "name": {
+            "type": "string",
+            "description": "名称",
+            "maxLength": 32,
+            "minLength": 0
+          },
+          "phone": {
+            "type": "string",
+            "description": "手机号码",
+            "pattern": "1[3-9]\\d{9}"
+          }
+        },
+        "required": [
+          "name",
+          "password",
+          "phone",
+          "username"
+        ]
+      },
+      "Login": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "description": "登录账号",
+            "maxLength": 64,
+            "minLength": 0
+          },
+          "password": {
+            "type": "string",
+            "description": "password",
+            "maxLength": 72,
+            "minLength": 0
+          }
+        },
+        "required": [
+          "password",
+          "username"
+        ]
+      },
+      "Staff": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "description": "登录账号",
+            "minLength": 1,
+            "pattern": "[a-zA-Z0-9_]{4,32}"
+          },
+          "password": {
+            "type": "string",
+            "description": "password",
+            "maxLength": 64,
+            "minLength": 8
+          },
+          "name": {
+            "type": "string",
+            "description": "名称",
+            "maxLength": 32,
+            "minLength": 0
+          },
+          "role": {
+            "type": "string",
+            "description": "账号角色",
+            "pattern": "SUPPORT|FINANCE"
+          }
+        },
+        "required": [
+          "name",
+          "password",
+          "role",
+          "username"
+        ]
+      },
+      "AdmissionAudit": {
+        "type": "object",
+        "properties": {
+          "decision": {
+            "type": "string",
+            "enum": [
+              "APPROVE",
+              "REJECT"
+            ],
+            "description": "审核决定：通过或驳回"
+          },
+          "note": {
+            "type": "string",
+            "description": "审核意见；驳回时填写需补充或修改的内容",
+            "maxLength": 1000,
+            "minLength": 0
+          }
+        },
+        "required": [
+          "decision",
+          "note"
+        ]
+      },
+      "Batch": {
+        "type": "object",
+        "properties": {
+          "ids": {
+            "type": "array",
+            "description": "业务记录ID列表",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "maxItems": 100,
+            "minItems": 0
+          }
+        },
+        "required": [
+          "ids"
+        ]
+      },
+      "Audit": {
+        "type": "object",
+        "properties": {
+          "approved": {
+            "type": "boolean",
+            "description": "approved"
+          },
+          "realVerified": {
+            "type": "boolean",
+            "description": "实名认证是否通过"
+          },
+          "trainingPassed": {
+            "type": "boolean",
+            "description": "培训是否通过"
+          },
+          "practicePassed": {
+            "type": "boolean",
+            "description": "实操考核是否通过"
+          },
+          "expiresAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "到期时间"
+          },
+          "note": {
+            "type": "string",
+            "description": "note",
+            "maxLength": 1000,
+            "minLength": 0
+          }
+        },
+        "required": [
+          "expiresAt",
+          "note"
+        ]
+      },
+      "Assign": {
+        "type": "object",
+        "properties": {
+          "sitterId": {
+            "type": "integer",
+            "format": "int64",
+            "description": "喂养师档案ID"
+          },
+          "reason": {
+            "type": "string",
+            "description": "业务说明或失败理由",
+            "maxLength": 1000,
+            "minLength": 0
+          }
+        },
+        "required": [
+          "reason",
+          "sitterId"
+        ]
+      },
+      "Hospital": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "名称",
+            "maxLength": 100,
+            "minLength": 0
+          },
+          "phone": {
+            "type": "string",
+            "description": "手机号码",
+            "maxLength": 32,
+            "minLength": 0
+          },
+          "address": {
+            "type": "string",
+            "description": "详细地址",
+            "maxLength": 300,
+            "minLength": 0
+          },
+          "longitude": {
+            "type": "number",
+            "description": "经度",
+            "maximum": 180,
+            "minimum": -180
+          },
+          "latitude": {
+            "type": "number",
+            "description": "纬度",
+            "maximum": 90,
+            "minimum": -90
+          },
+          "emergency24h": {
+            "type": "boolean",
+            "description": "emergency24h"
+          },
+          "active": {
+            "type": "boolean",
+            "description": "是否启用"
+          }
+        },
+        "required": [
+          "address",
+          "latitude",
+          "longitude",
+          "name",
+          "phone"
+        ]
+      },
+      "Push": {
+        "type": "object",
+        "properties": {
+          "ownerIds": {
+            "type": "array",
+            "description": "目标宠主账号ID列表",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "maxItems": 100,
+            "minItems": 0
+          },
+          "quantity": {
+            "type": "integer",
+            "format": "int32",
+            "description": "数量",
+            "maximum": 20,
+            "minimum": 1
+          }
+        },
+        "required": [
+          "ownerIds"
+        ]
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "description": "登录响应data.token，不需要手工添加Bearer前缀",
+        "scheme": "bearer"
+      }
+    }
+  }
+}

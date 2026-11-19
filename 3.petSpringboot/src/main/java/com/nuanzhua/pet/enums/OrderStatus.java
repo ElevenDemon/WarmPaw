@@ -1,0 +1,5 @@
+package com.nuanzhua.pet.enums;
+
+public enum OrderStatus {
+    PENDING_PAYMENT, DISPATCHING, PENDING_ACCEPT, ACCEPTED, SERVICING, COMPLETED, CANCELLED, REFUNDED
+}

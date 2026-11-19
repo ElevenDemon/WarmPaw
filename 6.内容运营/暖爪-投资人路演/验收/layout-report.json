@@ -1,0 +1,89 @@
+{
+  "stats": [
+    {
+      "slide": 1,
+      "id": "cover",
+      "width": 1600,
+      "height": 900,
+      "bad": []
+    },
+    {
+      "slide": 2,
+      "id": "trust-gap",
+      "width": 1600,
+      "height": 900,
+      "bad": []
+    },
+    {
+      "slide": 3,
+      "id": "care-loop",
+      "width": 1600,
+      "height": 900,
+      "bad": []
+    },
+    {
+      "slide": 4,
+      "id": "bounded-ai",
+      "width": 1600,
+      "height": 900,
+      "bad": []
+    },
+    {
+      "slide": 5,
+      "id": "ai-service",
+      "width": 1600,
+      "height": 900,
+      "bad": []
+    },
+    {
+      "slide": 6,
+      "id": "walk-route",
+      "width": 1600,
+      "height": 900,
+      "bad": []
+    },
+    {
+      "slide": 7,
+      "id": "trust-controls",
+      "width": 1600,
+      "height": 900,
+      "bad": []
+    },
+    {
+      "slide": 8,
+      "id": "product-status",
+      "width": 1600,
+      "height": 900,
+      "bad": []
+    },
+    {
+      "slide": 9,
+      "id": "business-model",
+      "width": 1600,
+      "height": 900,
+      "bad": []
+    },
+    {
+      "slide": 10,
+      "id": "district-growth",
+      "width": 1600,
+      "height": 900,
+      "bad": []
+    },
+    {
+      "slide": 11,
+      "id": "validation-gates",
+      "width": 1600,
+      "height": 900,
+      "bad": []
+    },
+    {
+      "slide": 12,
+      "id": "closing",
+      "width": 1600,
+      "height": 900,
+      "bad": []
+    }
+  ],
+  "errors": []
+}

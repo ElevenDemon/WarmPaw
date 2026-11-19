@@ -1,0 +1,1 @@
+<script setup lang="ts">defineProps<{loading?:boolean;disabled?:boolean}>();defineEmits(['click'])</script><template><button class="primary" :loading="loading" :disabled="disabled||loading" @click="$emit('click')"><slot/></button></template>

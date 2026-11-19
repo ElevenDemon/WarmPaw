@@ -1,0 +1,42 @@
+# Local environment and credentials
+.env
+.env.*
+!.env.example
+application-ai-local.properties
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+
+# Python environments, bytecode, and generated model/vector data
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.runtime-*/
+**/data/
+**/chroma/
+**/models/
+
+# JavaScript dependencies and build output
+node_modules/
+.npm-cache/
+dist/
+build/
+target/
+
+# Runtime output and local test artifacts
+logs/
+uploads/
+test-results/
+*.log
+.workbuddy/
+
+# Editor and operating-system metadata
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

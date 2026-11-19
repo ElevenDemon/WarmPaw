@@ -1,0 +1,7 @@
+const fs=require('fs'),path=require('path');const root='src/main/java/com/nuanzhua/pet';
+for(const name of ['Auth','Owner','Operations','Coupon','Member']){const p=`${root}/controller/${name}Controller.java`;let s=fs.readFileSync(p,'utf8');const records=[];s=s.replace(/    public record ([\s\S]*?) \{\}/g,(_,record)=>{records.push('    public record '+record+' {}');return '';});
+const requests=name+'Requests';fs.writeFileSync(`${root}/dto/${requests}.java`,`package com.nuanzhua.pet.dto;\n\nimport jakarta.validation.constraints.*;\nimport java.math.BigDecimal;\nimport java.time.*;\nimport java.util.*;\n\npublic final class ${requests} {\n    private ${requests}() {}\n${records.join('\n')}\n}\n`);
+s=s.replace(/(package [^;]+;)/,'$1\nimport com.nuanzhua.pet.dto.'+requests+'.*;').replace('import com.nuanzhua.pet.entity.Pet;','');if(name==='Auth')for(const n of ['username','password','name','phone'])s=s.replaceAll('r.'+n+',','r.'+n+'(),').replaceAll('r.'+n+')','r.'+n+'())');
+fs.writeFileSync(p,s);
+}
+for(const f of fs.readdirSync(root,{recursive:true}).filter(f=>f.endsWith('.java'))){const p=path.join(root,f);let s=fs.readFileSync(p,'utf8').replaceAll('OperationsController.EmergencyUpdate','OperationsRequests.EmergencyUpdate').replaceAll('OperationsController.Message','OperationsRequests.Message').replaceAll('import com.nuanzhua.pet.controller.OperationsController;','import com.nuanzhua.pet.dto.OperationsRequests;');fs.writeFileSync(p,s);}

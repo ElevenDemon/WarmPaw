@@ -1,0 +1,35 @@
+{
+  "verifiedAt": "2026-11-16T06:05:14.161Z",
+  "run": "mwiutzic",
+  "base": "http://localhost:8081/api",
+  "totals": {
+    "order": 7,
+    "audit": 9,
+    "finance": 2,
+    "refund": 1,
+    "member": 1,
+    "sitter": 2,
+    "user": 1,
+    "coupon": 3,
+    "coupon-logs": 3,
+    "review": 2,
+    "complaints": 2,
+    "service": 1,
+    "emergency": 2,
+    "hospitals": 1
+  },
+  "orders": {
+    "settled": 1,
+    "pending": 2,
+    "refunded": 3,
+    "cancelled": 4,
+    "dispatching": 5,
+    "accepted": 6,
+    "servicing": 7
+  },
+  "applicantId": 2,
+  "qualification": 8,
+  "hospital": 1,
+  "conversation": 1,
+  "emergency": 1
+}
